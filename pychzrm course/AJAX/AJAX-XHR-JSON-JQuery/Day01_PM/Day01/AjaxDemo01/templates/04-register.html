@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/common.js"></script>
+  <script src="/static/jquery-1.11.3.js"></script>
+  <script>
+    $(function(){
+      /**
+       * 为 #uname 绑定 blur 事件
+       */
+       $("#uname").blur(function(){
+          //1.创建xhr
+          var xhr = createXhr();
+          //2.创建请求 - /ajax/04-checkuname
+          var uname = $("#uname").val();
+          var url = "/ajax/04-checkuname?uname="+uname;
+          xhr.open("get",url,true);
+          //3.设置回调函数
+          xhr.onreadystatechange = function(){
+            if(xhr.readyState==4 && xhr.status==200){
+              //$("#uname-tip").html(xhr.responseText);
+              if(xhr.responseText == "1"){
+                $("#uname-tip").html("用户名称已经存在");
+              }else{
+                $("#uname-tip").html("通过");
+              }
+            }
+          }
+          //4.发送请求
+          xhr.send(null);
+       });
+    });
+  </script>
+</head>
+<body>
+  <div>
+    <p>
+      用户名称:<input type="text" id="uname">
+      <span id="uname-tip"></span>
+    </p>
+    <p>
+      用户密码:<input type="password" id="upwd">
+    </p>
+    <p>
+      电子邮箱:<input type="email" id="uemail">
+    </p>
+    <p>
+      用户昵称: <input type="text" id="nickname">
+    </p>
+    <p>
+      <input type="button" value="注册">
+    </p>
+  </div>
+</body>
+</html>

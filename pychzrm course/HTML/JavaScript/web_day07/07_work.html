@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+        模拟验证码:
+        1.创建数据源(由大小写字母和数字组成)
+        2.随机取四位字符,拼成验证码
+            随机数:Math.random()返回[0,1)之间的随机小数
+            调整为随机下标
+        3.提示用户输入(不区分大小写)
+        4.比较用户输入的内容,给出验证结果
+        */
+        var rd = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        function IDM(rds){
+            while(true){
+                var input = prompt("请输入验证码(不区分大小写)").toUpperCase() //转换字母大写字母 返回转换后的字符串
+                str = ""
+                for(var i =0;i<4;i++){
+                    nb = Math.random()*62;
+                    str += rd.charAt(nb);
+                }
+                //验证输入码
+                if(nb==str){
+                    console.log("输入正确");
+                    break;
+                }else if(nb.length>4){
+                    console.log("输入错误");
+                    continue;
+                }else{
+                    console.log("输入包含非法字符");
+                    continue;
+                }
+            }
+        }
+
+        IDM(rd) //调用函数*/
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

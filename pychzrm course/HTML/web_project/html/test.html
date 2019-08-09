@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            //1.全选和取消全选  //:checked表示按钮的选中状态
+            $("#checkAll").click(function(){    //click单击事件
+               $(".checkItem").prop("checked",$(this).prop("checked"))
+            })                                  //prop()设置或读取标签属性
+            //2.反选
+            /*被选中的商品数量等于商品按钮的数量，视为全选。为被选中的商品数量为0，视为全选*/
+            //反选方法一
+            $(".checkItem").click(function(){
+                var i = 0;
+                //判断列表中有几个选中元素
+                //遍历jquery列表   each遍历函数
+                $(".checkItem").each(function(element){
+                    var r = $(this).prop("checked");
+                    if(r){
+                        i++;
+                    }
+                })
+                //判断条件是否全选
+                if(i == $(".checkItem").length){
+                    $("#checkAll").prop("checked",true);
+                }else{
+                    $("#checkAll").prop("checked",false);
+                }
+            });
+            //反选方法二 为被选中的商品数量为0
+            $(".checkItem").click(function(){
+               //获取被选中商品的数量
+               //:checked表示按钮的选中状态
+               console.log($(".checkItem:checked").length);
+               //否定筛选 not()
+               var len = $(".checkItem").not(".checkItem:checked").length
+               console.log(len);
+               if(len == 0){
+                    //全选
+                    $("#checkAll").prop("checked",true)
+               }else{
+                    //取消全选
+                    $("#checkAll").prop("checked",false)
+               }
+            });
+        });
+        var arr3 = [5];
+        //使用new关键字传递一个整数参数创建数组，代表初始化数组的长度
+        var arr4 = new Array(5);
+        console.log(arr3,arr4);
+    </script>
+</head>
+<body>
+    <p>
+        <!--checkbox复选按钮 radio单选按钮 text文本输入-->
+        <input type="checkbox" id="checkAll">
+        全选
+    </p>
+    <p>
+        <input type="checkbox" class="checkItem">
+        商品
+    </p>
+    <p>
+        <input type="checkbox" class="checkItem">
+        商品
+    </p>
+    <p>
+        <input type="checkbox" class="checkItem">
+        商品
+    </p>
+    <p>
+        <input type="checkbox" class="checkItem">
+        商品
+    </p>
+</body>
+</html>

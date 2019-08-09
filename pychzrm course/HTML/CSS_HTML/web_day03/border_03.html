@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h1{
+            width:300px;
+            height:100px;
+            background:pink;
+        }
+        /*solid实线边框*/
+        #d1{
+            border:solid;
+        }
+        #d2{
+            border:5px solid red
+        }
+        /*dotted点线边框*/
+        #d3{
+            border:5px dotted green;
+        }
+        /*dashed虚线边框*/
+        #d4{
+            border:5px dashed blue;
+        }
+        /*double双线边框*/
+        #d5{
+            border:5px double gray;
+        }
+        div{
+            width:0px;
+            height:0px;
+
+            /*border-top:100px solid red;
+            /*rgba(r,g,b,alpha) 三原色每种取值0~255，alpha取值0（透明）~1（不透明*/
+            border-right:100px solid rgba(0,0,0,0);
+            border-bottom:100px solid transparent;
+            border-left:100px solid transparent;*/
+
+            border:100px solid transparent;
+            border-top:100px solid lime;
+        }
+        span{
+            /*
+            display:inline-block;
+            width:0;
+            height:0;
+            */
+            /*行内元素默认不能手动调宽高，空标签默认宽度为0，
+            默认高度与字体大小有关，可以设置字体大小为0实现高度为0的效果*/
+            font-size:0;
+            border-top:25px solid blue;
+            border-right:25px solid rgba(0,0,0,1);
+            border-bottom:25px solid green;
+            border-left:25px solid lime;
+             }
+    </style>
+</head>
+<body>
+    <div></div>
+    <span></span>
+    <h1 id="d1" ></h1>
+    <h1 id="d2" ></h1>
+    <h1 id="d3" ></h1>
+    <h1 id="d4" ></h1>
+    <h1 id="d5" ></h1>
+</body>
+</html>

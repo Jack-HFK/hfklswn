@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        document.write("<h1>动态添加</h1>");
+        console.log("脚本代码")
+    </script>
+    <!--使用src属性引用外部的JS文件-->
+    <script src="index.js">
+        console.log("使用src属性引用外部的JS文件");
+    </script>
+</head>
+<body>
+    <!--元素绑定事件-->
+    <!--网页弹框：
+    alert("")网页警告框-->
+    <h1 onclick="alert('h1被点击')">单击事件</h1>
+    <!--通过script标签书写JS语句-->
+    <script>
+        //单行注释
+        /*多行注释*/
+        console.log("控制台输出");
+        prompt("接收用户输入的弹框，返回用户输入的内容");
+        document.write("<h1>动态添加</h1>");
+
+    </script>
+</body>
+</html>

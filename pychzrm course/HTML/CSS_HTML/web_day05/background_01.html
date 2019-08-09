@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div,h1{
+            width:100px;
+            height:100px;
+            margin:200px auto;
+            background-color:pink;
+            background-image:url(姑娘.jpg);
+            background-repeat:no-repeat;
+            /*background-position:-100px -100px;
+            background-position:right bottom;
+            background-position:center;*/
+            /*background-position:50% 50%;*/
+       }
+       div:hover{
+            background-position:-130px -10px;
+       }
+       h1{
+            width:500px;
+            height:500px;
+            margin:0 auto;
+            /*background-size:100px 50px;*/
+            /*
+            background-size:特殊取值：
+            cover:将图片等比例拉伸足够大，完全覆盖元素，超出部分不可见
+            contain:将图片拉伸至刚好被元素容纳
+            */
+            background-size:contain;
+       }
+       h2{
+            width:400px;
+            height:400px;
+            background:lime url(姑娘.jpg) no-repeat center;
+            /*font:italic 400 32px youyuan;*/
+            font-family:Arial,"黑体";
+       }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <h2>字体样式展示</h2>
+    <div></div>
+</body>
+</html>

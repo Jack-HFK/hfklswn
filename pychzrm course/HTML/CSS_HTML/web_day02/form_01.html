@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单标签</title>
+</head>
+<body>
+    <!--网页表单标签-->
+    <!--form负责提交数据给服务器.标签属性-->
+    <!--action数据的提交地址（交给后端某个程序处理）-->
+    <!--method指定的数据的提交方式，默认为get(明文提交方式，不保密)
+    同时指定编码类型为enctype="application/x-www-form-urlencoded"-->
+    <!--enctype指定数据的编码方式，默认转换字符串，拼接在URL后面(urlencoded)
+    如果涉及二进制数据(图片，音视频等)必须设置提交方式为post
+    同时指定编码类型为multipart/from-date-->
+    <form action="/login" method="get" enctype="application/x-www-form-urlencoded">
+    <!--表单控件-->
+        <p>
+            <!--type="text"普通输入文本框-->
+            <!--name="控件名称"控件名称和用户名组成键值对一起传送-->
+            <!--placeholder="展现给用户的：文本提示"-->
+            <!--maxlength="文本最大输入限制"-->
+             用户姓名：<input type="text" name="username"
+                         placeholder="用户名由数字和字母组成" maxlength="8">
+        </p>
+        <p>
+            <!--type="password"密码输入文本框-->
+            <!--name="控件名称"控件名称和用户名组成键值对一起传送-->
+            <!--placeholder="展现给用户的：文本提示"-->
+            <!--maxlength="文本最大输入限制"-->-->
+            用户密码：<input type="password" name="userpwd"
+                        placeholder="请输入密码" maxlength="9">
+        </p>
+        <p>
+            <!--type="radio"单选按钮-->
+            <!--向服务器发送必须（有名：有值）(gender=body格式提交)-->
+            <!--checked表示按钮的默认选中-->
+             <!--name="控件名称"控件名称和用户名必须保持一直-->
+            <!--value设置控件的值-->
+            用户性别：
+            <input type="radio" name="gender" value="body" checked id="body">
+            <label for="body">男</label>
+            <input type="radio" name="gender" value="girl" id="girl">
+            <label for="girl">女</label>
+        </p>
+
+
+        <p>
+            <!-- type="checkbox"多选按钮-->
+            兴趣爱好：
+            <input type="checkbox" name="hobby" value="smoke" id="smoke">
+            <label for="smoke">抽烟</label>
+            <input type="checkbox" name="hobby"
+                   value="masage" checked id="masage">
+            <label for="masage">保健</label>
+            <!--label for id 实现文本与控制的绑定，
+            将label标签的属性for取值为对应控制的id值
+            for属性值与id值保持一致，实现文本的关联
+            for取值必须和文本取值保持一致，点击文本时for取值才能同步
+            name="控件名称"控件名称和用户名必须保持一至
+            value设置控件的值-->
+            <br>
+
+            <label for="masage">保健</label>
+
+        </p>
+        <p>
+            <!--隐藏域：将一些服务端需要，但是用户不需要数据的数据提交过去，对用户不可见-->
+            <input type="hidden" name="userid" value="001">
+            <!--设置下拉菜单-->
+            <select name="city" id="">
+                <!--默认选中第一个option,可以手动设置selected表示选中这行文本为默认选中-->
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="xiongan" selected>雄安</option>
+                <option value="shijiazhuang">石家庄</option>
+            </select>
+            <!--例如：{city:beijing}，相当于{name:value} 组合成查询字典发送给服务器-->
+        </p>
+        <!--文件选择眶：涉及二进制数据提交，必须使用post方式，
+        同时设置编码类型为multipart/from-data-->
+        用户头像：<input type="file" name="uimg" >
+
+
+        <!--功能按钮-->
+        <!--1，功能按钮：提交按钮，点击时提交数据到后台
+        可以设置value属性，表示按钮的显示文本-->
+        <input type="submit">
+        <input type="submit" value="注册">
+        <!--2，重置按钮，点击时将表单还原至初始状态-->
+        <input type="reset" value="重置（重新输入）">
+        <!--3，普通按钮，需要自定义点击按钮处理(自定义点击事件)-->
+        <input type="button" value="点击">
+        <!--butten标签表示按钮，标签内容即为按钮显示文本
+        书写在form中，相当于submit提交按钮-->
+        <button>(form内)按钮显示文本</button>
+    </form>
+    <!--butten标签表示按钮，标签内容即为按钮显示文本
+      书写在form表单外，相当于普通按钮，需要自定义点击操作-->
+    <button>(form外)按钮显示文本</button>
+</body>
+</html>

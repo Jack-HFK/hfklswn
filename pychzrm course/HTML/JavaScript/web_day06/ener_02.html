@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+            接收用户输入的身高(m)和体重(kg)
+            计算bmi = 体重/(身高*身高)
+            对bmi判断保留1位小数，并且判断身体指数：
+            bmi<18.5:太瘦了
+            bmi>23.9:胖子
+            18.5<bmi<23.9:健康
+        */
+        var height =  prompt("请输入身高（m）");
+        var weight =  prompt("请输入体重（kg）");
+        var hfk = weight/(height*height)
+        var res = hfk.toFixed(1)<18.5? "太瘦了":hfk.toFixed(1)>23.9? "太胖了":"健康身材";
+
+    </script>
+    <style></style>
+
+</head>
+<body>
+    <h1></h1>
+</body>
+</html>

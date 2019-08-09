@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/jquery-1.11.3.js"></script>
+  <script>
+    $(function(){
+      $("#btnShow").click(function(){
+        $.get("/ajax/10-server",function(resText){
+          //业务处理,由于type的类型是json所以resText直接当成JS对象去处理
+          $(resText).each(function(i,obj){
+            console.log("姓名:"+obj.fields.uname);
+            console.log("昵称:"+obj.fields.nickname);
+            console.log("==========================");
+          });
+        },'json');
+      });
+    })
+  </script>
+</head>
+<body>
+  <button id="btnShow">显示Users</button>
+</body>
+</html>

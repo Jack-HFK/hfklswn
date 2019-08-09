@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <style>
+        #div1 > label{
+            display:inline-block;
+            width:68px;
+        }
+        #div2 > label{
+            display:inline-block;
+            width:68px;
+        }
+        span{
+            color:pink;
+        }
+    </style>
+</head>
+<body>
+    <form action="/user/login" method="post">
+        {% csrf_token %}
+        <div id="div1">
+            <label for="id_name">何方神圣</label>
+            <input type="text" id="id_name" name="username" value="{{ username }}">
+            <span>{{ name_error }}</span>
+        </div>
+        <div id="div2">
+            <label for="id_password">师出何方</label>
+            <input type="text" id="id_password" name="password" value="password">
+            <span>{{ password_error }}</span>
+        </div>
+        <div id="div3">
+            <input type="checkbox" value="1" name="remember" id="id_remember">
+            <label for="id_remember">否要加入江湖</label>
+        </div>
+        <input type="submit" value="踏入江湖">
+    </form>
+</body>
+</html>

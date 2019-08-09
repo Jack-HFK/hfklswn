@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        form{
+            font-size:0;
+        }
+        #d1{
+            width:500px;
+            height:50px;
+            font-size:25px;
+            outline:none;
+            margin:0 auto;
+            padding:0px;
+        }
+        #d2{
+            width:150px;
+            height:50px;
+            background:blue;
+            color:white;
+            font-size:20px;
+            margin:0 auto;
+            padding:0px;
+        }
+        #d2:hover{
+            color:lime;
+        }
+    </style>
+</head>
+<body>
+    <!--参照百度搜索栏,创建输入框(500*50)和按钮(150*50)-->
+    <form action="/hfklswn" method="get"
+          enctype="application/x-www-form-urlencoded">
+        <input type="text" name="address" placeholder="搜索" id="d1">
+        <input type="submit" value="百度一下" id="d2">
+    </form>
+</body>
+</html>

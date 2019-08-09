@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<a href="/page333">回到第3页</a>-->
+<a href="{% url 'page3' %}">回到第3页</a>
+<a href="{% url 'pagen' n %}">回到第{{ n }}页</a>
+</body>
+</html>

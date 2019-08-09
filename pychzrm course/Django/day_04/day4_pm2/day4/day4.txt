@@ -1,0 +1,139 @@
+day3回顾
+静态文件
+    修改 settings.py
+    配置静态文件的访问路径(路由的起始位置)
+      STATIC_URL = '/static/'
+    配置静态文件的存储路径
+      STATICFILES_DIRS = (路径1, 路径2, ...)
+    访问:
+      1. 通过地址栏输入
+      2. <link .....>
+      3. <script src=.....>
+      4. <img src=....>
+    模板中如何获取静态文件的访问路径?
+      {% load static %}
+      {% static '静态文件地址'}
+
+django 中的 app 应用
+  应用里有自己的路由,视图,模板,模型
+  python3 manage.py startapp 应用名称
+  应用名称/
+    views.py  视图
+    models.py  模型类
+    urls.py    路由(自己创建)
+    __init__.py  
+    migrations/   # 迁移脚本文件 python3 manage.py makemigrations
+         __init__.py 
+         0001_init.....py
+         0002_.........py   # python3 manage.py migrate
+    admin.py  # 后台数据库管理文件
+    apps.py   # 当前应用的文件
+
+添加APP到当前项目中
+settings.py
+   INSTALLED_APPS = [
+       .....
+       '应用名称',
+   ]
+
+分布式路由
+  主路由处理文件urls.py
+     urlpatterns = [
+        url(r'^admin' , ......),
+        url(r'^news', include('news.urls'))
+     ]
+
+数据库和模型
+   DATABASES = {
+       'default' : {
+            ...配置数据库
+            "ENGINE": 'django.......mysql',
+            "HOST": ...,
+            "PORT": 3306,
+            'NAME': 数据库的名称,
+            'USER': 'root',
+            'PASSWORD': '123456',
+       }
+   }
+
+    项目文件夹下/__init__.py
+      import pymysql
+      pymysql.install_as_MySQLdb()
+
+模型类
+  from django.db import models
+  class 模型类名(models.Model):
+      类属性1 = models.CharField(max_length=30),
+
+  obj1 = 模型类名()  # 创建对象(创建一条记录)
+
+ORM
+  1. 只需要面向对象编程即可以直接操作数据库
+  2. 实现了数据模型 与数据库的解耦,屏蔽数据库的操作差异
+     好处: 直接简单修改数据库的配置,即可方便切换数据库 
+
+
+   FIELD_TYPE 字段类型
+      CharField
+      BooleanField
+      IntegerField
+      FloatField
+      DecimalFeild
+      DateField
+      DatetimeField
+      ...
+    xxx = CharField(max_length=20, null=True,
+                   blank=True, default='',
+                   ....)
+常用的字段选项
+    default
+    nulll
+    blank
+    unique
+    primary_key
+    db_index
+    ...
+
+day4 笔记
+    1. 创建项目
+      $ django-admin startproject mysite4
+      cd mysite4
+    2. 配置数据库
+        数据库名定义: 'mysite4_db'
+        sql> create database mysite4_db default charset utf8 collate utf8_general_ci;
+       settings.py
+          修改 DATABASES = {...}
+       修改: __init__.py
+          import pymysql
+          pymysql.install_as_MySQLdb()
+    3. 把昨天示例 mysite3/bookstore 这个应用直接
+       复制到mysite4下
+    4. 配置bookstore下的分布式路由
+    5. 注册bookstore应用:
+        INSTALLED_APPS = [
+            'bookstore'
+        ]
+    6. 做迁移操作
+       $ python3 manage.py makemigrations
+       $ python3 manage.py migrate
+
+
+    127.0.0.1:8000/bookstore/add?title=Python
+                  &pub=清华大学出版社
+      http://127.0.0.1:8000/bookstore/add?title=java&pub=北京大学出版社
+
+       add_book_view(request):
+           Book.objects.create(title="Python",
+                     pub="清华大学出版社")
+
+写一个页面用来显示所有的图书
+  路由:
+    127.0.0.1:8000/bookstore/books
+  模版名:
+     books.html
+  视图名:
+     /bookstore/views.py
+       books_view(request)
+
+models.Book.objects.filter(pub__contains="清华")
+models.Book.objects.filter(pub__contains="C")

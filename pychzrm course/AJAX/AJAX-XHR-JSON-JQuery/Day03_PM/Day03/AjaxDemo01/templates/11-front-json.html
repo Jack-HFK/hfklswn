@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/jquery-1.11.3.js"></script>
+  <script>
+    $(function(){
+      $("#btnJSON").click(function(){
+        var obj = {
+          uname:'wangwc',
+          uage:30,
+          ugender:'unknown'
+        }
+        //通过JSON.stringify()将obj转换成JSON串
+        var str = JSON.stringify(obj);
+        console.log("转换后的值为:"+str);
+      });
+    })
+  </script>
+</head>
+<body>
+  <button id="btnJSON">JS对象->JSON串</button>
+</body>
+</html>

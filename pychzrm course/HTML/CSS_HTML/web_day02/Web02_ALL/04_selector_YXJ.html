@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .c1{
+            color:blue;
+        }
+        #d1{
+            color:pink;
+        }
+        h1{
+            color:red;
+        }
+        h1{
+           color:green;
+        }
+
+        /*十六进制表示颜色,以#前缀,每两位为一组,
+        代表一种三原色(r,g,b),每位字符取值范围0~9,a~f
+        ff:(255)*/
+
+        #d1{/*100*/
+            color:#997679;
+        }
+        div h1{/*1+1*/
+            color:red;
+        }
+        div .c1{/*1+10*/
+            color:green;
+        }
+        div #d1{/*1+100*/
+            /*#000000*/
+            color:#000;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <h1 id="d1" class="c1">小泽Maria</h1>
+    </div>
+</body>
+</html>

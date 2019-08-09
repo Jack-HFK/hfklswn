@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+        1.接收用户输入的邮箱,提取用户名和服务商
+            "zhangsan@163.com"
+        2.从身份证号中提取年月日信息
+            "100100190012120123"
+        3."101_5&201_7&301_9"
+            商品id为101,数量为5
+        */
+        //1.提取用户名和服务商
+        var mail = "lvze@tedu.cn";
+        //方法1:截取
+        var index = mail.indexOf("@");
+        var username = mail.substring(0,index);
+        //省略结束下标,表示截取至末尾
+        var servername = mail.substring(index+1);
+        console.log(username,servername);
+
+        //方法2:使用@符号分割字符串
+        var res = mail.split("@");
+        console.log(res[0],res[1]);
+
+        //2.提取身份证号中的年月日
+        var uid = "100100190012100123";
+        var year = uid.substring(6,10);
+        var month = uid.substring(10,12);
+        var day = uid.substring(12,14);
+        console.log(year,month,day);
+
+        //3.分割商品信息
+        var str = "101_5&201_7&301_9";
+        var arr = str.split('&');//["101_5","",""]
+        for(var i=0; i<arr.length;i++){
+            var arr2 = arr[i].split('_');//["101","5"]
+            console.log("商品id为:",arr2[0],"商品数量为:",arr2[1]);
+        }
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

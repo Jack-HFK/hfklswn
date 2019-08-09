@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #nav{
+            width:900px;
+            height:25px;
+            background:yellow;
+        }
+        .left{
+            width:300px;
+            float:left;
+            background:orange;
+        }
+        .right{
+            width:300px;
+            float:right;
+            background:orange;
+        }
+        ul{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+        li{
+            float:left;
+            margin-right:30px;
+        }
+        #main{
+            margin:50px;
+            width:900px;
+            /*height:600px;*/
+            /*解决子元素全部浮动造成父元素高度为0的问题*/
+            overflow:hidden;
+            background:lime;
+
+        }
+        .item1{
+            width:580px;
+            height:400px;
+            background:violet;
+            float:left;
+        }
+        .item2,.item3{
+            width:300px;
+            height:190px;
+            background:cyan;
+            float:right;
+        }
+        .item2{
+            margin-bottom:20px;
+        }
+        #d1,#d2{
+                width:200px;
+                height:200px;
+                background:red;
+        }
+        #d1{
+            background:green;
+            float:left;
+        }
+        #d2{
+            /*使文档中正常元素不受前面浮动元素的影响
+              clear:/left/right/both;*/
+              clear:left;
+        }
+        .clear{
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div class="left">
+            <ul>
+                <li>首页</li>
+                <li>物流</li>
+                <li>客服</li>
+            </ul>
+        </div>
+        <div class="right">右侧浮动导航栏</div>
+    </div>
+    <div id="main">
+        <div class="item1"></div>
+        <div class="item2"></div>
+        <div class="item3"></div>
+        <div class="clear"></div>
+        <div>小女子不才</div>
+    </div>
+    <div>
+        未得公子青睐
+        <div id="d1"></div>
+        <div id="d2"></div>
+    </div>
+</body>
+</html>

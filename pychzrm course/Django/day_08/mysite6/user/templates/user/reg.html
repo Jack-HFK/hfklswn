@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div > label{
+            display:inline-block;
+            width:120px;
+            color:pink;
+        }
+        #zhuce {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <form action="/user/reg" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="user_name">请输入姓名</label>
+            <input type="text" id="user_name" name="user_name">
+            <span>{{ name_error }}</span>
+        </div>
+        <div>
+            <label for="user_password">请输入密码</label>
+            <input type="text" id="user_password" name="user_password" >
+            <span>{{ no_password }}</span>
+        </div>
+        <div>
+            <label for="user_password2">请再次输入密码</label>
+            <input type="text" id="user_password2" name="user_password2">
+        </div>
+        <input type="submit" value="注册" id="zhuce">
+    </form>
+</body>
+</html>

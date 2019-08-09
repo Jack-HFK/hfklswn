@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <script src="/static/common.js"></script>
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            $("#zhuce").click(function(){
+                var xhr = createXhr();
+                var params = {
+                    username:$("#username").val(),
+                    userpassword:$("#userpassword").val(),
+                    useremail:$("#useremail").val(),
+                    usernickname:$("#usernickname").val()
+                }
+                // 将params转换为JSON字符串
+                var str = JSON.stringify(params)
+                xhr.open("get","/ajax/user-login-B/?params="+str,true);
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        alert(xhr.responseText);
+                    }
+                }
+                xhr.send(null);
+            });
+        });
+    </script>
+</head>
+<body>
+    <p>用户名称 <input type="text" id="username"></p>
+    <p>用户密码 <input type="password" id="userpassword"></p>
+    <p>用户邮箱 <input type="email" id="useremail"></p>
+    <p>用户昵称 <input type="text" id="usernickname"></p>
+    <p><button id="zhuce" value="注册">注册</button></p>
+</body>
+</html>

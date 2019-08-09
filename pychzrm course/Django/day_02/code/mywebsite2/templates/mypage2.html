@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<!--在模板中使用模板变量语法-->
+<!--通过变量调用视图中的数据-->
+    <!--过滤器 add:1 相当于原来数字+1-->
+    <h5>myvar + 1 = {{myvar | add:1}}</h5>
+    <!--过滤器 upper将字符串转换为大写形式-->
+    <h5>mystr = {{mystr | upper}}</h5>
+    <!--truncatewords在一定数量的字后截断字符串-->
+    <h5>mystr = {{mystr | truncatewords:0}}</h5>
+    <!--truncatechars如果字符串字符多于指定的字符数量,那么会被截断。
+     截断的字符串将以可翻译的,省略号序列( “...” )结尾。-->
+    <h5>mystr = {{mystr | truncatechars:5}}</h5>
+    <!--模板内索引 变量名.索引位置-->
+    <h5>mylist = {{mylist}}</h5>
+    <h5>mylist[1] = {{mylist.1}}</h5>
+    <!--模板内字典索引变量名.字典键-->
+    <h5>preson = {{preson}}</h5>
+    <h5>preson[age] = {{preson.age}}</h5>
+    <!--模板内使用函数-->
+    <h4>myfun()函数 = {{myfun}}</h4>
+<!--在模板中使用模板if标签语法-->
+    {% if money  >  99999 %}
+    <b>有钱才显示</b>
+    {% endif %}
+    <h3>你是：
+        {% if money > 88888888 %} 富翁
+        {% elif money > 999999 %} 有钱人
+        {% elif money < 999999  %} 穷人
+        {% endif %}
+    </h3>
+<!--在模板中使用模板for标签语法-->
+    <select name="city" id="" >
+        {% for c in city %}
+        <option value="" >{{c}}</option>
+        {% empty %}
+        <option value="">请添加数据</option>
+        {% endfor %}
+    </select>
+    <ul>
+        <!--forloop.counter循环的当前迭代数字(从 1 开始索引)-->
+        {% for c in city %}
+        {% if forloop.first %}
+        <li>***********************</li>
+        {% endif %}
+        <li>第{{forloop.counter}}个城市{{ c }}</li>
+        {% endfor %}
+    </ul>
+
+    {# 这一行为模板注释单行注释，不生成代码，不执行这行。 #}
+    {% comment "注释原因" %}
+    <h1>此内为多行注释，"字符串内添加注释原因"</h1>
+    <h2>comment内代码不执行，不生成</h2>
+    <b>需要endcomment结束</b>
+    {% endcomment %}
+
+
+</body>
+</html>

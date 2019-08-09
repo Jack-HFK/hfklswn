@@ -1,0 +1,224 @@
+day05回顾
+查询:
+  聚合查询
+    聚合函数: 
+       from django.db.models import Sum,Count,Avg,Max,Min
+    1. 不分组的聚合查询
+       MyModel.objects.aggregate(结果变量=聚合函数("列"))
+       Book.objects.aggregate(mycnt=Count('id'))
+    2. 分组的聚合查询
+      books = Book.objects.values('pub')
+      r = books.annotate(mycnt=Count('pub'))
+      r = [{'pub':'清华大学出版社', mycnt:3},
+       {'pub':'北京大学出版社', mycnt:5}
+      ]
+
+F 对象
+  1. 列表涨价的图书:
+     books = Book.objects.filter(
+         market_price__gt=F('price'))
+  2. 要让所有清华大学出版社的书 涨价10元
+    books = Book.objects.filter(pub='清华...')
+    # 不推荐的做法
+    for book in books:
+        book.market_price=book.market_price+10
+        book.save()
+    # 推存做法:
+    books.update(market_price=F('market_price')+10)
+
+Q对象:
+  与&  或| 非~  查询条件
+  books = Book.objects.filter(
+      Q(pub='清华...') | Q(id__gt=100)
+  )
+原生数据库操作方法:
+  1. 查询操作
+      Mymodel.objects.raw('SQL语句')  # 查询
+  2. 对数据进行增加,删除,修改
+     游标 cursor
+     from djang.db import connection
+         with connection.cursor() as ccc:
+            ccc.execute('SQL语句')
+
+admin 后台数据库管理
+   $ python3 manage.py createsuperuser
+   在 auth_user 表里添加一条记录
+   http://127.0.0.1:8000/admin
+
+   admin.py 中注册模型类
+   admin.site.register(自定义的模型类)
+
+   def BookManage(admin.ModelAdmin):
+       list_display = ['id', 'pub', 'title']
+       list_display_link = [...]
+       list_filter = [....]
+       list_editable = [...]
+       search_fields = [...]
+
+   admin.site.register(Book, BookManage)
+
+   修改数据表的名称:
+      # APP名称_book  # bookstore_book
+      def Book(models.Model):
+          title = models.CharField(...)
+          class Meta:
+              db_table = 'xxx'
+
+数据表的关系映射:
+  一对一
+    class A(models.Model):
+           ...
+    class B(models.Model):
+          ....
+          abc = models.OneToOneField(A)
+    a = A()  # 创建一个A类记录
+    b = B(abc=a)
+    # 通过b找a
+       b.abc  
+    # 通过a找b
+       a.b  
+
+  一对多
+    class A(models.Model)  # 一
+        ...
+    class B(models.Model):
+        ...
+        abc = models.ForeignKey(A)  #  关联一的属性
+    a = A()
+    b1 = B(abc=a)
+    b2 = B(abc=a)
+    b3 = B(abc=a)
+    # 正向
+    b1.abc   # 找到a
+    # 反向
+    a.b_set.all()   # QuerySet[b1, b2, b3]
+    B.object.filter(abc=a)
+
+    models.ForeignKey(类, on_delete=xxxx)
+    xxxx 可以取值:
+        models.CASCADE  级联删除
+        models.PROTECT  有多相关联直接报错
+        models.SET_NULL
+        models.SET_DEFAULT
+
+day06笔记:
+多对多
+   示例:
+    1. 在mysite4 创建应用 many2many
+        python3 manage.py startapp many2many
+    2. 在mysite4/settings.py 中注册该应用
+        INSTALLED_APP = [
+            ...
+            'many2many'
+        ]
+    3. 在 many2many/models.py 里加两个模型类
+        Author3
+        Book3
+
+多对多示例：
+  创建吕泽数据对象
+　　lvze = models.Author3.objects.create(name='吕泽')
+　＃　创建书　Python 关联作者　lvze
+    python = lvze.book3_set.create(title='Python')
+　＃　创建书　C 关联作者　lvze
+    c = lvze.book3_set.create(title='C')
+
+  创建魏老师数据对象
+　　wei = models.Author3.objects.create(name='魏老师')
+　　#　让魏老师关联　python书
+　　wei.book3_set.add(python)
+　　#　让魏老师关联　c 
+　　wei.book3_set.add(c)
+  让魏老师写一本书　C++
+    wei.book3_set.create(title='C++')
+
+
+多对多的查询：
+　　通过书查询作者：
+　　　　abook.authors.all()
+   通过作者查询书
+   　　lvze.book3_set.all()
+   
+
+新建应用：
+　python3 manage.py startapp cookie_session
+  在主路由mysite4/urls.py中　建分布式路由
+  urlpatterns = [
+    url(r'^cs/', include('cookie_session.urls))
+  ]
+  创建分布试路由配置文件
+  　　　cookie_session/urls.py
+     urlpatterns = [
+         url(r'^set_cookies', views.set_cookie),
+         url(r'^get_cookies', views.get_cookie),
+     ]
+  添加视图处理函数: cookie_session/views.py
+     def set_cookie(request):
+         ...
+     def get_cookie(request):
+         ...
+    
+
+
+
+http://127.0.0.1:8000/cs/set_cookies
+http://127.0.0.1:8000/bookstore/books
+
+创建一个工程 mysite5
+对应的数据库为 mysite5_db
+配置数据库 settings.py
+         __init__.py
+            import pymysql
+            pymysql.install_ .....
+
+创建应用 user
+  主路由 url(r'^user/', include('user.urls'))
+  添加子路由映射 user/urls.py
+  
+  user/templates
+  user/templates/user
+
+
+session 的用法：
+　当用户登陆
+　　1. 检查用户和密码是否是合法用户
+　　2. 如果是合法用户，在当前用户的session记录
+　　　　　当前用户的名称和id
+          request.session['user'] = {
+              'user': 'tedu',
+              'id': 1
+          }
+        注：　没有登陆的用户　session['user'] 不存在
+    3.  退出登陆时，删除session['user'] 
+        if 'user' in request.session:
+            del request.session['user']
+
+    4. 为当前网站添加主页
+    　　　创建index应用
+           在index/templates/index/index.html 创建文件
+           注册应用
+    　　让主路由r'^%' 关联 index/views.py
+                   def index_view(request)
+                       return render(..'index/index.html', locals())
+
+练习:
+  1. 看懂登陆,和退出的流程,能自己修改
+  2. 看懂记住用户名的操作
+  3. 实现注册用户页面
+  4. 创建一个应用 名为 note 用来存储个人日记
+     能够实现日记的添加,修改,删除,查看功能(同bookstore)
+     模型类:
+        note/models.py
+     class Note(models.Model):
+          title = CharField('标题', max_length=100)
+          content= models.TextField('内容')     
+          create_time = models.DateTimeField('创建时间',
+                      auto_now_add=True)
+          mod_time = models.DateTimeField('修改时间',
+                      auto_now=True)
+          user = models.ForeignKey(User)
+
+
+
+
+

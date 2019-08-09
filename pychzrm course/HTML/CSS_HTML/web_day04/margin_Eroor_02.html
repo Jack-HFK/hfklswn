@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            /*取消body默认的外边距*/
+            margin:0;
+            /*border-top:1px solid blue;*/
+            padding-top:0.1px;
+        }
+        div{
+            width:200px;
+            height:200px;
+            background:lime;
+            margin-top:100px;
+            margin-bottom:200px;
+        }
+        h1{
+            width:200px;
+            height:200px;
+            background:red;
+            margin-top:100px;
+        }
+        b,span{
+            background:blue;
+            /*行内元素不支持垂直边距，水平方向上*/
+            margin:10px 50px;
+        }
+        
+        /*取消默认样式*/
+        body,h1,h2,h3,h4,h5,h6,p,ul,ol,{
+            margin:0;
+            padding:0;
+            list-style:none;
+        }
+    </style>
+</head>
+<body>
+    <!--第一个子元素的margin-top作用于父元素之上
+    解决：
+        方式一：父元素添加顶部边框
+        方式二：父元素添加padding-top:0.1px;-->
+    <div></div>
+    <!--同时设置垂直方向上的外边距，取最大外边距值-->
+    <h1></h1>
+    <b>加粗</b>
+    <span>span文本</span>
+    <h2>h2</h2>
+    <p>p</p>
+    <ul></ul>
+    <form action=""></form>
+</body>
+</html>

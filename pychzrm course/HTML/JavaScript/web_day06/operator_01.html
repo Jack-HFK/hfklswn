@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src=""></script>
+    <script>
+        var a = 100;
+        var r1 = a +10;
+        //自增和自减 ++ --
+        //单独与变量结合，前缀和后缀没有区别
+        var b = 10;
+        b++;
+        ++b;
+        console.log(b);
+        //与其他运算符结合使用
+        var b = 10;
+        var r2 = b++;
+        console.log(r2,b); //10 11
+        var b = 10;
+        var r3 = ++b;
+        console.log(r3,b);//11 11
+        var c = 10;
+        var r4 = --c; //9 9
+        var r5 = c--; //9 8
+        //自增和自减运算的结果永远是number值
+        var s = "10";
+        s++;
+        console.log(s,typeof s);
+
+        //思考
+        var n = 5;
+        var r = n++ + ++n + n++ + ++n + n;
+        console.log(r,n)
+
+        //2.关系运算：结果为布尔值
+        var res1 = 10 > 2;
+        var res2 = "10" > "2";
+        console.log(res1,res2)
+        //获取字符的Unicode编码charCodeAt(index)
+        var s1 = "和";
+        var s2 = "王"
+        console.log(s1.charCodeAt(),s2.charCodeAt());
+        var s3 = s1 > s2;
+        console.log(s3);
+
+        var res4 = "10" > 2; 10 > 2
+        var res5 = "10" > true; //10 > 1
+        var res6 = true > false; //1 > 0
+        var res7 = "10" > undefined; // 10 > NaN -->false
+        var res8 = "10" > null; // 10 > 0
+        var res9 = "true" > false; //NaN >0
+
+        //相等和全等
+        var r1 = 10 =="10";  // true
+        var r2 = 10 ==="10"; //false
+        console.log(r1,r2);
+        //逻辑运算符：结果一律布尔值
+        //闰年判断的条件
+        var year = prompt("请输入年份");
+        var hfk = year%4==0 && year%100!=0 || year%400==0;
+        console.log(year,typeof year,hfk);
+
+        //逻辑非 对布尔值取反
+        var r1=!5; //false
+        //逻辑非的优先级高于关系运算
+        var r2 = !5 < 3; //false < 3
+
+
+        //三目运算符
+        var a = 10;
+        if (a > 5){
+            console.log("成立");
+        }
+        else{
+            console,log("不成立");
+        }
+        var res = a>5 ? "OK":"error";
+        console.log(res);
+        a = 3;
+        var res2 = a>5? "ok" : a>=3? "a>=3":"小于3";
+        console.log(res2)
+
+
+
+    </script>
+</head>
+<body>
+    <h1 onclick=""></h1>
+</body>
+</html>

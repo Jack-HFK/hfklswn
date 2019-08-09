@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程day07.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<!-- /TOC -->
+<h3 id="%E4%B8%AD%E9%97%B4%E4%BB%B6-middleware">中间件 Middleware</h3>
+<ul>
+<li>
+<p>中间件是 Django 请求/响应处理的钩子框架。它是一个轻量级的、低级的“插件”系统，用于全局改变 Django 的输入或输出。</p>
+</li>
+<li>
+<p>每个中间件组件负责做一些特定的功能。例如，Django 包含一个中间件组件 AuthenticationMiddleware，它使用会话将用户与请求关联起来。</p>
+</li>
+<li>
+<p>他的文档解释了中间件是如何工作的，如何激活中间件，以及如何编写自己的中间件。Django 具有一些内置的中间件，你可以直接使用。它们被记录在 built-in middleware reference 中。</p>
+</li>
+<li>
+<p>中间件类:</p>
+<ul>
+<li>中间件类须继承自 <code>django.utils.deprecation.MiddlewareMixin</code>类</li>
+<li>中间件类须实现下列五个方法中的一个或多个:
+<ul>
+<li>
+<p><code>def process_request(self, request):</code> 执行视图之前被调用，在每个请求上调用，返回None或HttpResponse对象</p>
+</li>
+<li>
+<p><code>def process_view(self, request, callback, callback_args, callback_kwargs):</code> 调用视图之前被调用，在每个请求上调用，返回None或HttpResponse对象</p>
+</li>
+<li>
+<p><code>def process_response(self, request, response):</code> 所有响应返回浏览器之前被调用，在每个请求上调用，返回HttpResponse对象</p>
+</li>
+<li>
+<p><code>def process_exception(self, request, exception):</code> 当处理过程中抛出异常时调用，返回一个HttpResponse对象</p>
+</li>
+<li>
+<p><code>def process_template_response(self, request, response):</code> 在视图刚好执行完毕之后被调用，在每个请求上调用，返回实现了render方法的响应对象</p>
+</li>
+</ul>
+</li>
+<li>注： 中间件中的大多数方法在返回None时表示忽略当前操作进入下一项事件，当返回HttpResponese对象时表示此请求结果，直接返回给客户端</li>
+</ul>
+</li>
+<li>
+<p>编写中间件类:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : middleware/mymiddleware.py</span>
+<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse, Http404
+<span class="hljs-keyword">from</span> django.utils.deprecation <span class="hljs-keyword">import</span> MiddlewareMixin
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMiddleWare</span><span class="hljs-params">(MiddlewareMixin)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_request</span><span class="hljs-params">(self, request)</span>:</span>
+        print(<span class="hljs-string">"中间件方法 process_request 被调用"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_view</span><span class="hljs-params">(self, request, callback, callback_args, callback_kwargs)</span>:</span>
+        print(<span class="hljs-string">"中间件方法 process_view 被调用"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_response</span><span class="hljs-params">(self, request, response)</span>:</span>
+        print(<span class="hljs-string">"中间件方法 process_response 被调用"</span>)
+        <span class="hljs-keyword">return</span> response
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_exception</span><span class="hljs-params">(self, request, exception)</span>:</span>
+        print(<span class="hljs-string">"中间件方法 process_exception 被调用"</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_template_response</span><span class="hljs-params">(self, request, response)</span>:</span>
+        print(<span class="hljs-string">"中间件方法 process_template_response 被调用"</span>)
+        <span class="hljs-keyword">return</span> response
+</div></code></pre>
+<ul>
+<li>注册中间件:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : settings.py</span>
+MIDDLEWARE = [
+    ...
+    <span class="hljs-string">'middleware.mymiddleware.MyMiddleWare'</span>,
+]
+</div></code></pre>
+<ul>
+<li>中间件的执行过程
+<ul>
+<li><img src="images/middleware.jpeg" alt=""></li>
+</ul>
+</li>
+</ul>
+<!-- 
+- 参考文档:
+    - <https://blog.csdn.net/u010525694/article/details/81428213>
+ -->
+<ul>
+<li>练习
+<ul>
+<li>用中间件实现强制某个IP地址只能向/test 发送一次GET请求</li>
+<li>提示:
+<ul>
+<li>request.META['REMOTE_ADDR'] 可以得到远程客户端的IP地址</li>
+<li>request.path_info 可以得到客户端访问的GET请求路由信息</li>
+</ul>
+</li>
+<li>答案:<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse, Http404
+<span class="hljs-keyword">from</span> django.utils.deprecation <span class="hljs-keyword">import</span> MiddlewareMixin
+<span class="hljs-keyword">import</span> re
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VisitLimit</span><span class="hljs-params">(MiddlewareMixin)</span>:</span>
+    <span class="hljs-string">'''此中间件限制一个IP地址对应的访问/user/login 的次数不能改过10次,超过后禁止使用'''</span>
+    visit_times = {}  <span class="hljs-comment"># 此字典用于记录客户端IP地址有访问次数</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_request</span><span class="hljs-params">(self, request)</span>:</span>
+        ip_address = request.META[<span class="hljs-string">'REMOTE_ADDR'</span>]  <span class="hljs-comment"># 得到IP地址</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> re.match(<span class="hljs-string">'^/test'</span>, request.path_info):
+            <span class="hljs-keyword">return</span>
+        times = self.visit_times.get(ip_address, <span class="hljs-number">0</span>)
+        print(<span class="hljs-string">"IP:"</span>, ip_address, <span class="hljs-string">'已经访问过'</span>, times, <span class="hljs-string">'次!:'</span>, request.path_info)
+        self.visit_times[ip_address] = times + <span class="hljs-number">1</span>
+        <span class="hljs-keyword">if</span> times &lt; <span class="hljs-number">5</span>:
+            <span class="hljs-keyword">return</span>
+
+        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">'你已经访问过'</span> + str(times) + <span class="hljs-string">'次，您被禁止了'</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E4%BF%9D%E6%8A%A4-csrf">跨站请求伪造保护 CSRF</h4>
+<ul>
+<li>跨站请求伪造攻击
+<ul>
+<li>某些恶意网站上包含链接、表单按钮或者JavaScript，它们会利用登录过的用户在浏览器中的认证信息试图在你的网站上完成某些操作，这就是跨站请求伪造。</li>
+</ul>
+</li>
+<li>CSRF<pre class="hljs"><code><div>Cross-Site Request Forgey
+跨     站点   请求    伪装
+</div></code></pre>
+</li>
+<li>说明:
+<ul>
+<li>CSRF中间件和模板标签提供对跨站请求伪造简单易用的防护。</li>
+</ul>
+</li>
+<li>作用:
+<ul>
+<li>不让其它表单提交到此 Django 服务器</li>
+</ul>
+</li>
+<li>解决方案:
+<ol>
+<li>取消 csrf 验证(不推荐)
+<ul>
+<li>删除 settings.py 中 MIDDLEWARE 中的 <code>django.middleware.csrf.CsrfViewMiddleware</code> 的中间件</li>
+</ul>
+</li>
+<li>开放验证<pre class="hljs"><code><div>在视图处理函数增加: @csrf_protect
+@csrf_protect
+def post_views(request):
+    pass
+</div></code></pre>
+</li>
+<li>通过验证<pre class="hljs"><code><div>需要在表单中增加一个标签 
+{% csrf_token %}
+</div></code></pre>
+</li>
+</ol>
+<ul>
+<li>练习: 项目的注册部分
+<ol>
+<li>创建一个数据库 - FruitDay</li>
+<li>创建实体类 - Users
+<ol>
+<li>uphone - varchar(11)</li>
+<li>upwd - varchar(50)</li>
+<li>uemail - varchar(245)</li>
+<li>uname - varchar(20)</li>
+<li>isActive - tinyint 默认值为1 (True)</li>
+</ol>
+</li>
+<li>完善注册 - /register/
+<ol>
+<li>如果是get请求,则去往register.html</li>
+<li>如果是post请求,则处理请求数据
+将提交的数据保存回数据库</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="django%E4%B8%AD%E7%9A%84forms%E6%A8%A1%E5%9D%97">Django中的forms模块</h3>
+<ul>
+<li>在Django中提供了 forms 模块,用forms 模块可以自动生成form内部的表单控件,同时在服务器端可以用对象的形式接收并操作客户端表单元素，并能对表单的数据进行服务器端验证</li>
+</ul>
+<ol>
+<li>
+<p>forms模块的作用</p>
+<ul>
+<li>通过 forms 模块,允许将表单与class相结合，允许通过 class 生成表单</li>
+</ul>
+</li>
+<li>
+<p>使用 forms 模块的步骤</p>
+<ol>
+<li>
+<p>在应用中创建 forms.py</p>
+</li>
+<li>
+<p>导入 django 提供的 forms</p>
+<ul>
+<li>from django import forms</li>
+</ul>
+</li>
+<li>
+<p>创建class,一个class会生成一个表单</p>
+<ul>
+<li>定义表单类<pre class="hljs"><code><div>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClassName</span><span class="hljs-params">(forms.Form)</span>:</span>
+        ...
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>在 class 中创建类属性</p>
+<ul>
+<li>一个类属性对应到表单中是一个控件</li>
+</ul>
+</li>
+<li>
+<p>利用Form 类型的对象自动成表单内容</p>
+</li>
+<li>
+<p>读取form表单并进行验证数据</p>
+</li>
+</ol>
+</li>
+<li>
+<p>forms.Form 的语法</p>
+<ul>
+<li>属性 = forms.Field类型(参数)</li>
+</ul>
+<ol>
+<li>类型<pre class="hljs"><code><div>class XXX(froms.Form):
+    forms.CharField() : 文本框 &lt;input type=&quot;text&quot;&gt;
+    forms.ChoiceField() : 下拉选项框 &lt;select&gt;
+    forms.DateField() : 日期框 &lt;input type=&quot;date&quot;&gt;
+    ... ...
+</div></code></pre>
+</li>
+<li>参数
+<ol>
+<li>label
+<ul>
+<li>控件前的文本</li>
+</ul>
+</li>
+<li>widget
+<ul>
+<li>指定小部件</li>
+</ul>
+</li>
+<li>initial
+<ul>
+<li>控件的初始值(主要针对文本框类型)</li>
+</ul>
+</li>
+<li>required
+<ul>
+<li>是否为必填项，值为(True/False)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>form 表单示例
+<ul>
+<li>
+<p>手动实现Form 表单</p>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/test_form1"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"id_input_text"</span>&gt;</span>请输入内容:<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"input_text"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id_input_text"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>
+<p>Django Form 实现 Form 表单</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MySearch</span><span class="hljs-params">(forms.Form)</span>:</span>
+    input_text = forms.CharField(label = <span class="hljs-string">'请输入内容'</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>
+<p>在模板中解析form对象</p>
+<ol>
+<li>
+<p>方法</p>
+<ol>
+<li>需要自定义 <form></li>
+<li>表单中的按钮需要自定义</li>
+</ol>
+</li>
+<li>
+<p>解析form对</p>
+<pre class="hljs"><code><div>在 视图中创建form对象并发送到模板中解析.
+ex:
+    form = XXXForm()
+    return render(request,'xx.html',locals())
+</div></code></pre>
+<ol>
+<li>手动解析
+{% for field in form %}
+field : 表示的是form对象中的每个属性(控件)
+{{field.label}} : 表示的是label参数值
+{{field}} : 表示的就是控件
+{% endfor %}</li>
+</ol>
+</li>
+<li>
+<p>自动解析</p>
+<ol>
+<li>{{form.as_p}}<br>
+<code>将 form 中的每个属性(控件/文本)都使用p标记包裹起来再显示</code></li>
+<li>{{form.as_ul}}<pre class="hljs"><code><div>将 form 中的每个属性(控件/文本)都使用li标记包裹起来再显示
+注意:必须手动提供ol 或 ul 标记
+</div></code></pre>
+</li>
+<li>{{form.as_table}}<pre class="hljs"><code><div>将 form 中的每个属性(控件/文本)都使用tr标记包裹起来再显示
+注意:必须手动提供table标记
+</div></code></pre>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>练习:
+<ol>
+<li>创建一个注册Form类 - RegisterForm
+<ul>
+<li>username - 用户名称</li>
+<li>password - 用户密码(文本框)</li>
+<li>password2 - 重复用户密码(文本框)</li>
+<li>phonenumber - 用户年龄(数字框)</li>
+<li>email - 电子邮箱
+2.创建 register 路由</li>
+<li>get 请求 :
+<ul>
+<li>创建 RegisterForm 对象并发送到 模板register.html中显示</li>
+</ul>
+</li>
+<li>post 请求:
+<ul>
+<li>接收13-register.html 中的数据并输出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="5">
+<li>通过 forms 对象获取表单数据
+<ol>
+<li>通过 forms.Form 子类的构造器来接收 post 数据
+<ul>
+<li>form = XXXForm(request.POST)</li>
+</ul>
+</li>
+<li>必须是 form 通过验证后,才能取值
+<ul>
+<li>form.is_valid()
+<ul>
+<li>返回True:通过验证,可以取值</li>
+<li>返回False:暂未通过验证,则不能取值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过 form.cleaned_data 字典的属性接收数据
+<ul>
+<li>form.cleaned_data : dict 类型</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Field 内置小部件 - widget</p>
+<ol>
+<li>什么是小部件
+<ul>
+<li>表示的是生成到网页上的控件以及一些其他的html属性</li>
+</ul>
+<pre class="hljs"><code><div>message=forms.CharField(widget=forms.Textarea)
+upwd=forms.CharField(widget=forms.PasswordInput)
+</div></code></pre>
+</li>
+<li>常用的小部件类型
+<table>
+<thead>
+<tr>
+<th>widget名称</th>
+<th>对应和type类值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TextInput</td>
+<td>type='text'</td>
+</tr>
+<tr>
+<td>PasswordInput</td>
+<td>type='password'</td>
+</tr>
+<tr>
+<td>NumberInput</td>
+<td>type=&quot;number&quot;</td>
+</tr>
+<tr>
+<td>EmailInput</td>
+<td>type=&quot;email&quot;</td>
+</tr>
+<tr>
+<td>URLInput</td>
+<td>type=&quot;url&quot;</td>
+</tr>
+<tr>
+<td>HiddenInput</td>
+<td>type=&quot;hidden&quot;</td>
+</tr>
+<tr>
+<td>CheckboxInput</td>
+<td>type=&quot;checkbox&quot;</td>
+</tr>
+<tr>
+<td>CheckboxSelectMultiple</td>
+<td>type=&quot;checkbox&quot;</td>
+</tr>
+<tr>
+<td>RadioSelect</td>
+<td>type=&quot;radio&quot;</td>
+</tr>
+<tr>
+<td>Textarea</td>
+<td>textarea标记</td>
+</tr>
+<tr>
+<td>Select</td>
+<td>select标记</td>
+</tr>
+<tr>
+<td>SelectMultiple</td>
+<td>select multiple 标记</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+</li>
+<li>
+<p>小部件的使用</p>
+<ol>
+<li>继承自forms.Form
+<ol>
+<li>基本版
+<ol>
+<li>语法<pre class="hljs"><code><div>属性 = forms.CharField() #无预选值使用
+    text,password,email,url,textarea,checkbox
+属性 = forms.ChoiceField() #有预选值使用
+    checkbox,radio,select
+
+属性 = forms.CharField(
+    label='xxx',
+    widget=forms.小部件类型
+)
+</div></code></pre>
+</li>
+<li>示例:<pre class="hljs"><code><div>upwd = forms.CharField(
+    label='用户密码',
+    widget=forms.PasswordInput
+)
+
+message = forms.CharField(
+    label='评论内容',
+    widget=forms.Textarea
+)
+</div></code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>文档参见<a href="https://docs.djangoproject.com/en/1.11/topics/forms/">https://docs.djangoproject.com/en/1.11/topics/forms/</a></li>
+</ul>
+<h4 id="django%E4%B9%8Bform%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81">Django之form表单验证</h4>
+<ul>
+<li>
+<p>django form 提供表单和字段验证</p>
+</li>
+<li>
+<p>当在创建有不同的多个表单需要提交的网站时，用表单验证比较方便验证的封装</p>
+</li>
+<li>
+<p>当调用form.is_valid() 返回True表示当前表单合法，当返回False说明表单验证出现问题</p>
+</li>
+<li>
+<p>验证步骤:</p>
+<ol>
+<li>先对form.XXXField() 参数值进行验证，比如:min_length,max_length, validators=[...],如果不符合form.is_valid()返回False</li>
+<li>对各自from.clean_zzz属性名(self): 方法对相应属性进行验证,如果验证失败form.is_valid()返回False</li>
+<li>调胳form.clean(self): 对表单的整体结构进行验证，如果验证失败form.is_valid()返回False</li>
+<li>以上验证都成功 form.is_valid()返回True</li>
+</ol>
+</li>
+<li>
+<p>验证方法:</p>
+<ul>
+<li>validators = [验证函数1, 验证函数1]
+<ul>
+<li>验证函数验证失败抛出forms.ValidationError</li>
+<li>验证成功返回None</li>
+</ul>
+</li>
+<li>def clean_xxx属性(self):
+<ul>
+<li>验证失败必须抛出forms.ValidationError</li>
+<li>验证成功必须返回xxx属性的值</li>
+</ul>
+</li>
+<li>def clean(self):
+<ul>
+<li>验证失败必须抛出forms.ValidationError</li>
+<li>验证成功必须返回 self.cleaned_data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>文档参见<a href="https://docs.djangoproject.com/en/1.11/ref/forms/validation/">https://docs.djangoproject.com/en/1.11/ref/forms/validation/</a></p>
+</li>
+<li>
+<p>验证示例</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django <span class="hljs-keyword">import</span> forms
+<span class="hljs-keyword">import</span> re
+
+mobile_re = re.compile(<span class="hljs-string">r'^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$'</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mobile_validate</span><span class="hljs-params">(value)</span>:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> mobile_re.match(value):
+        <span class="hljs-keyword">raise</span> forms.ValidationError(<span class="hljs-string">'手机号码格式错误'</span>)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RegisterForm</span><span class="hljs-params">(forms.Form)</span>:</span>
+    username = forms.CharField(label=<span class="hljs-string">'用户名'</span>)
+    password = forms.CharField(label=<span class="hljs-string">'请输入密码'</span>, widget=forms.PasswordInput)
+    password2 = forms.CharField(label=<span class="hljs-string">'再次输入新密码'</span>, widget=forms.PasswordInput)
+    mobile = forms.CharField(label=<span class="hljs-string">'电话号码'</span>, validators=[mobile_validate])
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clean</span><span class="hljs-params">(self)</span>:</span>
+        pwd1 = self.cleaned_data[<span class="hljs-string">'password'</span>]
+        pwd2 = self.cleaned_data[<span class="hljs-string">'password2'</span>]
+        <span class="hljs-keyword">if</span> pwd1 != pwd2:
+            <span class="hljs-keyword">raise</span> forms.ValidationError(<span class="hljs-string">'两次密码不一致!'</span>)
+        <span class="hljs-keyword">return</span> self.cleaned_data  <span class="hljs-comment"># 必须返回cleaned_data</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clean_username</span><span class="hljs-params">(self)</span>:</span>
+        username = self.cleaned_data[<span class="hljs-string">'username'</span>]
+        <span class="hljs-keyword">if</span> len(username) &lt; <span class="hljs-number">6</span>:
+            <span class="hljs-keyword">raise</span> forms.ValidationError(<span class="hljs-string">"用户名太短"</span>)
+        <span class="hljs-keyword">return</span> username
+</div></code></pre>
+<ul>
+<li>练习，写一个RegisterForm表单类型,要求如下四个属性:
+<ul>
+<li>username - 用户名称
+<ul>
+<li>用户名只能包含[a-zA-Z_0_9]范围内的5~30个英文字符</li>
+</ul>
+</li>
+<li>password - 用户密码(文本框)
+<ul>
+<li>任意字符，不能少于6个字符</li>
+</ul>
+</li>
+<li>password2 - 重复用户密码(文本框)
+<ul>
+<li>任意字符，不能少于6个字符且必须与 password一致</li>
+</ul>
+</li>
+<li>phonenumber - 用户年龄(数字框)
+<ul>
+<li>必须符合<code>r'^(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$'</code>正则表达式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E5%88%86%E9%A1%B5">分页</h3>
+<ul>
+<li>分页是指在web页面有大量数据需要显示时，当一页的内容太多不利于阅读和不利于数据提取的情况下，可以分为多页进行显示。</li>
+<li>Django提供了一些类来帮助你管理分页的数据 — 也就是说，数据被分在不同页面中，并带有“上一页/下一页”链接。</li>
+<li>这些类位于django/core/paginator.py中。</li>
+</ul>
+<h4 id="paginator%E5%AF%B9%E8%B1%A1">Paginator对象</h4>
+<ul>
+<li>
+<p>对象的构造方法</p>
+<ul>
+<li>Paginator(object_list, per_page)</li>
+<li>参数
+<ul>
+<li>object_list 对象列表</li>
+<li>per_page 每页数据个数</li>
+</ul>
+</li>
+<li>返回值:
+<ul>
+<li>分页对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Paginator属性</p>
+<ul>
+<li>count：对象总数</li>
+<li>num_pages：页面总数</li>
+<li>page_range：从1开始的range对象, 用于记录当前面码数</li>
+<li>per_page 每页个数</li>
+</ul>
+</li>
+<li>
+<p>Paginator方法</p>
+<ul>
+<li>Paginator.page(number)
+<ul>
+<li>参数 number为页码信息(从1开始)</li>
+<li>返回当前number页对应的页信息</li>
+<li>如果提供的页码不存在，抛出InvalidPage异常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Paginator异常exception</p>
+<ul>
+<li>InvalidPage：当向page()传入一个无效的页码时抛出</li>
+<li>PageNotAnInteger：当向page()传入一个不是整数的值时抛出</li>
+<li>EmptyPage：当向page()提供一个有效值，但是那个页面上没有任何对象时抛出</li>
+</ul>
+</li>
+</ul>
+<h4 id="page%E5%AF%B9%E8%B1%A1">Page对象</h4>
+<ul>
+<li>
+<p>创建对象
+Paginator对象的page()方法返回Page对象，不需要手动构造</p>
+</li>
+<li>
+<p>Page对象属性</p>
+<ul>
+<li>object_list：当前页上所有对象的列表</li>
+<li>number：当前页的序号，从1开始</li>
+<li>paginator：当前page对象相关的Paginator对象</li>
+</ul>
+</li>
+<li>
+<p>Page对象方法</p>
+<ul>
+<li>has_next()：如果有下一页返回True</li>
+<li>has_previous()：如果有上一页返回True</li>
+<li>has_other_pages()：如果有上一页或下一页返回True</li>
+<li>next_page_number()：返回下一页的页码，如果下一页不存在，抛出InvalidPage异常</li>
+<li>previous_page_number()：返回上一页的页码，如果上一页不存在，抛出InvalidPage异常</li>
+<li>len()：返回当前页面对象的个数</li>
+</ul>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>Page 对象是可迭代对象,可以用 for 语句来 访问当前页面中的每个对象</li>
+</ul>
+</li>
+<li>
+<p>参考文档<a href="https://docs.djangoproject.com/en/1.11/topics/pagination/">https://docs.djangoproject.com/en/1.11/topics/pagination/</a></p>
+</li>
+<li>
+<p>分页示例:</p>
+<ul>
+<li>视图函数</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">book</span><span class="hljs-params">(request)</span>:</span>
+    bks = models.Book.objects.all()
+    paginator = Paginator(bks, <span class="hljs-number">10</span>)
+    print(<span class="hljs-string">'当前对象的总个数是:'</span>, paginator.count)
+    print(<span class="hljs-string">'当前对象的面码范围是:'</span>, paginator.page_range)
+    print(<span class="hljs-string">'总页数是：'</span>, paginator.num_pages)
+    print(<span class="hljs-string">'每页最大个数:'</span>, paginator.per_page)
+
+    cur_page = request.GET.get(<span class="hljs-string">'page'</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment"># 得到默认的当前页</span>
+    page = paginator.page(cur_page)
+    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">'bookstore/book.html'</span>, locals())
+</div></code></pre>
+<ul>
+<li>模板设计</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>分页显示<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+{% for b in page %}
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{{ b.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+{% endfor %}
+
+{# 分页功能 #}
+{# 上一页功能 #}
+{% if page.has_previous %}
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{% url "</span><span class="hljs-attr">book</span>" %}?<span class="hljs-attr">page</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">page.previous_page_number</span> }}"&gt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+{% else %}
+上一页
+{% endif %}
+
+{% for p in paginator.page_range %}
+    {% if p == page.number %}
+        {{ p }}
+    {% else %}
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{% url "</span><span class="hljs-attr">book</span>" %}?<span class="hljs-attr">page</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">p</span> }}"&gt;</span>{{ p }}<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    {% endif %}
+{% endfor %}
+
+{#下一页功能#}
+{% if page.has_next %}
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"{% url "</span><span class="hljs-attr">book</span>" %}?<span class="hljs-attr">page</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">page.next_page_number</span> }}"&gt;</span>上一页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+{% else %}
+上一页
+{% endif %}
+总页数: {{ page.len }}
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+</ul>
+
+</body>
+</html>

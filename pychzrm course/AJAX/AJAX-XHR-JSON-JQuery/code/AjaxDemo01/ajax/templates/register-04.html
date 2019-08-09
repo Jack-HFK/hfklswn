@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/common.js"></script>
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script>
+        /*检查用户名称是否存在的函数,需要一个返回值，返回true表示用户存在,false表示用户名称不存在*/
+        function checkuname(){
+                var ret = false;
+                //1. 创建xhr
+                var xhr = createXhr();   //调用js文件，根据不同的浏览器创建不同的异步对象
+                //2.创建请求
+                var uname = $("#unames").val();
+                var url = "/ajax/checkuname-04?uname="+uname;  //val()  设置或读取表单元素的值,等价于原生value属性
+                xhr.open("get",url,false);
+                //3.设置对调函数
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                       //$("#uname_tip").html(xhr.responseText);
+                       if(xhr.responseText == "1"){
+                            $("#uname_tip").html("用户名已经存在");
+                            ret = true;
+                       }else{
+                            $("#uname_tip").html("可以使用");
+                       }
+                    }
+                }
+            //4.发送请求
+            xhr.send(null);
+            return ret
+        }
+
+        $(function(){
+            /*为 #name 绑定 blur 事件*/
+            $("#unames").blur(function(){
+                checkuname()  //调用判断用户名是否存在函数
+            });
+
+            /*GET发送创建请求　为#btnReg绑定click事件实现注册*/
+            $("#btnReg").click(function(){
+                 //调用checkuname()函数接收并判断返回值,返回ture提示用户名存在,返回false正常执行注册
+                if(checkuname()){
+                    alert("用户名称已经存在")
+                    }else{
+                          //１创建xhr
+                          var xhr = createXhr();
+                          //２创建请求
+                          var uname = $("#unames").val();
+                          var upwd = $("#upwds").val();
+                          var uemail = $("#uemails").val();
+                          var nickname = $("#nicknames").val();
+                          var url = "/ajax/reguser_04/?uname="+uname+"&upwd="+upwd+"&uemail="+uemail+"&nickname="+nickname;
+                          xhr.open("get",url,true);
+                          //３设置回调函数
+                          xhr.onreadystatechange = function(){
+                              if(xhr.readyState==4 && status==200){
+                                  if(xhr.responseText=="1"){
+                                      alert("注册成功")
+                                  }else{
+                                      alert("注册失败")
+                                  }
+                              }
+                          }
+                          // ４发送请求
+                          xhr.send(null);
+                    }
+            });
+
+            /*POST发送请求 为#btnRegPost绑定click事件*/
+            $("#btnRegPost").click(function(){
+                //调用checkuname()函数接收并判断返回值,返回ture提示用户名存在,返回false正常执行注册
+                if(checkuname()){
+                    alert("用户名称已经存在")
+                }else{
+                        //１创建xhr
+                        var xhr = createXhr();
+                        //２　创建请求
+                        xhr.open("post","/ajax/regpost_04/",true);
+                        //３　设置回调函数
+                        xhr.onreadystatechange = function(){
+                            if(xhr.readyState==4 && status==200){
+                                if(xhr.responseText=="1"){
+                                    alert("注册成功")
+                                }else{
+                                    alert("注册失败")
+                                      }
+                            }
+                        }
+                        //４　设置请求消息头
+                        xhr.setRequestHeader(
+                            "Content-Type",
+                            "application/x-www-form-urlencoded"
+                        );
+                        //５　发送请求
+                        var uname = $("#unames").val();
+                        var upwd = $("#upwds").val();
+                        var uemail = $("#uemails").val();
+                        var nickname = $("#nicknames").val();
+                        var csrf = $("[name='csrfmiddlewaretoken']").val();
+                        var params = "uname="+uname+"&upwd="+upwd+"&uemail="+uemail+"&nickname="+nickname+"&csrfmiddlewaretoken="+csrf;
+                        xhr.send(params);
+                    }
+            });
+        });
+    </script>
+</head>
+<body>
+    {% csrf_token %}
+    <p>
+        <label for="unames">用户名称：</label>
+        <input type="text" id="unames" name="uname">
+        <span id="uname_tip"></span>
+    </p>
+    <p>
+        <label for="upwds">用户密码：</label>
+        <input type="password" id="upwds" name="upwd">
+    </p>
+    <p>
+        <label for="uemails">电子邮箱：</label>
+        <input type="email" id="uemails" name="uemail">
+    </p>
+    <p>
+        <label for="nicknames">用户昵称：</label>
+        <input type="text" id="nicknames" name="nickname">
+    </p>
+    <p>
+        <input type="submit" value="GET注册" id="btnReg">
+        <input type="button" value="POST注册" id="btnRegPost">
+    </p>
+</body>
+</html>

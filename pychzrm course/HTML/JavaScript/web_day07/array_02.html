@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //1.数组的创建
+        var arr1 = ["下标0","下标1","下标2"];
+        console.log(arr1);
+
+        //使用new关键字创建数组
+        var arr2 = new Array("参数1",31,false);
+        console.log(arr2);
+
+        //特殊
+        var arr3 = [5];
+        //使用new关键字传递一个整数参数创建数组，代表初始化数组的长度
+        var arr4 = new Array(5);
+        console.log(arr3,arr4);
+
+        //2.操作数组元素（根据元素的索引）
+        console.log(arr2[1],arr3[0],arr4);
+        arr4[0] = "一个";
+        arr4[1] = "二个";
+        arr4[8] = "AI";
+        console.log(arr4)
+
+        //3.数组对象的属性:length
+        console.log(arr4.length)
+        //4.遍历数组元素
+        var hfk = ["hfk","swn","小女子不才",4];
+        for(var i=0;i<hfk.length;i++){
+            console.log(hfk[i])
+        }
+        for(var i = hfk.length-1;i>=0;i--){
+            console.log(hfk[i])
+        }
+
+        //for-in循环
+        for(var i in hfk){
+            console.log(i,hfk[i]);
+        }
+
+        //数组对象提供的遍历方法 forEach(function (){})
+        hfk.forEach(function (elem,index){
+            console.log(elem,index);
+        });
+
+        //循环接受客户端输入请求，添加到数组并打印数组
+        swn = []
+        for(var i=0;hfk!="exit";i++){
+            var hfk= prompt("请输入数据:");
+            if(hfk == "exit"){
+                break;
+            }
+            swn[i] = hfk;}
+
+        console.log(swn)
+
+        //遍历数组获取最大值
+        function showMax(){
+            //数据源
+            var arr = [5,8,9,11,65,88,-90,0]
+            var max = arr[0];
+            for(var i = 0;i<arr.length;i++){
+                if(arr[i] >max){
+                max = arr[i];
+                }
+            }
+            console.log(max);
+        }
+        showMax() //调用函数获取最大值
+
+        //获取客户端输入的内容，判断是否在数组中，在就返回数组下标，不在就返回-1
+        function findNumber(){
+            var arr = [5,8,9,11,65,88,-90,0]
+            var input = prompt("请输入：");
+            for(var i = 0;i<arr.length;i++){
+                if(input == arr[i]){
+                    return i
+                }else{
+                     continue;
+                }
+            return -1;
+            }
+
+        }
+        console.log(findNumber())
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程day05.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<pre><code>- [聚合查询](#聚合查询)
+- [F对象](#f对象)
+- [Q对象 - Q()](#q对象---q)
+- [原生的数据库操作方法](#原生的数据库操作方法)
+    - [使用Entry.objects.raw()进行 数据库查询操作查询](#使用entryobjectsraw进行-数据库查询操作查询)
+    - [使用django中的游标cursor对数据库进行 增删改操作](#使用django中的游标cursor对数据库进行-增删改操作)
+</code></pre>
+<ul>
+<li><a href="#admin-%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86">admin 后台数据库管理</a>
+<ul>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E8%A1%A8">自定义后台管理数据表</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E5%90%8E%E5%8F%B0models%E7%9A%84%E5%B1%95%E7%8E%B0%E5%BD%A2%E5%BC%8F">修改后台Models的展现形式</a></li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB">模型管理器类</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%AE%A1%E7%90%86">数据库表管理</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h4 id="%E8%81%9A%E5%90%88%E6%9F%A5%E8%AF%A2">聚合查询</h4>
+<ul>
+<li>聚合查询是指对一个数据表中的一个字段的数据进行部分或全部进行统计查询,查bookstore_book数据表中的全部书的平均价格，查询所有书的总个数等,都要使用聚合查询</li>
+</ul>
+<ol>
+<li>不带分组聚合
+<ul>
+<li>不带分组的聚合查询是指导将全部数据进行集中统计查询</li>
+<li>聚合函数:
+<ul>
+<li>定义模块: <code>django.db.models</code></li>
+<li>用法: <code>from django.db.models import *</code></li>
+<li>聚合函数:
+<ul>
+<li>Sum, Avg, Count, Max, Min</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>语法:
+<ul>
+<li>MyModel.objects.aggregate(结果变量名=聚合函数('列'))</li>
+</ul>
+</li>
+<li>返回结果:
+<ul>
+<li>由 结果变量名和值组成的字典</li>
+<li>格式为:
+<ul>
+<li>`{&quot;结果变量名&quot;: 值}</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>示例:<pre class="hljs"><code><div># 得到所有书的平均价格
+from bookstore import models
+from django.db.models import Count
+result = models.Book.objects.aggregate(myAvg=Avg('price'))
+print(&quot;平均价格是:&quot;, result['myAvg'])
+print(&quot;result=&quot;, result)  # {&quot;myAvg&quot;: 58.2}
+
+# 得到数据表里有多少本书
+from django.db.models import Count
+result = models.Book.objects.aggregate(mycnt=Count('title'))
+print(&quot;数据记录总个数是:&quot;, result['mycnt'])
+print(&quot;result=&quot;, result)  # {&quot;mycnt&quot;: 10}
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>分组聚合
+<ul>
+<li>
+<p>分组聚合是指通过计算查询结果中每一个对象所关联的对象集合，从而得出总计值(也可以是平均值或总和)，即为查询集的每一项生成聚合。</p>
+</li>
+<li>
+<p>语法:</p>
+<ul>
+<li>QuerySet.annotate(结果变量名=聚合函数('列'))</li>
+</ul>
+</li>
+<li>
+<p>用法步骤:</p>
+<ol>
+<li>通过先用查询结果Entry.objects.value. 查找查询要分组聚合的列
+<ul>
+<li>MyModel.objects.value('列1', '列2')</li>
+<li>如:<pre class="hljs"><code><div>pub_set = models.Book.objects.values(<span class="hljs-string">'pub'</span>)
+print(books)  <span class="hljs-comment"># &lt;QuerySet [{'pub': '清华大学出版社'}, {'pub': '清华大学出版社'}, {'pub_hou {'pub': '机械工业出版社'}, {'pub': '清华大学出版社'}]&gt;</span>
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>通过返回结果的 QuerySet.annotate 方法分组聚合得到分组结果
+<ul>
+<li>QuerySet.annotate(名=聚合函数('列'))</li>
+<li>返回 QuerySet 结果集,内部存储结果的字典</li>
+<li>如:<pre class="hljs"><code><div>pub_count_set = pub_set.annotate(myCount=Count('pub'))
+print(pub_count_set)  # &lt;QuerySet [{'pub': '清华大学出版社', 'myCount': 7}, {'pub': '机械工业出版社', 'myCount': 3}]&gt;
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>.values('查询列名')</li>
+</ul>
+</li>
+<li>
+<p>示例:</p>
+<ul>
+<li>得到哪儿个出版社共出版多少本书</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_annotate</span><span class="hljs-params">(request)</span>:</span>
+   - <span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Count
+    <span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> models
+
+    <span class="hljs-comment"># 得到所有出版社的查询集合QuerySet</span>
+    pub_set = models.Book.objects.values(<span class="hljs-string">'pub'</span>)
+    <span class="hljs-comment"># 根据出版社查询分组，出版社和Count的分组聚合查询集合</span>
+    pub_count_set = pub_set.annotate(myCount=Count(<span class="hljs-string">'pub'</span>))  <span class="hljs-comment"># 返回查询集合</span>
+    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> pub_count_set:
+        print(<span class="hljs-string">"出版社:"</span>, item[<span class="hljs-string">'pub'</span>], <span class="hljs-string">"图书有："</span>, item[<span class="hljs-string">'myCount'</span>])
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">'请查看服务器端控制台获取结果'</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="f%E5%AF%B9%E8%B1%A1">F对象</h4>
+<ul>
+<li>一个F对象代表数据库中某个字段的信息</li>
+<li>F对象通常是对数据库中的字段值在不加载到内存中的情况下直接在数据库服务器端进行操作</li>
+<li>F对象在 数据包 django.db.models 中.使用时需要通过如下语句进行加载
+<ul>
+<li><code>from django.db.models import F</code></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<p>作用:</p>
+<ul>
+<li>用于类属性(字段)之间的比较。</li>
+<li>当同时对数据库中两个字段的值进行比较获取 QuerySet 数据集时，可以便用F对象</li>
+</ul>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>一个 F() 对象代表了一个model的字段的值</li>
+</ul>
+</li>
+<li>
+<p>使用它就可以直接参考model的field和执行数据库操作而不用再把它们（model field）查询出来放到python内存中。</p>
+</li>
+<li>
+<p>语法:</p>
+<pre class="hljs"><code><div>from django.db.models import F
+F('列名')
+</div></code></pre>
+</li>
+<li>
+<p>示例1</p>
+<ul>
+<li>更新Book实例中所有的零售价涨10元</li>
+</ul>
+<pre class="hljs"><code><div>models.Book.objects.all().update(market_price=F('market_price')+10)
+# 以下做法好于如下代码
+books = models.Book.objects.all()
+for book in books:
+    book.update(market_price=book.marget_price+10)
+    book.save()
+</div></code></pre>
+</li>
+<li>
+<p>示例2</p>
+<ul>
+<li>对数据库中两个字段的值进行比较，列出哪儿些书的零售价高于定价?</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> F
+<span class="hljs-keyword">from</span> bookstore <span class="hljs-keyword">import</span> models
+books = models.Book.objects.filter(market_price__gt=F(<span class="hljs-string">'price'</span>))
+<span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> books:
+    print(book.title, <span class="hljs-string">'定价:'</span>, book.price, <span class="hljs-string">'现价:'</span>, book.market_price)
+</div></code></pre>
+</li>
+</ol>
+<h4 id="q%E5%AF%B9%E8%B1%A1---q">Q对象 - Q()</h4>
+<ul>
+<li>当在获取查询结果集 使用复杂的逻辑或  <code>|</code> 、 逻辑非 <code>~</code> 等操作时可以借助于 Q对象进行操作</li>
+<li>如: 想找出定价低于20元 或 清华大学出版社的全部书，可以写成<pre class="hljs"><code><div>models.Book.objects.filter(Q(price__lt=20)|Q(pub=&quot;清华大学出版社&quot;))
+</div></code></pre>
+</li>
+<li>Q对象在 数据包 django.db.models 中。需要先导入再使用
+<ul>
+<li><code>from django.db.models import F</code></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>作用
+<ul>
+<li>在条件中用来实现除 and(&amp;) 以外的 or(|) 或 not(~) 操作</li>
+</ul>
+</li>
+<li>运算符:
+<ul>
+<li>&amp; 与操作</li>
+<li>| 或操作</li>
+<li>〜 非操作</li>
+</ul>
+</li>
+<li>语法<pre class="hljs"><code><div>from django.db.models import Q
+Q(条件1)|Q(条件2)  # 条件1成立或条件2成立
+Q(条件1)&amp;Q(条件2)  # 条件1和条件2同时成立
+Q(条件1)&amp;~Q(条件2)  # 条件1成立且条件2不成立
+...
+</div></code></pre>
+</li>
+<li>示例<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Q
+<span class="hljs-comment"># 查找清华大学出版社的书或价格低于50的书</span>
+models.Book.objects.filter(Q(market_price__lt=<span class="hljs-number">50</span>) | Q(pub_house=<span class="hljs-string">'清华大学出版社'</span>))
+<span class="hljs-comment"># 查找不是机械工业出版社的书且价格低于50的书</span>
+models.Book.objects.filter(Q(market_price__lt=<span class="hljs-number">50</span>) &amp; ~Q(pub_house=<span class="hljs-string">'机械工业出版社'</span>))
+</div></code></pre>
+</li>
+</ol>
+<h4 id="%E5%8E%9F%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95">原生的数据库操作方法</h4>
+<h5 id="%E4%BD%BF%E7%94%A8entryobjectsraw%E8%BF%9B%E8%A1%8C-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C%E6%9F%A5%E8%AF%A2">使用Entry.objects.raw()进行 数据库查询操作查询</h5>
+<ul>
+<li>在django中，可以使用模型管理器的raw方法来执行select语句进行数据查询</li>
+</ul>
+<ol>
+<li>语法:
+<ul>
+<li><code>MyModel.objects.raw(sql语句)</code></li>
+</ul>
+</li>
+<li>用法
+<ul>
+<li><code>MyModel.objects.raw('sql语句')</code></li>
+</ul>
+</li>
+<li>返回值:
+<ul>
+<li>QuerySet 集合对象</li>
+</ul>
+</li>
+<li>示例<pre class="hljs"><code><div>books = models.Book.objects.raw(<span class="hljs-string">'select * from bookstore_book'</span>)
+
+<span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> books:
+    print(book)
+</div></code></pre>
+</li>
+</ol>
+<h5 id="%E4%BD%BF%E7%94%A8django%E4%B8%AD%E7%9A%84%E6%B8%B8%E6%A0%87cursor%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9B%E8%A1%8C-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%93%8D%E4%BD%9C">使用django中的游标cursor对数据库进行 增删改操作</h5>
+<ul>
+<li>
+<p>在Django中可以使用 如UPDATE,DELETE等SQL语句对数据库进行操作。</p>
+</li>
+<li>
+<p>在DJaogo中使用上述非查询语句必须使用游标进行操作</p>
+</li>
+<li>
+<p>使用步骤:</p>
+<ol>
+<li>导入cursor所在的包
+<ul>
+<li>Django中的游标cursor定义在 django.db.connection包中，使用前需要先导入</li>
+<li>如：
+<ul>
+<li><code>from django.db import connection</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用创建cursor类的构造函数创建cursor对象，再使用cursor对象,为保证在出现异常时能释放cursor资源,通常使用with语句进行创建操作
+<ul>
+<li>如:<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> connection
+<span class="hljs-keyword">with</span> connection.cursor() <span class="hljs-keyword">as</span> cur:
+    cur.execute(<span class="hljs-string">'执行SQL语句'</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>示例<pre class="hljs"><code><div><span class="hljs-comment"># 用SQL语句将id 为 10的 书的出版社改为 "XXX出版社"</span>
+<span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> connection
+<span class="hljs-keyword">with</span> connection.cursor() <span class="hljs-keyword">as</span> cur: 
+    cur.execute(<span class="hljs-string">'update bookstore_book set pub_house="XXX出版社" where id=10;'</span>)
+
+<span class="hljs-keyword">with</span> connection.cursor() <span class="hljs-keyword">as</span> cur:
+    <span class="hljs-comment"># 删除 id为1的一条记录</span>
+    cur.execute(<span class="hljs-string">'delete from bookstore_book where id=10;'</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="admin-%E5%90%8E%E5%8F%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86">admin 后台数据库管理</h3>
+<ul>
+<li>django 提供了比较完善的后台管理数据库的接口，可供开发过程中调用和测试使用</li>
+<li>django 会搜集所有已注册的模型类，为这些模型类提拱数据管理界面，供开发者使用</li>
+<li>使用步骤:
+<ol>
+<li>创建后台管理帐号:
+<ul>
+<li>后台管理--创建管理员帐号
+<ul>
+<li><code>$ python3 manage.py createsuperuser</code></li>
+<li>根据提示完成注册,参考如下:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py createsuperuser</span>
+Username (leave blank to use 'tarena'): tarena  # 此处输入用户名
+Email address: weimz@tedu.cn  # 此处输入邮箱
+Password: # 此处输入密码(密码要复杂些，否则会提示密码太简单)
+Password (again): # 再次输入重复密码
+Superuser created successfully.
+<span class="hljs-meta">$</span><span class="bash"> </span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>用注册的帐号登陆后台管理界面
+<ul>
+<li>后台管理的登录地址:
+<ul>
+<li><a href="http://127.0.0.1:8000/admin">http://127.0.0.1:8000/admin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E8%A1%A8">自定义后台管理数据表</h4>
+<ul>
+<li>若要自己定义的模型类也能在 <code>/admin</code> 后台管理界中显示和管理，需要将自己的类注册到后台管理界面</li>
+<li>添加自己定义模型类的后台管理数据表的,需要用<code>admin.site.register(自定义模型类)</code> 方法进行注册
+<ul>
+<li>配置步骤如下:
+<ol>
+<li>在应用app中的admin.py中导入注册要管理的模型models类, 如:<pre class="hljs"><code><div>from . import models
+</div></code></pre>
+</li>
+<li>调用 admin.site.register 方法进行注册,如:<pre class="hljs"><code><div>from django.contrib import admin
+admin.site.register(自定义模型类)
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>如: 在 bookstore/admin.py 添加如下代码对Book类进行管理</li>
+<li>示例:<pre class="hljs"><code><div><span class="hljs-comment"># file: bookstore/admin.py</span>
+<span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin
+<span class="hljs-comment"># Register your models here.</span>
+
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> models
+...
+admin.site.register(models.Book)  <span class="hljs-comment"># 将Book类注册为可管理页面</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E4%BF%AE%E6%94%B9%E5%90%8E%E5%8F%B0models%E7%9A%84%E5%B1%95%E7%8E%B0%E5%BD%A2%E5%BC%8F">修改后台Models的展现形式</h4>
+<ul>
+<li>在admin后台管理数据库中对自定义的数据记录都展示为 <code>XXXX object</code> 类型的记录，不便于阅读和判断</li>
+<li>在用户自定义的模型类中可以重写 <code>def __str__(self):</code> 方法解决显示问题,如:
+<ul>
+<li>在 自定义模型类中重写 <strong>str</strong>(self) 方法返回显示文字内容:</li>
+</ul>
+<pre class="hljs"><code><div>classd Bookstore(models.Model):
+    ...
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__str__</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"书名"</span> + self.title
+</div></code></pre>
+</li>
+</ul>
+<h4 id="%E6%A8%A1%E5%9E%8B%E7%AE%A1%E7%90%86%E5%99%A8%E7%B1%BB">模型管理器类</h4>
+<ul>
+<li>
+<p>作用:</p>
+<ul>
+<li>用后台管理界面添加便于操作的新功能。</li>
+</ul>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>后台管理器类须继承自 <code>django.contrib.admin</code> 里的 <code>ModelAdmin</code> 类</li>
+</ul>
+</li>
+<li>
+<p>模型管理器的使用方法:</p>
+<ol>
+<li>在 <code>&lt;应用app&gt;/admin.py</code> 里定义模型管理器类<pre class="hljs"><code><div>class XXXX_Manager(admin.ModelAdmin):
+    ......
+</div></code></pre>
+</li>
+<li>注册管理器与模型类关联<pre class="hljs"><code><div>from django.contrib import admin
+from . import models
+admin.site.register(models.YYYY, XXXX_Manager) # 注册models.YYYY 模型类与 管理器类 XXXX_Manager 关联
+</div></code></pre>
+</li>
+</ol>
+<ul>
+<li>示例:<pre class="hljs"><code><div># file : bookstore/admin.py
+from django.contrib import admin
+from . import models
+
+class BookAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'price', 'market_price']
+
+admin.site.register(models.Book, BookAdmin)
+</div></code></pre>
+<ul>
+<li>进入<a href="http://127.0.0.1:8000/admin/bookstore/book/">http://127.0.0.1:8000/admin/bookstore/book/</a> 查看显示方式和以前有所不同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>模型管理器类ModelAdmin中实现的高级管理功能</p>
+<ol>
+<li>list_display 去控制哪些字段会显示在Admin 的修改列表页面中。</li>
+<li>list_display_links 可以控制list_display中的字段是否应该链接到对象的“更改”页面。</li>
+<li>list_filter 设置激活激活Admin 修改列表页面右侧栏中的过滤器</li>
+<li>search_fields 设置启用Admin 更改列表页面上的搜索框。</li>
+<li>list_editable 设置为模型上的字段名称列表，这将允许在更改列表页面上进行编辑。</li>
+<li>其它参见<a href="https://docs.djangoproject.com/en/1.11/ref/contrib/admin/">https://docs.djangoproject.com/en/1.11/ref/contrib/admin/</a></li>
+</ol>
+</li>
+</ul>
+<h4 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A1%A8%E7%AE%A1%E7%90%86">数据库表管理</h4>
+<ol>
+<li>修改模型类字段的显示名字
+<ul>
+<li>模型类各字段的第一个参数为 verbose_name,此字段显示的名字会在后台数据库管理页面显示</li>
+<li>通过 verbose_name 字段选项,修改显示名称示例如下：<pre class="hljs"><code><div>title = models.CharField(
+    max_length = <span class="hljs-number">30</span>,
+    verbose_name=<span class="hljs-string">'显示名称'</span>
+)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>通过Meta内嵌类 定义模型类的属性及展现形式
+<ul>
+<li>模型类可以通过定义内部类class Meta 来重新定义当前模型类和数据表的一些属性信息</li>
+<li>用法格式如下:<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span><span class="hljs-params">(models.Model)</span>:</span>
+    title = CharField(....)
+    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Meta</span>:</span>
+        <span class="hljs-number">1.</span> db_table = <span class="hljs-string">'数据表名'</span>
+            - 该模型所用的数据表的名称。(设置完成后需要立马更新同步数据库)
+        <span class="hljs-number">2.</span> verbose_name = <span class="hljs-string">'单数名'</span>
+            - 给模型对象的一个易于理解的名称(单数),用于显示在/admin管理界面中
+        <span class="hljs-number">3.</span> verbose_name_plural = <span class="hljs-string">'复数名'</span>
+            - 该对象复数形式的名称(复数),用于显示在/admin管理界面中
+</div></code></pre>
+</li>
+<li>示例:<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Meta</span>:</span>
+    db_table = <span class="hljs-string">'book_table'</span>  <span class="hljs-comment"># 将原数据表名"bookstore_book" 换为 "book_table",请查看数据表</span>
+    verbose_name = <span class="hljs-string">'booooook'</span>
+    verbose_name_plural = <span class="hljs-string">'booksssssss'</span>  <span class="hljs-comment"># 去127.0.0.1:8000/admin下看看哪儿变化了?</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>练习:
+<ul>
+<li>将Book模型类 和 Author 模型类都加入后台管理</li>
+<li>制作一个AuthorManager管理器类，让后台管理Authors列表中显示作者的ID、姓名、年龄信息</li>
+<li>用后台管理程序 添加三条 Author 记录</li>
+<li>修改其中一条记录的年龄</li>
+<li>删除最后一条添加的记录</li>
+<li>将bookstore_author 数名表名称改为myauthor (需要重新迁移数据库)</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

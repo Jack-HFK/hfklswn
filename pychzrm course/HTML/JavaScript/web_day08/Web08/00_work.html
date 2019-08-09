@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="04_history.html">页面0</a>
+    <a href="01_window.html">页面二</a>
+    <button onclick="console.log(history.length)">
+        获取length
+    </button>
+    <button onclick="history.back()">返回</button>
+    <button onclick="history.forward()">前进</button>
+
+
+    <input type="text" id="uinput">
+    <span id="code"></span>
+    <button id="btn">验证</button>
+    <script>
+        //元素的id属性值作为变量直接操作,存储元素对象本身
+        console.log(code);
+        //生成四位验证码
+        var str = "ABCDEFGHIabcdefghtyuiu0123456789";
+        var show = "";
+        for(var i = 1; i < 5; i++){
+            //生成随机下标
+            //Math.floor(n)
+            var index = Math.floor(Math.random()*str.length);
+            show += str[index];
+        }
+        //操作元素内容
+        code.innerHTML = show;
+        //动态绑定事件
+        btn.onclick = function (){
+            //获取输入框的值
+            console.log(uinput.value);
+            //验证
+            if(uinput.value.toUpperCase() == show.toUpperCase()){
+                alert("输入正确")
+            }else{
+                alert("输入有误");
+            }
+        };
+
+        /*Math对象*/
+        //1.向上取整:舍弃小数位,整数位+1
+        console.log(Math.ceil(0.99));
+        //2.向下取整:舍弃小数位,保留整数位
+        console.log(Math.floor(0.99));
+        //3.四舍五入取整
+        console.log(Math.round(0.49));
+        console.log(Math.round(0.5));
+        //4.生成0~1之间的随机小数
+        console.log(Math.random());
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>

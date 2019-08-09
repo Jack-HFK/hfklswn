@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/common.js"></script>
+  <script>
+        function btnShow(){
+            //1.创建xhr
+            var xhr = createXhr();
+            //2.创建请求(带参数)
+            var url = "/ajax/03-server?name=wangwc&age=30";
+            xhr.open("get",url,true);
+            //3.设置回调函数
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    document.getElementById("show").innerHTML = xhr.responseText;
+                }
+            }
+            //4.发送请求
+            xhr.send(null);
+        }
+
+
+
+  </script>
+
+</head>
+<body>
+<button onclick="btnShow()">显示</button>
+<div id="show"></div>
+</body>
+</html>

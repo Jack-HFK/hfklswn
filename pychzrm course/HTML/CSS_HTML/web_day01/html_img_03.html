@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--img插入图片-->
+    <!--html属性,长宽缺少一个自动补全-->
+    <img src="journey_three/HTML_day01/趣妞.gif"
+         width="300px"
+         height="300px"
+         title="title 用于设置图片标题,鼠标悬停在图片上时显示"
+         alt="此处为图片加载失败，显示alt。图片加载成功不显示">
+
+    <!--css属性形式  图片地址，长款，失败后显示内容-->
+    <img src="落月.jpg"
+         style="width:300px;height:300px"
+         title="title 用于设置图片标题,鼠标悬停在图片上时显示"
+         alt="此处为图片加载失败，显示alt。图片加载成功不显示">
+
+    <!--<a href:超链接：通过点击跳转到指定的目标文件-->
+    <!--本地相对路径跳转-->
+    <a href="tag_02.html">用于设置目标文件的URL(目标地址)</a>
+
+    <!--http协议跳转   href跳转目标地址，跳转按键现实的内容 target设置跳转后为新页面连接-->
+    <a href="http://www.taobao.com" target="_blank">淘宝跳转</a>
+    <a href="http://www.tmooc.cn">达内跳转</a>
+    <a href="journey_three/HTML_day01/你是谁?.jpeg">
+        <!--img插入图片 点击图片跳转到图片地址所在页面-->
+        <img src="journey_three/HTML_day01/趣妞.gif"
+             title="title 用于设置图片标题,鼠标悬停在图片上时显示"
+             alt="此处为图片加载失败，显示alt。图片加载成功不显示">
+    </a>
+    <!--连接地址为空，刷新所在网页-->
+    <a href="">链接地址为空</a>
+
+    <!--表示锚点为当前页，链接为当前页指定位置-->
+    <a href="#">连接为#</a>
+
+    <!--#表示锚点，链接至指定文件的指定位置-->
+    <a href="html_anchor.html#第五个锚点">连接至指定html_anchor.html网页中指定第五个锚点的位置</a>
+
+    <a href="javascript:void(0)">阻止默认的跳转行为</a>
+
+</body>
+</html>

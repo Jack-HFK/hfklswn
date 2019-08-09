@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        function saveData(){
+            var arr = [];
+            while(true){
+                var input = prompt("请输入");
+                if(input == "exit"){
+                    break;
+                }
+                //添加至数组,数组长度表示数组中下一个元素的索引
+                arr[arr.length] = input;
+            }
+            console.log(arr);
+        }
+        //遍历数组取最大值
+        function showMax(){
+            //数据源
+            var arr = [10,5,66,78,9,56,3,-90,0];
+            var max = arr[0];
+            for(var i = 0;i < arr.length;i++){
+                if(arr[i] > max){
+                    max = arr[i];
+                }
+            }
+            console.log(max);
+        }
+        //showMax();
+        /*定义数组,接收用户输入的内容,查询数组中是否存在相应元素
+        如果存在返回对应元素的下标,不存在返回-1*/
+        function findIndex(){
+            //数据源
+            var arr = [10,5,66,10,78,9,56,3,-90,0,10];
+            //var arrInd = [];
+            var data = prompt("请输入要查找的数值");
+            var index = -1;
+            /*
+            //查找元素第一次出现的下标
+            for(var i = 0;i < arr.length;i++){
+                if(arr[i] == data){
+                    index = i;
+                    break;
+                }
+            }
+            */
+            //查找元素最后一次出现的下标
+            for(var i = arr.length-1;i >= 0;i--){
+                if(arr[i] == data){
+                    index = i;
+                    break;
+                }
+            }
+            console.log(data,index,arr);
+        }
+        findIndex();
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+</head>
+<body>
+    {% if 'user' in request.session %}
+         欢迎: {{request.session.user.name }}
+        <a href="/user/logout">退出登陆</a>
+    {% else %}
+        <a href="/user/login">登陆</a>
+        <a href="/user/reg">注册</a>
+    {% endif %}
+
+    {% if 'user' in request.session %}
+    <div>
+        <a href="/note/">进入我的笔记</a>
+    </div>
+    {% endif %}
+
+</body>
+</html>

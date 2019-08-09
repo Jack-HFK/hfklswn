@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程day03.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<ul>
+<li><a href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6">静态文件</a></li>
+<li><a href="#django%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8---app">Django中的应用 - app</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8app">创建应用app</a></li>
+<li><a href="#%E5%BA%94%E7%94%A8%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%AF%E7%94%B1">应用的分布式路由</a>
+<ul>
+<li><a href="#djangoconfurls-%E9%87%8C%E7%9A%84include-%E5%87%BD%E6%95%B0">django.conf.urls 里的include 函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%92%8C-%E6%A8%A1%E5%9E%8B">数据库 和 模型</a>
+<ul>
+<li><a href="#django%E4%B8%8B%E4%BD%BF%E7%94%A8mysql%E6%95%B0%E6%8D%AE%E5%BA%93">Django下使用mysql数据库</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E5%9E%8Bmodels">模型（Models）</a></li>
+<li><a href="#python-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B---models">Python 数据库模型 - Models</a>
+<ul>
+<li><a href="#%E5%AD%97%E6%AE%B5%E9%80%89%E9%A1%B9">字段选项</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95">数据库迁移的错误处理方法</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9Ccrud%E6%93%8D%E4%BD%9C">数据库的操作(CRUD操作)</a>
+<ul>
+<li><a href="#%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E8%B1%A1">管理器对象</a></li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1">创建数据对象</a></li>
+<li><a href="#django-shell-%E7%9A%84%E4%BD%BF%E7%94%A8">Django shell 的使用</a>
+<ul>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE">查询数据</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h3 id="%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6">静态文件</h3>
+<!-- 改进版需要添加静态文件的配置步骤... -->
+<ol>
+<li>什么是静态文件
+<ul>
+<li>不能与服务器端做动态交互的文件都是静态文件</li>
+<li>如:图片,css,js,音频,视频,html文件(部分)</li>
+</ul>
+</li>
+<li>静态文件配置
+<ul>
+<li>在 settings.py 中配置一下两项内容:</li>
+</ul>
+<ol>
+<li>配置静态文件的访问路径
+<ul>
+<li>通过哪个url地址找静态文件</li>
+<li>STATIC_URL = '/static/'</li>
+<li>说明:
+<ul>
+<li>指定访问静态文件时是需要通过 /static/xxx或 127.0.0.1:8000/static/xxx</li>
+<li>xxx 表示具体的静态资源位置</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>配置静态文件的存储路径
+<ul>
+<li>静态文件在服务器端的保存位置</li>
+<li>STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)</li>
+</ul>
+</li>
+<li>示例:<pre class="hljs"><code><div><span class="hljs-comment"># file: setting.py</span>
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, <span class="hljs-string">"static"</span>)
+]
+</div></code></pre>
+</li>
+</ol>
+</li>
+<li>访问静态文件
+<ol>
+<li>
+<p>使用静态文件的访问路径进行访问</p>
+<ul>
+<li>访问路径: STATIC_URL=/static/</li>
+<li>示例:<pre class="hljs"><code><div>&lt;img src=<span class="hljs-string">"/static/images/lena.jpg"</span>&gt;
+&lt;img src=<span class="hljs-string">"http://127.0.0.1:8000/static/images/lena.jpg"</span>&gt;
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>通过 {% static %}标签访问静态文件
+{% static %}表示的就是静态文件访问路径</p>
+<ol>
+<li>加载 static
+{% load static %}</li>
+<li>使用静态资源时
+语法:{% static '静态资源路径' %}
+<img src="{% static 'images/lena.jpg' %}"></li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>示例:
+<ul>
+<li>路由配置文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file: url.py</span>
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views
+
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^show_image'</span>, views.show_image)
+]
+- 视图函数文件
+<span class="hljs-comment"># file: views.py</span>
+<span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_image</span><span class="hljs-params">(request)</span>:</span>
+    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">"show_image.html"</span>)
+</div></code></pre>
+<ul>
+<li>模板文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>this is lena!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/images/lena.jpg"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>this is templates lena!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+{% load static %}
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"{% static 'images/lena.jpg' %}"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>练习:<pre class="hljs"><code><div>1. 127.0.0.1:8000 : 显示首页效果
+2. 127.0.0.1:8000/login : 显示登录页
+处理好所有的静态文件
+</div></code></pre>
+</li>
+</ul>
+ <!-- 
+ - 练习:
+     ```
+     石头剪刀布游戏?
+     ```
+  -->
+</li>
+</ol>
+<h3 id="django%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8---app">Django中的应用 - app</h3>
+<ul>
+<li>应用在Django项目中是一个独立的业务模块,可以包含自己的路由,视图,模板,模型</li>
+</ul>
+<h4 id="%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8app">创建应用app</h4>
+<ul>
+<li>
+<p>创建步骤</p>
+<ol>
+<li>用manage.py 中的子命令 startapp 创建应用文件夹</li>
+<li>在settings.py 的 INSTALLED_APPS 列表中配置安装此应用</li>
+</ol>
+</li>
+<li>
+<p>创建应用的子命令</p>
+<ul>
+<li>python3 manage.py startapp 应用名称(必须是标识符命令规则)</li>
+<li>如:
+<ul>
+<li>python3 manage.py startapp music</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Django应用的结构组成</p>
+<ol>
+<li><code>migrations</code> 文件夹
+<ul>
+<li>保存数据迁移的中间文件</li>
+</ul>
+</li>
+<li><code>__init__.py</code>
+<ul>
+<li>应用子包的初始化文件</li>
+</ul>
+</li>
+<li><code>admin.py</code>
+<ul>
+<li>应用的后台管理配置文件</li>
+</ul>
+</li>
+<li><code>apps.py</code>
+<ul>
+<li>应用的属性配置文件</li>
+</ul>
+</li>
+<li><code>models.py</code>
+<ul>
+<li>与数据库相关的模型映射类文件</li>
+</ul>
+</li>
+<li><code>tests.py</code>
+<ul>
+<li>应用的单元测试文件</li>
+</ul>
+</li>
+<li><code>views.py</code>
+<ul>
+<li>定义视图处理函数的文件</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>配置安装应用</p>
+<ul>
+<li>在 settings.py 中配置应用, 让此应用能和整个项目融为一体<pre class="hljs"><code><div><span class="hljs-comment"># file : settings.py </span>
+INSTALLED_APPS = [
+    ... ...,
+    <span class="hljs-string">'自定义应用名称'</span>
+]
+
+</div></code></pre>
+</li>
+<li>如:<pre class="hljs"><code><div>INSTALLED_APPS = [
+    <span class="hljs-comment"># ....</span>
+    <span class="hljs-string">'user'</span>,  <span class="hljs-comment"># 用户信息模块</span>
+    <span class="hljs-string">'music'</span>,  <span class="hljs-comment"># 收藏模块</span>
+]
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E5%BA%94%E7%94%A8%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%AF%E7%94%B1">应用的分布式路由</h4>
+<ul>
+<li>Django中，主文件夹可以不处理用户具体请求的，主文件夹的作用是做项目的初始化以及请求的分发(分布式请求处理)。具体的请求可以由应用来进行处理的</li>
+<li>如图:
+<ul>
+<li><img src="images/urls.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<h5 id="djangoconfurls-%E9%87%8C%E7%9A%84include-%E5%87%BD%E6%95%B0">django.conf.urls 里的include 函数</h5>
+<ul>
+<li>
+<p>作用:</p>
+<ul>
+<li>用于分发将当前路由转到模个模块的 urlpatterns 进行分布式处理</li>
+</ul>
+</li>
+<li>
+<p>函数格式</p>
+<ul>
+<li>include('App命字.url模块名')</li>
+</ul>
+</li>
+<li>
+<p>参数说明:</p>
+<ul>
+<li>模块<code>App命字/url模块名.py</code> 文件件里必须有urlpatterns 列表</li>
+</ul>
+</li>
+<li>
+<p>使用 include 函数让某个正则匹配后关联分支到某个app示例如下:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/urls.py</span>
+<span class="hljs-keyword">from</span> django.conf.urls <span class="hljs-keyword">import</span> include
+
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^music/'</span>, include(<span class="hljs-string">'music.urls'</span>)),
+]
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : music/urls.py</span>
+<span class="hljs-keyword">from</span> django.conf.urls <span class="hljs-keyword">import</span> url
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views
+
+urlpatterns = [
+    url(<span class="hljs-string">r'^page1'</span>, views.page1),
+    url(<span class="hljs-string">r'^page2'</span>, views.page2),
+    url(<span class="hljs-string">r'^page3'</span>, views.page3),
+    <span class="hljs-comment"># ...</span>
+]
+</div></code></pre>
+<ul>
+<li>练习:<pre class="hljs"><code><div>1.创建四个应用
+    1.创建 index 应用,并注册
+    2.创建 sport 应用,并注册
+    3.创建 news  应用,并注册
+    4.创建 music 应用,并注册
+2.创建分布式路由系统
+    主路由配置只做分发
+    每个应用中处理具体访问路径和视图
+    1. 127.0.0.1:8000/music/index
+        交给 music 应用中的 index_view() 函数处理
+    2. 127.0.0.1:8000/sport/index
+        交给 sport 应用中的 index_view() 函数处理
+    3. 127.0.0.1:8000/news/index
+        交给 news  应用中的 index_view() 处理处理
+</div></code></pre>
+</li>
+</ul>
+<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%92%8C-%E6%A8%A1%E5%9E%8B">数据库 和 模型</h3>
+<h4 id="django%E4%B8%8B%E4%BD%BF%E7%94%A8mysql%E6%95%B0%E6%8D%AE%E5%BA%93">Django下使用mysql数据库</h4>
+<ol>
+<li>
+<p>安装 pymysql包</p>
+<ul>
+<li>用作 python 和 mysql 的接口
+<ul>
+<li><code>$ sudo pip3 install pymysql</code></li>
+</ul>
+</li>
+<li>安装 mysql 客户端(非必须)
+<code>$ sudo pip3 install mysqlclient</code></li>
+</ul>
+</li>
+<li>
+<p>创建 和 配置数据库</p>
+<ol>
+<li>创建数据库
+<ul>
+<li>创建 <code>create database 数据库名 default charset utf8 collate utf8_general_ci;</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">create</span> <span class="hljs-keyword">database</span> mywebdb <span class="hljs-keyword">default</span> <span class="hljs-keyword">charset</span> utf8 <span class="hljs-keyword">collate</span> utf8_general_ci;
+</div></code></pre>
+</li>
+<li>数据库的配置
+<ul>
+<li>sqlite 数据库配置</li>
+</ul>
+<pre class="hljs"><code><div># file: settings.py
+DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+</div></code></pre>
+<ul>
+<li>mysql 数据库配置</li>
+</ul>
+<pre class="hljs"><code><div>DATABASES = {
+    <span class="hljs-string">'default'</span> : {
+        <span class="hljs-string">'ENGINE'</span>: <span class="hljs-string">'django.db.backends.mysql'</span>,
+        <span class="hljs-string">'NAME'</span>: <span class="hljs-string">'mywebdb'</span>,  <span class="hljs-comment"># 数据库名称,需要自己定义</span>
+        <span class="hljs-string">'USER'</span>: <span class="hljs-string">'root'</span>,
+        <span class="hljs-string">'PASSWORD'</span>: <span class="hljs-string">'123456'</span>,  <span class="hljs-comment"># 管理员密码</span>
+        <span class="hljs-string">'HOST'</span>: <span class="hljs-string">'127.0.0.1'</span>,
+        <span class="hljs-string">'PORT'</span>: <span class="hljs-number">3306</span>,
+    }
+}
+</div></code></pre>
+</li>
+<li>关于数据为的SETTING设置
+<ol>
+<li>
+<p>ENGINE</p>
+<ul>
+<li>指定数据库的后端引擎</li>
+</ul>
+<pre class="hljs"><code><div>'django.db.backends.mysql'
+'django.db.backends.sqlite3'
+'django.db.backends.oracle'
+'django.db.backends.postgresql'
+</div></code></pre>
+<ul>
+<li>mysql引擎如下:
+<ul>
+<li>'django.db.backends.mysql'</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>NAME</p>
+<ul>
+<li>指定要连接的数据库的名称</li>
+<li><code>'NAME': 'mywebdb'</code></li>
+</ul>
+</li>
+<li>
+<p>USER</p>
+<ul>
+<li>指定登录到数据库的用户名</li>
+<li><code>'USER':'root'</code></li>
+</ul>
+</li>
+<li>
+<p>PASSWORD</p>
+<ul>
+<li>接数据库时使用的密码。</li>
+<li><code>'PASSWORD':'123456'</code></li>
+</ul>
+</li>
+<li>
+<p>HOST</p>
+<ul>
+<li>连接数据库时使用哪个主机。</li>
+<li><code>'HOST':'127.0.0.1'</code></li>
+</ul>
+</li>
+<li>
+<p>PORT</p>
+<ul>
+<li>连接数据库时使用的端口。</li>
+<li><code>'PORT':'3306'</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>添加 mysql 支持
+<ul>
+<li>安装pymysql 模块
+<ul>
+<li><code>$ sudo pip install pymysql</code></li>
+</ul>
+</li>
+<li>修改项目中__init__.py 加入如下内容来提供pymysql引擎的支持<pre class="hljs"><code><div><span class="hljs-keyword">import</span> pymysql
+pymysql.install_as_MySQLdb()
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>数据库的迁移</p>
+<ul>
+<li>迁移是Django同步您对模型所做更改（添加字段，删除模型等） 到您的数据库模式的方式</li>
+</ul>
+<ol>
+<li>生成或更新迁移文件
+<ul>
+<li>将每个应用下的models.py文件生成一个中间文件,并保存在migrations文件夹中</li>
+<li><code>python3 manage.py makemigrations</code></li>
+</ul>
+</li>
+<li>执行迁移脚本程序
+<ul>
+<li>执行迁移程序实现迁移。将每个应用下的migrations目录中的中间文件同步回数据库</li>
+<li><code>python3 manage.py migrate</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="%E6%A8%A1%E5%9E%8B%EF%BC%88models%EF%BC%89">模型（Models）</h3>
+<ul>
+<li>
+<p>模型是提供数据信息的数据库接口。</p>
+</li>
+<li>
+<p>模型是数据的唯一的、确定的信息源。 它包含你所储存数据的必要字段和行为。</p>
+</li>
+<li>
+<p>通常，每个模型对应数据库中唯一的一张表。每个模型的实例对应数据表中的一条记录</p>
+</li>
+<li>
+<p>模型说明：</p>
+<ul>
+<li>每个模型都是一个Python类，每个模型都是django.db.models.Model的子类。</li>
+<li>每一个模型属性都代表数据库中的一个表。</li>
+<li>通过所有这一切，Django为你提供一个自动生成的数据库访问API；</li>
+</ul>
+</li>
+</ul>
+<h3 id="python-%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A8%A1%E5%9E%8B---models">Python 数据库模型 - Models</h3>
+<ol>
+<li>ORM框架
+<ul>
+<li>ORM（Object Relationship Mapping）即对象关系映射,它允许你使用类和对象对数据库进行交互（使用类和对象和使用 SQL一样且更方便各种操作）。</li>
+<li>ORM<pre class="hljs"><code><div>Object Relationship Mapping
+  对象    关系         映射
+</div></code></pre>
+</li>
+<li>三大特征:
+<ol>
+<li>表 到 类的映射</li>
+<li>数据类型的映射</li>
+<li>关系映射</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>模型示例:
+<ul>
+<li>此示例为添加一个 bookstore_book 数据表来存放图书馆中书目信息</li>
+<li>添加一个 bookstore 的 app<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py startapp bookstore</span>
+</div></code></pre>
+</li>
+<li>添加模型类并注册app<pre class="hljs"><code><div><span class="hljs-comment"># file : bookstore/models.py</span>
+<span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span><span class="hljs-params">(models.Model)</span>:</span>
+    title = models.CharField(<span class="hljs-string">"书名"</span>, max_length=<span class="hljs-number">50</span>, default=<span class="hljs-string">''</span>)
+    price = models.DecimalField(<span class="hljs-string">'定价'</span>, max_digits=<span class="hljs-number">7</span>, decimal_places=<span class="hljs-number">2</span>, default=<span class="hljs-number">0.0</span>)
+<span class="hljs-comment"># file : setting.py</span>
+INSTALLED_APPS = [
+    ...
+    <span class="hljs-string">'bookstore'</span>,
+]
+</div></code></pre>
+</li>
+<li>生成迁移脚本文件<code>bookstore/migrations/0001_initial.py</code>并进行迁移<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py makemigrations</span>
+Migrations for 'bookstore':
+bookstore/migrations/0001_initial.py
+    - Create model Book
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py migrate</span>
+Operations to perform:
+Apply all migrations: admin, auth, bookstore, contenttypes, sessions
+Running migrations:
+Applying bookstore.0001_initial... OK
+</div></code></pre>
+</li>
+<li>查看数据表<pre class="hljs"><code><div>$ mysql -u root -p
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mygoods            |
+| mysql              |
+| mywebdb            |
+| onlybuyp           |
+| performance_schema |
+| sys                |
+| test_db            |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql&gt; use mywebdb
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql&gt; show tables;
++----------------------------+
+| Tables_in_mywebdb          |
++----------------------------+
+| auth_group                 |
+| auth_group_permissions     |
+| auth_permission            |
+| auth_user                  |
+| auth_user_groups           |
+| auth_user_user_permissions |
+| bookstore_book             |  &lt;&lt;== 新加表
+| django_admin_log           |
+| django_content_type        |
+| django_migrations          |
+| django_session             |
++----------------------------+
+11 rows in set (0.00 sec)
+
+mysql&gt; desc bookstore_book;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | int(11)      | NO   | PRI | NULL    | auto_increment |
+| title | varchar(50)  | NO   |     | NULL    |                |
+| price | decimal(7,2) | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+</div></code></pre>
+</li>
+<li>表bookstore_book 即为模型 Book 类对应的数据表
+<ul>
+<li>id 为主键，当设定主键时会自动添加id字段为主键</li>
+<li>如果更新模型类 models.py 中的内容时需要运行 makemigrations 和 migrate 子命名来更新和同步数据库</li>
+<li>在开发阶段如果同步数据库出错。用 <code>sql&gt; drop database 数据库名</code> 删除数据库后重新迁移数据库</li>
+<li>在 xxx_app/migrations/*.py 下的文件是自动生成的迁移脚本文件,可以手动删除且在下一次迁移时自动生成</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<!-- 
+    - 使用Django 的 sqlmirate子命令 查看迁移脚本的 执行的SQL语句 
+    ```shell
+    # 命令格式: python3 manage.py sqlmigrate app名称 迁移脚本编号0001
+    $ python3 manage.py sqlmigrate bookstore 0001
+    BEGIN;
+    --
+    -- Create model Book
+    --
+    CREATE TABLE `bookstore_book` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `title` varchar(50) NOT NULL, `price` double precision NOT NULL);
+    COMMIT;
+    $ 
+    ```
+ -->
+<ol start="2">
+<li>
+<p>编写模型类Models</p>
+<ul>
+<li>模型类需继承<code>自django.db.models.Model</code>
+<ol>
+<li>Models的语法规范<pre class="hljs"><code><div>from django.db import models
+class CLASSNAME(models.Model):
+    NAME = models.FIELD_TYPE(FIELD_OPTIONS)
+</div></code></pre>
+</li>
+<li>CLASSNAME
+<ul>
+<li>实体类名,表名组成一部分,建议类名首字母大写</li>
+<li>默认表名组成规范:
+<ul>
+<li>应用名称_classname</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>NAME
+<ul>
+<li>类属性名,映射回数据库就是字段名</li>
+</ul>
+</li>
+<li>FIELD_TYPE
+<ul>
+<li>字段类型:映射到表中的字段的类型</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>FIELD_TYPE 类型及含义</p>
+<ol>
+<li>
+<p>BooleanField()</p>
+<ul>
+<li>数据库类型:tinyint(1)</li>
+<li>编程语言中:使用True或False来表示值</li>
+<li>在数据库中:使用1或0来表示具体的值</li>
+</ul>
+</li>
+<li>
+<p>CharField()</p>
+<ul>
+<li>数据库类型:varchar</li>
+<li>注意:
+<ul>
+<li>必须要指定max_length参数值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DateField()</p>
+<ul>
+<li>数据库类型:date</li>
+<li>作用:表示日期</li>
+<li>编程语言中:使用字符串来表示具体值</li>
+<li>参数:
+<ul>
+<li>DateField.auto_now: 每次保存对象时，自动设置该字段为当前时间(取值:True/False)。</li>
+<li>DateField.auto_now_add: 当对象第一次被创建时自动设置当前时间(取值:True/False)。</li>
+<li>DateField.default: 设置当前时间(取值:字符串格式时间如: '2019-6-1')。</li>
+<li>以上三个参数只能多选一</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DateTimeField()</p>
+<ul>
+<li>数据库类型:datetime(6)</li>
+<li>作用:表示日期和时间</li>
+<li>auto_now_add=True</li>
+</ul>
+</li>
+<li>
+<p>DecimalField()</p>
+<ul>
+<li>
+<p>数据库类型:decimal(x,y)</p>
+</li>
+<li>
+<p>编程语言中:使用小数表示该列的值</p>
+</li>
+<li>
+<p>在数据库中:使用小数</p>
+</li>
+<li>
+<p>参数:</p>
+<ul>
+<li>DecimalField.max_digits: 位数总数，包括小数点后的位数。 该值必须大于等于decimal_places.</li>
+<li>DecimalField.decimal_places: 小数点后的数字数量</li>
+</ul>
+</li>
+<li>
+<p>示例:</p>
+<pre class="hljs"><code><div>money=models.DecimalField(
+    max_digits=7,
+    decimal_places=2,
+    default=0.0
+)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>FloatField()</p>
+<ul>
+<li>数据库类型:double</li>
+<li>编程语言中和数据库中都使用小数表示值</li>
+</ul>
+</li>
+<li>
+<p>EmailField()</p>
+<ul>
+<li>数据库类型:varchar</li>
+<li>编程语言和数据库中使用字符串</li>
+</ul>
+</li>
+<li>
+<p>IntegerField()</p>
+<ul>
+<li>数据库类型:int</li>
+<li>编程语言和数据库中使用整数</li>
+</ul>
+</li>
+<li>
+<p>URLField()</p>
+<ul>
+<li>数据库类型:varchar(200)</li>
+<li>编程语言和数据库中使用字符串</li>
+</ul>
+</li>
+<li>
+<p>ImageField()</p>
+<ul>
+<li>数据库类型:varchar(100)</li>
+<li>作用:在数据库中为了保存图片的路径</li>
+<li>编程语言和数据库中使用字符串</li>
+<li>示例:<pre class="hljs"><code><div>image=models.ImageField(
+    upload_to=&quot;static/images&quot;
+)
+</div></code></pre>
+</li>
+<li>upload_to:指定图片的上传路径
+在后台上传时会自动的将文件保存在指定的目录下</li>
+</ul>
+</li>
+<li>
+<p>TextField()</p>
+<ul>
+<li>数据库类型:longtext</li>
+<li>作用:表示不定长的字符数据</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>参考文档 <a href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-types">https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-types</a></li>
+</ul>
+</li>
+</ol>
+<h4 id="%E5%AD%97%E6%AE%B5%E9%80%89%E9%A1%B9">字段选项</h4>
+<ol start="4">
+<li>FIELD_OPTIONS
+<ul>
+<li>字段选项, 指定创建的列的额外的信息</li>
+<li>允许出现多个字段选项,多个选项之间使用,隔开</li>
+</ul>
+<ol>
+<li>
+<p>primary_key</p>
+<ul>
+<li>如果设置为True,表示该列为主键,如果指定一个字段为主键，则此数库表不会创建id字段</li>
+</ul>
+</li>
+<li>
+<p>blank</p>
+<ul>
+<li>设置为True时，字段可以为空。设置为False时，字段是必须填写的。字符型字段CharField和TextField是用空字符串来存储空值的。 默认值是False。</li>
+</ul>
+</li>
+<li>
+<p>null</p>
+<ul>
+<li>如果设置为True,表示该列值允许为空。日期型、时间型和数字型字段不接受空字符串。所以设置IntegerField，DateTimeField型字段可以为空时，需要将blank，null均设为True。</li>
+<li>默认为False,如果此选项为False建议加入default选项来设置默认值</li>
+</ul>
+</li>
+<li>
+<p>default</p>
+<ul>
+<li>设置所在列的默认值,如果字段选项null=False建议添加此项</li>
+</ul>
+</li>
+<li>
+<p>db_index</p>
+<ul>
+<li>如果设置为True,表示为该列增加索引</li>
+</ul>
+</li>
+<li>
+<p>unique</p>
+<ul>
+<li>如果设置为True,表示该字段在数据库中的值必须是唯一(不能重复出现的)</li>
+</ul>
+</li>
+<li>
+<p>db_column</p>
+<ul>
+<li>指定列的名称,如果不指定的话则采用属性名作为列名</li>
+</ul>
+</li>
+<li>
+<p>verbose_name</p>
+<ul>
+<li>设置此字段在admin界面上的显示名称。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>示例:<pre class="hljs"><code><div><span class="hljs-comment"># 创建一个属性,表示用户名称,长度30个字符,必须是唯一的,不能为空,添加索引</span>
+
+name = models.CharField(max_length=<span class="hljs-number">30</span>, unique=<span class="hljs-keyword">True</span>, null=<span class="hljs-keyword">False</span>, db_index=<span class="hljs-keyword">True</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>文档参见:</p>
+<ul>
+<li><a href="https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-options">https://docs.djangoproject.com/en/1.11/ref/models/fields/#field-options</a></li>
+</ul>
+</li>
+<li>
+<p>示例:</p>
+</li>
+</ul>
+<h4 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95">数据库迁移的错误处理方法</h4>
+<ul>
+<li>
+<p>当执行 <code>$ python3 manage.py makemigrations</code> 出现如下迁移错误时的处理方法</p>
+<ul>
+<li>错误信息<pre class="hljs"><code><div>$ python3 manage.py makemigrations
+You are trying to change the nullable field 'title' on book to non-nullable without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+2) Ignore for now, and let me handle existing rows with NULL myself (e.g. because you added a RunPython or RunSQL operation to handle NULL values in a previous data migration)
+3) Quit, and let me add a default in models.py
+Select an option: 
+</div></code></pre>
+</li>
+<li>翻译为中文如下:<pre class="hljs"><code><div>$ python3 manage.py makemigrations
+您试图将图书上的可空字段“title”更改为非空字段(没有默认值);我们不能这样做(数据库需要填充现有行)。
+请选择修复:
+1)现在提供一次性默认值(将对所有现有行设置此列的空值)
+2)暂时忽略，让我自己处理空值的现有行(例如，因为您在以前的数据迁移中添加了RunPython或RunSQL操作来处理空值)
+3)退出，让我在models.py中添加一个默认值
+选择一个选项:
+</div></code></pre>
+</li>
+<li>错误原因
+<ul>
+<li>当将如下代码</li>
+</ul>
+<pre class="hljs"><code><div>class Book(models.Model):
+    title = models.CharField(&quot;书名&quot;, max_length=50, null=True)
+</div></code></pre>
+<ul>
+<li>去掉 null=True 改为如下内容时会出现上述错误</li>
+</ul>
+<pre class="hljs"><code><div>class Book(models.Model):
+    title = models.CharField(&quot;书名&quot;, max_length=50)
+</div></code></pre>
+<ul>
+<li>原理是 此数据库的title 字段由原来的可以为NULL改为非NULL状态,意味着原来这个字段可以不填值，现在改为必须填定一个值，那填什么值呢？此时必须添加一个缺省值。</li>
+</ul>
+</li>
+<li>处理方法:
+<ol>
+<li>选择1 手动给出一个缺省值，在生成 bookstore/migrations/000x_auto_xxxxxxxx_xxxx.py 文件时自动将输入的值添加到default参数中</li>
+<li>暂时忽略，以后用其它的命令处理缺省值问题(不推荐)</li>
+<li>退出当前生成迁移文件的过程，自己去修改models.py, 新增加一个<code>default=XXX</code> 的缺省值(推荐使用)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>数据库的迁移文件混乱的解决办法</p>
+<ol>
+<li>删除 所有 migrations 里所有的 000?_XXXX.py (<code>__init__.py</code>除外)</li>
+<li>删除 数据表
+<ul>
+<li>sql&gt; drop database mywebdb;</li>
+</ul>
+</li>
+<li>重新创建 数据表
+<ul>
+<li>sql&gt; create datebase mywebdb default charset...;</li>
+</ul>
+</li>
+<li>重新生成migrations里所有的 000?_XXXX.py
+<ul>
+<li>python3 manage.py makemigrations</li>
+</ul>
+</li>
+<li>重新更新数据库
+<ul>
+<li>python3 manage.py migrate</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9Ccrud%E6%93%8D%E4%BD%9C">数据库的操作(CRUD操作)</h3>
+<ul>
+<li>CRUD是指在做计算处理时的增加(Create)、读取查询(Read)、更新(Update)和删除(Delete)</li>
+</ul>
+<h4 id="%E7%AE%A1%E7%90%86%E5%99%A8%E5%AF%B9%E8%B1%A1">管理器对象</h4>
+<ul>
+<li>每个继承自 models.Model 的模型类，都会有一个 objects 对象被同样继承下来。这个对象叫管理器对象</li>
+<li>数据库的增删改查可以通过模型的管理器实现<pre class="hljs"><code><div>class Entry(models.Model):
+    ...
+Entry.objects.create(...) # 是管理器对象
+</div></code></pre>
+</li>
+</ul>
+<h4 id="%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1">创建数据对象</h4>
+<ul>
+<li>
+<p>Django 使用一种直观的方式把数据库表中的数据表示成Python 对象</p>
+</li>
+<li>
+<p>创建数据中每一条记录就是创建一个数据对象</p>
+<ol>
+<li>Entry.objects.create(属性1=值1, 属性2=值1,...)
+<ul>
+<li>成功: 返回创建好的实体对象</li>
+<li>失败: 抛出异常</li>
+</ul>
+</li>
+<li>创建 Entry 实体对象,并调用 save() 进行保存<pre class="hljs"><code><div>obj = Entry(属性=值,属性=值)
+obj.属性=值
+obj.save()
+无返回值,保存成功后,obj会被重新赋值
+</div></code></pre>
+</li>
+<li>示例1:<pre class="hljs"><code><div>try:
+    abook = Book.objects.create(title='Python', pub='清华大学出版社')
+    print(abook)
+except:
+    print('创建对象失败')
+</div></code></pre>
+</li>
+<li>示例2:<pre class="hljs"><code><div>try:
+    abook = Book(title='Python', pub='清华大学出版社')
+    abook.save
+    print(abook)
+except:
+    print('创建对象失败')
+</div></code></pre>
+</li>
+<li>示例3:<pre class="hljs"><code><div>try:
+    abook = Book()
+    abook.title='Python'
+    abook.pub='清华大学出版社'
+    abook.save
+    print(abook)
+except:
+    print('创建对象失败')
+</div></code></pre>
+</li>
+</ol>
+<ul>
+<li>练习:
+<ul>
+<li>使用以上三种方式,分别向Book和Publisher表中各增加三条数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="django-shell-%E7%9A%84%E4%BD%BF%E7%94%A8">Django shell 的使用</h4>
+<ul>
+<li>
+<p>在Django提供了一个交互式的操作项目叫 <code>Django Shell</code> 它能够在交互模式用项目工程的代码执行相应的操作</p>
+</li>
+<li>
+<p>利用 Django Shell 可以代替编写View的代码来进行直接操作</p>
+</li>
+<li>
+<p>在Django Shell 下只能进行简单的操作，不能运行远程调式</p>
+</li>
+<li>
+<p>启动 Django shell 显示IPython风格的交互界面如下:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py shell</span>
+manage.py shell
+Python 3.6.1 (v3.6.1:69c0db5050, Mar 21 2017, 01:21:04) 
+Type 'copyright', 'credits' or 'license' for more information
+IPython 6.1.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: 
+In [2]: from bookstore import models
+In [3]: models.Book.objects.create(title="Python")
+Out[3]: &lt;Book: Book object&gt;
+In [4]: book = models.Book.objects.create(title='C++')
+In [4]: print(book)
+Book object
+</div></code></pre>
+</li>
+<li>
+<p>练习:</p>
+<pre class="hljs"><code><div>在 bookstore/models.py 应用中添加两个model类
+1. Book - 图书
+    1. title - CharField 书名,非空,唯一
+    2. pub - CharField 出版社,字符串,非空
+    3. price - 图书价格,,
+    4. market_price - 图书零售价
+2. Author - 作者
+    1. name - CharField 姓名,非空,唯一,加索引
+    2. age - IntegerField, 年龄,非空，缺省值为1
+    3. email - EmailField, 邮箱,允许为空
+</div></code></pre>
+<ul>
+<li>然后用Django Shell 添加如下数据
+<ul>
+<li>图书信息
+<table>
+<thead>
+<tr>
+<th>书名</th>
+<th>定价</th>
+<th>零售价</th>
+<th>出版社</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td>20.00</td>
+<td>25.00</td>
+<td>清华大学出版社</td>
+</tr>
+<tr>
+<td>Python3</td>
+<td>60.00</td>
+<td>65.00</td>
+<td>清华大学出版社</td>
+</tr>
+<tr>
+<td>Django</td>
+<td>70.00</td>
+<td>75.00</td>
+<td>清华大学出版社</td>
+</tr>
+<tr>
+<td>JQuery</td>
+<td>90.00</td>
+<td>85.00</td>
+<td>机械工业出版社</td>
+</tr>
+<tr>
+<td>Linux</td>
+<td>80.00</td>
+<td>65.00</td>
+<td>机械工业出版社</td>
+</tr>
+<tr>
+<td>Windows</td>
+<td>50.00</td>
+<td>35.00</td>
+<td>机械工业出版社</td>
+</tr>
+<tr>
+<td>HTML5</td>
+<td>90.00</td>
+<td>105.00</td>
+<td>清华大学出版社</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>作者信息:
+<table>
+<thead>
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+<th>邮箱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>王老师</td>
+<td>28</td>
+<td>wangwc@tedu.cn</td>
+</tr>
+<tr>
+<td>吕老师</td>
+<td>31</td>
+<td>lvze@tedu.cn</td>
+</tr>
+<tr>
+<td>祁老师</td>
+<td>30</td>
+<td>qitx@tedu.cn</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="%E6%9F%A5%E8%AF%A2%E6%95%B0%E6%8D%AE">查询数据</h5>
+<ul>
+<li>数据库的查询需要使用管理器对象进行</li>
+<li>通过 Entry.objects 管理器方法调用查询接口
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all()</td>
+<td>查询全部记录,返回QuerySet查询对象</td>
+</tr>
+<tr>
+<td>get()</td>
+<td>查询符合条件的单一记录</td>
+</tr>
+<tr>
+<td>filter()</td>
+<td>查询符合条件的多条记录</td>
+</tr>
+<tr>
+<td>exclude()</td>
+<td>查询符合条件之外的全部记录</td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<ol>
+<li>
+<p>all()方法</p>
+<ul>
+<li>方法: all()</li>
+<li>用法: Entry.objects.all()</li>
+<li>作用: 查询Entry实体中所有的数据
+<ul>
+<li>等同于
+<ul>
+<li>select * from tabel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>返回值: QuerySet容器对象,内部存放Entry 实例</li>
+<li>示例:<pre class="hljs"><code><div>from bookstore import models
+books = models.Book.object.all()
+for book in books:
+    print(&quot;书名&quot;, book.title, '出版社:', book.pub)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>在模型类中定义 <code>def __str__(self):</code> 方法可以将自定义默认的字符串</p>
+<pre class="hljs"><code><div>class Book(models.Model):
+    title = ...
+    def __str__(self):
+        return &quot;书名: %s, 出版社: %s, 定价: %s&quot; % (self.title, self.pub, self.price)
+</div></code></pre>
+</li>
+<li>
+<p>查询返回指定列(字典表示)</p>
+<ul>
+<li>方法: values('列1', '列2')</li>
+<li>用法: Entry.objects.values(...)</li>
+<li>作用: 查询部分列的数据并返回
+<ul>
+<li>select 列1,列2 from xxx</li>
+</ul>
+</li>
+<li>返回值: QuerySet
+<ul>
+<li>返回查询结果容器，容器内存字典，每个字典代表一条数据,</li>
+<li>格式为: {'列1': 值1, '列2': 值2}</li>
+</ul>
+</li>
+<li>示例:<pre class="hljs"><code><div>from bookstore import models
+books = models.Book.objects.values(&quot;title&quot;, &quot;pub&quot;)
+for book in books:
+    print(&quot;书名&quot;, book[&quot;title&quot;], '出版社:', book['pub'])
+    print(&quot;book=&quot;, book)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>查询返回指定列（元组表示)</p>
+<ul>
+<li>方法:values_list('列1','列2')</li>
+<li>用法:Entry.objects.values_list(...)</li>
+<li>作用:
+<ul>
+<li>返回元组形式的查询结果</li>
+</ul>
+</li>
+<li>返回值: QuerySet容器对象,内部存放 <code>元组</code>
+<ul>
+<li>会将查询出来的数据封装到元组中,再封装到查询集合QuerySet中</li>
+</ul>
+</li>
+<li>示例:<pre class="hljs"><code><div>from bookstore import models
+books = models.Book.objects.values_list(&quot;title&quot;, &quot;pub&quot;)
+for book in books:
+    print(&quot;book=&quot;, book)  # ('Python', '清华大学出版社')...
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>排序查询</p>
+<ul>
+<li>
+<p>方法:order_by</p>
+</li>
+<li>
+<p>用法:Entry.objects.order_by('-列','列')</p>
+</li>
+<li>
+<p>作用:</p>
+<ul>
+<li>与all()方法不同，它会用SQL 语句的ORDER BY 子句对查询结果进行根据某个字段选择性的进行排序</li>
+</ul>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>默认是按照升序排序,降序排序则需要在列前增加'-'表示</li>
+</ul>
+</li>
+<li>
+<p>示例:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> bookstore <span class="hljs-keyword">import</span> models
+books = models.Book.objects.order_by(<span class="hljs-string">"price"</span>)
+<span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> books:
+    print(<span class="hljs-string">"书名:"</span>, book.title, <span class="hljs-string">'价格:'</span>, book.price)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>根据条件查询多条记录</p>
+<ul>
+<li>方法: filter(条件)</li>
+<li>语法:<pre class="hljs"><code><div>Entry.objects.filter(属性1=值1, 属性2=值2)
+</div></code></pre>
+</li>
+<li>返回值:
+<ul>
+<li>QuerySet容器对象,内部存放 Entry 实例</li>
+</ul>
+</li>
+<li>说明:
+<ul>
+<li>当多个属性在一起时为与关系，即当<code>Books.objects.filter(price=20, pub=&quot;清华大学出版社&quot;)</code> 返回价格为20 <code>且</code> 出版社为&quot;清华大学出版社&quot;的全部图书</li>
+</ul>
+</li>
+<li>示例:<pre class="hljs"><code><div># 查询书中出版社为&quot;清华大学出版社&quot;的图书
+from bookstore import models
+books = models.Book.objects.filter(pub=&quot;清华大学出版社&quot;)
+for book in books:
+    print(&quot;书名:&quot;, book.title)
+
+2. 查询Author实体中id为1并且isActive为True的
+    - authors=Author.objects.filter(id=1,isActive=True)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+
+</body>
+</html>

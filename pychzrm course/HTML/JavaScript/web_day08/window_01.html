@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        console.log(window);
+        //window对象的方法
+        //1.网页弹框
+        window.alert("警告框")   //无返回值
+        var r = confirm("确认框")  //返回布尔值
+        console.log(r)
+        //prompt可以接收两个参数("提示信息"，输入的默认值)
+        var r1 = prompt("带输入框的弹框","输入的默认值")
+
+        /*全局变量和全局函数都是window对象的属性和方法*/
+        var a = 100;
+        function ai(){
+            console.log("ai")
+        }
+        console.log(a,window.a)
+        ai();
+        window.ai();
+
+        //2.窗口的打开和关闭
+        /*给出确认框，点击确定时打开目标文件，点击取消时关闭当前窗口*/
+        var r = confirm()
+        if(r){
+            window.open("http://www.tmooc.cn")
+        }else{
+             window.close();
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

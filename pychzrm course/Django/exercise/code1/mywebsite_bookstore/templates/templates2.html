@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>模板：动态的html网页</div>
+    <div>使用 render() 直接加载并响应模板</div>
+    <div>变量2:{{变量2}}</div>
+    <div>
+        {% load static %}
+        静态文件：图片<img src="/static/你是谁.jpeg" alt="加载失败">
+        静态文件：图片<img src="{% static '你是谁.jpeg' %}" alt="加载失败">
+    </div>
+</body>
+</html>

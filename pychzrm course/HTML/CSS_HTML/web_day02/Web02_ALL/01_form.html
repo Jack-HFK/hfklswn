@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--网页表单-->
+    <!--form负责提交数据给服务器.标签属性:
+    action指定数据的提交地址
+    method指定数据的提交方式,默认为get
+    enctype指定数据的编码方式,默认转换字符串,
+    拼接在URL后面(urlencoded),
+    如果涉及二进制数据(图片,音视频等),必须设置提交方式为post,
+    同时指定编码类型为multipart/form-data
+
+    -->
+    <form action="/login" method="get" enctype="application/x-www-form-urlencoded">
+        <!--表单控件-->
+        <p>
+            用户姓名:<input type="text" name="username"
+                        placeholder="用户名由数字和字母组成"
+                        maxlength="10">
+        </p>
+        <p>
+            用户密码:<input type="password" name="userpwd"
+                        placeholder="请输入密码">
+        </p>
+        <p>
+            用户性别:
+            <!--一组按钮的控件名称必须保持一致-->
+            <input type="radio" name="gender"
+                   value="boy" checked="checked">男
+            <input type="radio" name="gender" value="girl">女
+        </p>
+        <p>
+            兴趣爱好:
+            <!--label for id 实现文本与控件的绑定,
+            将label标签的属性for取值为对应控件的id值:
+            1.使用label标签表示文本
+            2.为相应控件添加id标识
+            3.label与控件绑定:for属性值与id属性值保持一致-->
+            <input type="checkbox" name="hobby"
+                   value="smoke" checked id="smoke">
+            <label for="smoke">抽烟</label>
+
+            <input type="checkbox" name="hobby"
+                   value="masage" id="masage">
+            <label for="masage">保健</label>
+
+        </p>
+        <!--隐藏域(了解):将一些服务器端需要,
+        但是用户不需要了解的数据提交过去,对用户不可见-->
+        <input type="hidden" name="uid" value="001">
+        <!--下拉菜单-->
+        <select name="city" id="">
+            <!--默认选中第一个option,可以手动设置selected表示选中-->
+            <option value="beijing">北京</option>
+            <option value="shangshai">上海</option>
+            <option value="guangzhou">广州</option>
+            <option value="shenzhen" selected>深圳</option>
+        </select>
+        <!--文件选择框:涉及二进制数据提交,必须使用post方式,
+        同时设置编码类型为multipart/form-data-->
+        用户头像:<input type="file" name="uimg">
+
+        <!--功能按钮-->
+        <!--1.提交按钮,点击时提交数据到后台,
+        可以设置value属性,表示按钮的显示文本-->
+        <input type="submit" value="注册">
+        <!--2.重置按钮,点击时将表单还原至初始状态-->
+        <input type="reset" value="重填">
+        <!--3.普通按钮,需要自定义点击处理-->
+        <input type="button" value="点击">
+        <!--button标签表示按钮,标签内容即为按钮显示文本
+        书写在form中,相当于submit提交按钮;
+        书写在表单外,相当于普通按钮,需要自定义点击操作-->
+        <button>form内</button>
+    </form>
+    <button>form外</button>
+
+
+
+
+
+</body>
+</html>

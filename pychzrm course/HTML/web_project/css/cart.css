@@ -1,0 +1,229 @@
+/*导航栏部分*/
+#nav{
+    margin-top:50px /*设置外边距：调整元素与元素之间的上部分距离*/
+
+}
+/*1.1三列布局*/
+.nav_top{
+    overflow:hidden;/*父元素设置overflow:hidden;解决子元素全部设置浮动,导致父元素高度为0,影响父元素背景色和背景图片展示,影响页面布局*/
+    margin-bottom:20px; /*设置外边距：调整元素与元素之间的底部分距离*/
+}
+.nav_top>img{
+    float:left;  /*图片左浮动*/
+    width:168px; /*宽度*/
+    border-radius:10px; /*设置logo图片圆角边框*/
+}
+/*中间搜索栏*/
+.search{
+    float:left; /*搜索栏左浮动*/
+    margin-left:113px; /*设置外边距：调整元素与元素之间的左部分距离*/
+    position:relative;  /*设置相对定位*/
+}
+/*设置输入框*/
+.search input{
+    width:380px;
+    height:36px;  /*最小logo图片的高度*/
+    border:1px solid #999; /*边框实现：填写边框的边框宽度,边框样式,边框颜色*/
+    border-radius:18px;  /*设置输入框圆角边框*/
+    padding:0; /*设置内边距:调整元素内容框与边框之间的距离*/
+    padding-left:10px; /*左内边距*/
+    padding-right:46px; /*右内边距*/
+    font-size:17px; /*设置字体大小*/
+    font-style:italic;  /*设置字体斜体*/
+    color:gold; /*字体颜色*/
+}
+/*搜索标图片*/
+.search img{
+    width:36px;
+    height:36px;
+    position:absolute; /*定位布局：绝对定位 ：参照输入框为相对定位，实现绝对定位*/
+    right:0;  /*右*/
+    top:1px;      /*上  把顶部边框留出来*/
+}
+/*右侧导航*/
+.nav_top>ul{
+    float:right; /*导航右浮动*/
+    margin-top:9px; /*设置外边距：调整元素与元素之间的上部分距离*/
+}
+.nav_top>ul>li{
+    float:left;     /*左浮动li元素*/
+}
+.nav_top>ul>li b{
+    margin:0 10px; /*设置外边距：调整元素与元素之间的上下，左右部分距离*/
+}
+.nav_top>ul>li img{
+   vertical-align:top; /*水平方向上元素之间的垂直对齐方式：top(上)/middle(中)/bottom(下)*/
+}
+/*1.2文字导航*/
+.nav_bottom a{
+    font-size:16px; /*字体大小*/
+    margin-right:30px; /*右侧外边距设置为30*/
+}
+/*2主体*/
+#main{
+    margin-top:50px; /*外边距距离上50*/
+    position:relative;  /*设置相对定位*/
+    padding-bottom:30px; /*内下边距设置为50*/
+}
+#main>h2{
+    color:#333;
+}
+#main>h2>p{
+    float:right;  /*p标签右浮动*/
+    font-size:12px; /**/
+    color:#9a9a9a; /*字体颜色*/
+    font-weight:400;  /*字体粗细*/
+}
+#main>h2>p span{
+    margin-left:30px; /*外边距距离左侧*/
+}
+.total_count,.total_price{
+    color:#997679;
+    font-size:14px; /*b标签字体大小*/
+}
+/*2.2工具栏*/
+#main .toolbar{
+    height:35px;        /*高度*/
+    line-height:35px;   /*设置行高位置：文本垂直居中*/
+    background:#e6e6e5; /*背景色*/
+    border-top:1px solid pink; /*设置上边距*/
+    text-align:center;           /*文本内容的水平对齐方式:*/
+    box-shadow:0 4px 3px pink;  /*设置阴影部分*/
+    margin-top:5px;   /*上外边距*/
+    margin-bottom:15px; /*下外边距*/
+    color:purple;
+}
+.toolbar div{
+    float:left;
+}
+/*设置每一栏宽度*/
+.check{
+    width:62px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+}
+.info{
+    width:380px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+}
+.price{
+    width:152px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+}
+.count{
+    width:150px;
+}
+.sum{
+    width:130px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+}
+.action{
+    width:126px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+}
+.item .action{
+    color:red;
+}
+/*2.3商品记录展示结构*/
+.content{
+    /*min-height设置最小高度*/
+    min-height:300px;
+}
+.item{
+    overflow:hidden;  /*父元素设置overflow:hidden;解决子元素全部设置浮动,导致父元素高度为0*/
+    text-align:center; /*文本内容的水平对齐方式:center:居中对齐*/
+    background:#fff;
+    border-top:1px solid cyan;
+    border-bottom:1px solid cyan;
+    margin-bottom:10px; /*商品栏元素与元素之间的下边距*/
+    box-shadow:0 6px 3px pink; /*设置盒阴影*/
+}
+.item div{
+    float:left;   /*左浮动*/
+    height:115px;     /*保证每一栏的高度*/
+    box-sizing:border-box; /*调整盒模型的计算方式，取值border-box时，表示当前元素指定的width/height是包含边框在内区域的尺寸*/
+    text-align:center;  /*文本内容的水平对齐方式:center:居中对齐*/
+
+}
+/*商品栏设置*/
+.item .check{
+    line-height:115px; /*设置行高位置：文本垂直居中*/
+}
+.item .info img{
+    float:left;     /*商品图片左浮动*/
+    margin-right:20px;    /*文本内容的水平对齐方式:left(默认值):左对齐*/
+    margin-top:15px;    /*元素与元素之间的上边距*/
+}
+.item .info p{
+    text-align:left; /*文本内容的水平对齐方式:left(默认值):左对齐/*/
+}
+.item .info p:nth-child(2){
+    margin-top:15px ;  /*元素与元素之间的上边距*/
+    margin-bottom:5px;  /*元素与元素之间的下边距*/
+}
+.item .price h3{
+    color:#997679;
+    margin-top:38px;    /*元素与元素之间的上边距*/
+}
+.item .count a{   /*行内样式不能手动调宽高*/
+    float:left;   /*左浮动*/
+    width:26px;     /*宽度*/
+    height:26px;    /*高度*/
+    text-align:center;  /*文本内容的水平对齐方式:center:居中对齐*/
+    line-height:26px; /*设置行高位置：文本垂直居中*/
+    border:1px solid gray;   /*边框实现：填写边框的边框宽度,边框样式,边框颜色*/
+    background:#e8e8e8; /*背景色*/
+    color:#333;
+    margin-top:43px;
+}
+.item .count input{
+    float:left; /*左浮动*/
+    width:26px;
+    height:26px;
+    border:1px solid gray; /*边框实现：填写边框的边框宽度,边框样式,边框颜色*/
+    border-left:none; /*设置左边框为0*/
+    border-right:0;     /*设置左边框为0*/
+    padding:0;      /*设置内边距*/
+    text-align:center;  /*文本内容的水平对齐方式:center:居中对齐*/
+    margin-top:43px;    /*元素与元素之间的上边距*/
+}
+
+.item .count .minus{
+    margin-left:38px; /*元素与元素之间的左边距*/
+}
+.item .sum,.item .action{
+    line-height:115px;  /*设置行高位置：文本垂直居中*/
+}
+/*2.4底部工具栏*/
+.bottom_bar{
+    position:absolute;  /*定位布局：绝对定位 ：参照输入框为相对定位，实现绝对定位*/
+    left:0;
+    bottom:-4px;
+    width:100%;
+    height:30px;
+    background:#f9b3e5;
+    line-height:30px;     /*设置行高位置：文本垂直居中*/
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+    color:purple;
+    border:1px solid cyan;/*边框实现：填写边框的边框宽度,边框样式,边框颜色*/
+    box-shadow:0 4px 6px salmon; /*设置盒阴影*/
+}
+.bottom_bar>div{
+    float:right; /*右浮动*/
+}
+.bottom_bar button{
+    width:120px;
+    height:30px;
+    border:none;
+    background:#a6f365;
+    color:green;
+    font-size:16px;
+    /* 设置鼠标显示形状 default箭头/pointer手指/text形状I*/
+    cursor:pointer;
+
+}

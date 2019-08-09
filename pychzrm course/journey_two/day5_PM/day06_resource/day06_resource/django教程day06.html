@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程day06.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<ul>
+<li><a href="#cookies-%E5%92%8C-session%E4%BC%9A%E8%AF%9D">cookies 和 session(会话)</a>
+<ul>
+<li><a href="#cookies">cookies</a></li>
+<li><a href="#session-%E4%BC%9A%E8%AF%9D%E6%8E%A7%E5%88%B6">session 会话控制</a></li>
+</ul>
+</li>
+<li><a href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86">权限管理</a></li>
+</ul>
+<!-- /TOC -->
+<h3 id="cookies-%E5%92%8C-session%E4%BC%9A%E8%AF%9D">cookies 和 session(会话)</h3>
+<h4 id="cookies">cookies</h4>
+<ul>
+<li>cookies是保存在客户端浏览器上的存储空间，通常用来记录浏览器端自己的信息和当前连接的确认信息</li>
+<li>cookies 在浏览器上是以键-值对的形式进行存储的，键和值都是以ASCII字符串的形存储(不能是中文字符串)</li>
+<li>cookies 的内部的数据会在每次访问此网址时都会携带到服务器端，如果cookies过大会降低响应速度</li>
+<li>在Django 服务器端来设置 设置浏览器的COOKIE 必须通过 HttpResponse 对象来完成</li>
+<li>HttpResponse 关于COOKIE的方法
+<ul>
+<li>添加、修改COOKIE
+<ul>
+<li>HttpResponse.set_cookie(key, value='', max_age=None, expires=None)
+<ul>
+<li>key:cookie的名字</li>
+<li>value:cookie的值</li>
+<li>max_age:cookie存活时间，秒为单位</li>
+<li>expires:具体过期时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- 
+            - path：cookie的访问路径，只有在某个路径下访问
+            - domain:域名，只有在某个域名下访问
+ -->
+<pre><code>- 删除COOKIE
+    - HttpResponse.delete_cookie(key)
+    - 删除指定的key 的Cookie。 如果key 不存在则什么也不发生。
+</code></pre>
+<ul>
+<li>Django中的cookies
+<ul>
+<li>使用 响应对象HttpResponse 等 将cookie保存进客户端
+<ol>
+<li>方法1<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+resp = HttpResponse()
+resp.set_cookie(<span class="hljs-string">'cookies名'</span>, cookies值, 超期时间)
+</div></code></pre>
+<ul>
+<li>如:</li>
+</ul>
+<pre class="hljs"><code><div>resp = HttpResponse()
+resp.set_cookie(<span class="hljs-string">'myvar'</span>, <span class="hljs-string">"weimz"</span>, 超期时间)
+</div></code></pre>
+</li>
+<li>方法二, 使用render对象<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render
+resp = render(request,<span class="hljs-string">'xxx.html'</span>,locals())
+resp.set_cookie(<span class="hljs-string">'cookies名'</span>, cookies值, 超期时间)
+</div></code></pre>
+</li>
+<li>方法三, 使用redirect对象<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> redirect
+resp = redirect(<span class="hljs-string">'/'</span>)
+resp.set_cookie(<span class="hljs-string">'cookies名'</span>, cookies值, 超期时间)
+</div></code></pre>
+</li>
+</ol>
+</li>
+</ul>
+<ol start="3">
+<li>获取cookie
+<ul>
+<li>通过 request.COOKIES 绑定的字典(dict) 获取客户端的 COOKIES数据<pre class="hljs"><code><div>value = request.COOKIES.get(<span class="hljs-string">'cookies名'</span>, <span class="hljs-string">'没有值!'</span>)
+print(<span class="hljs-string">"cookies名 = "</span>, value)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>注:
+<ul>
+<li>Chrome 浏览器 可能通过开发者工具的 <code>Application</code> &gt;&gt; <code>Storage</code> &gt;&gt; <code>Cookies</code> 查看和操作浏览器端所有的 Cookies 值</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>cookies 示例
+<ul>
+<li>以下示例均在视图函数中调用</li>
+<li>添加cookie<pre class="hljs"><code><div><span class="hljs-comment"># 为浏览器添加键为 my_var1,值为123，过期时间为1个小时的cookie</span>
+responds = HttpResponse(<span class="hljs-string">"已添加 my_var1,值为123"</span>)
+responds.set_cookie(<span class="hljs-string">'my_var1'</span>, <span class="hljs-number">123</span>, <span class="hljs-number">3600</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+</li>
+<li>修改cookie<pre class="hljs"><code><div><span class="hljs-comment"># 为浏览器添加键为 my_var1,修改值为456，过期时间为2个小时的cookie</span>
+responds = HttpResponse(<span class="hljs-string">"已修改 my_var1,值为456"</span>)
+responds.set_cookie(<span class="hljs-string">'my_var1'</span>, <span class="hljs-number">456</span>, <span class="hljs-number">3600</span>*<span class="hljs-number">2</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+</li>
+<li>删除cookie<pre class="hljs"><code><div><span class="hljs-comment"># 删除浏览器键为 my_var1的cookie</span>
+responds = HttpResponse(<span class="hljs-string">"已删除 my_var1"</span>)
+responds.delete_cookie(<span class="hljs-string">'my_var1'</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+</li>
+<li>获取cookie<pre class="hljs"><code><div><span class="hljs-comment"># 获取浏览器中 my_var变量对应的值</span>
+value = request.COOKIES.get(<span class="hljs-string">'my_var1'</span>, <span class="hljs-string">'没有值!'</span>)
+print(<span class="hljs-string">"cookie my_var1 = "</span>, value)
+<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"my_var1:"</span> + value)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="session-%E4%BC%9A%E8%AF%9D%E6%8E%A7%E5%88%B6">session 会话控制</h4>
+<ul>
+<li>
+<p>什么是session</p>
+<ul>
+<li>session又名会话控制，是在服务器上开辟一段空间用于保留浏览器和服务器交互时的重要数据</li>
+</ul>
+</li>
+<li>
+<p>session的起源</p>
+<ul>
+<li>客户端与服务器端的一次通信，就是一次会话</li>
+<li>http协议是无状态的：每次请求都是一次新的请求，不会记得之前通信的状态</li>
+<li>实现状态保持的方式：在客户端或服务器端存储与会话有关的数据</li>
+<li>推荐使用sesison方式，所有数据存储在服务器端</li>
+</ul>
+</li>
+<li>
+<p>实现方式</p>
+<ul>
+<li>使用session 需要在浏览器客户端启动 cookie，且用在cookie中存储sessionid</li>
+<li>每个客户端都可以在服务器端有一个独立的Session</li>
+<li>注意：不同的请求者之间不会共享这个数据，与请求者一一对应</li>
+</ul>
+</li>
+<li>
+<p>Django启用Session</p>
+<ul>
+<li>在 settings.py 文件中</li>
+<li>向 INSTALLED_APPS 列表中添加：<pre class="hljs"><code><div>INSTALLED_APPS = [
+    <span class="hljs-comment"># 启用 sessions 应用</span>
+    <span class="hljs-string">'django.contrib.sessions'</span>,
+]
+</div></code></pre>
+</li>
+<li>向 MIDDLEWARE_CLASSES 列表中添加：<pre class="hljs"><code><div>MIDDLEWARE = [
+    <span class="hljs-comment"># 启用 Session 中间件</span>
+    <span class="hljs-string">'django.contrib.sessions.middleware.SessionMiddleware'</span>,
+]
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>session的基本操作:</p>
+<ul>
+<li>
+<p>session对于象是一个在似于字典的SessionStore类型的对象, 可以用类拟于字典的方式进行操作</p>
+</li>
+<li>
+<p>session 只能够存储能够序列化的数据,如字典，列表等。</p>
+</li>
+<li>
+<p>保存 session 的值到服务器</p>
+<ul>
+<li><code>request.session[键] = 值</code></li>
+<li>如: <code>request.session['KEY'] = VALUE</code></li>
+</ul>
+</li>
+<li>
+<p>获取session的值</p>
+<ul>
+<li><code>VALUE = request.session['KEY']</code></li>
+<li>或</li>
+<li><code>VALUE = request.session.get('KEY', 缺省值)</code></li>
+</ul>
+</li>
+<li>
+<p>删除session的值</p>
+<ul>
+<li><code>del request.session['KEY']</code></li>
+</ul>
+</li>
+<li>
+<p>在 settings.py 中有关 session 的设置</p>
+<ol>
+<li>SESSION_COOKIE_AGE
+<ul>
+<li>作用: 指定sessionid在cookies中的保存时长(默认是2周)，如下:</li>
+<li><code>SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2</code></li>
+</ul>
+</li>
+<li>SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+设置只要浏览器关闭时,session就失效(默认为False)</li>
+</ol>
+</li>
+<li>
+<p>session 缺省配置</p>
+<ul>
+<li>模块
+<ul>
+<li><code>import django.conf.global_settings</code></li>
+</ul>
+</li>
+<li>Linux下文件位置:
+<ul>
+<li><code>/usr/lib/python3/dist-packages/django/conf/global_settings.py</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>注: 当使用session时需要迁移数据库,否则会出现错误</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>$ python3 manage.py makemigrations
+$ python3 manage.py migrate
+</div></code></pre>
+<ul>
+<li>session 示例
+<ul>
+<li>以下示例均在视图函数中调用</li>
+<li>添加sesson</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># 在当前请求所对应的session中添加键为mysession_var, 值为 100的键值对</span>
+request.session[<span class="hljs-string">'mysession_var'</span>] = <span class="hljs-number">100</span>
+responds = HttpResponse(<span class="hljs-string">"添加session"</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+<ul>
+<li>修改session键对应的值</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># 修改当前请求所对应的session中键为 mysession_var, 值为 200</span>
+request.session[<span class="hljs-string">'mysession_var'</span>] = new_value
+responds = HttpResponse(<span class="hljs-string">"修改session成功"</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+<ul>
+<li>删除session 键为mysession_var 的键值对</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">try</span>:
+    <span class="hljs-keyword">del</span> request.session[<span class="hljs-string">'mysession_var'</span>]
+    responds = HttpResponse(<span class="hljs-string">"删除session成功"</span>)
+<span class="hljs-keyword">except</span>:
+    responds = HttpResponse(<span class="hljs-string">"删除session失败"</span>)
+<span class="hljs-keyword">return</span> responds
+</div></code></pre>
+<ul>
+<li>查看session 中 mysession_var, 对应的值</li>
+</ul>
+<pre class="hljs"><code><div>mysession_var = request.session.get(<span class="hljs-string">'mysession_var'</span>, <span class="hljs-keyword">None</span>)
+<span class="hljs-comment"># 或:</span>
+<span class="hljs-keyword">if</span> <span class="hljs-string">'mysession_var'</span> <span class="hljs-keyword">in</span> request.session:
+    mysession_var = request.session[<span class="hljs-string">'mysession_var'</span>]
+<span class="hljs-keyword">else</span>:
+    mysession_var = <span class="hljs-keyword">None</span>
+
+print(<span class="hljs-string">"mysession_var = "</span>, mysession_var)
+<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"mysession_var = "</span> + str(mysession_var))
+</div></code></pre>
+</li>
+</ul>
+<h3 id="%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86">权限管理</h3>
+<ul>
+<li>
+<p>权限管理是指由于业务逻辑需要，根据当前登陆的用户信息来决定视图处理函数能否有权限执行相应操作</p>
+</li>
+<li>
+<p>练习:</p>
+<ul>
+<li>为图书的添加，删除和修改添加权限管理。</li>
+<li>让没有登陆的用户不允许添加图书等操作</li>
+<li>没有权限时抛出 Http404异常进入404页面(raise Http404)</li>
+</ul>
+</li>
+<li>
+<p>练习:</p>
+<ol>
+<li>
+<p>创建一个userinfo 应用
+python3 manage.py startapp userinfo</p>
+</li>
+<li>
+<p>创建一个页面
+路由: /userinfo/login
+视图函数 def mylogin(request):
+..
+模版: login.html</p>
+</li>
+<li>
+<p>写一个注册界面
+路由: /userinfo/reg
+视图函数: def myregister(request):
+..
+模板: templates/userinfo/register.html</p>
+</li>
+<li>
+<p>修改登陆的逻辑</p>
+</li>
+<li>
+<p>退出登陆
+路由: /userinfo/logout
+视图函数: def mylogout(request):</p>
+</li>
+<li>
+<p>添加主页
+路由: '/'
+视图函数:  主视图views.py
+def homepage(request):
+模板为:
+homepage.html</p>
+</li>
+</ol>
+</li>
+<li>
+<p>练习: 实现网云笔记</p>
+<ul>
+<li>功能:
+注册
+登陆
+查看以前自己的笔记
+自己写一个新的笔记
+修改以前的笔记
+删除笔记</li>
+<li>模型类
+class User(models.Model):
+...
+class Note(models.Model)：
+title = CharField(...)  # 标题
+content = CharField(...)  # 内容
+user = models.ForeignKey(User)   # 关联用户外键
+create_time = models.DateField(...)  # 创建时间
+mod_time = models.DateField(...)  # 修改时间</li>
+<li>参考:
+<ul>
+<li>登陆界面</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

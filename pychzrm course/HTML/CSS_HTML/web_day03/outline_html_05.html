@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       div,h1{
+            width:300px;
+            height:50px;
+            background:pink;
+       }
+       /*实线边框*/
+       div{
+            border:5px solid lime;
+       }
+       /*轮廓*/
+       h1{
+            outline:5px solid green;
+       }
+        /*input中的聚焦元素focus*/
+       input:focus{
+            /*去掉表单控件焦点状态下默认的轮廓线*/
+            outline:none;
+       }
+    </style>
+</head>
+<body>
+    <div></div>
+    <h1></h1>
+    <input type="text">
+</body>
+</html>

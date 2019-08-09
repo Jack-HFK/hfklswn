@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程day01.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<ul>
+<li><a href="#django%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BB%8B%E7%BB%8D">Django框架的介绍</a>
+<ul>
+<li><a href="#django%E7%9A%84%E5%AE%89%E8%A3%85">Django的安装</a></li>
+</ul>
+</li>
+<li><a href="#django%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91">Django框架开发</a>
+<ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8C%87%E4%BB%A4">创建项目的指令</a></li>
+<li><a href="#django%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Django项目的目录结构</a></li>
+</ul>
+</li>
+<li><a href="#http%E5%8D%8F%E8%AE%AE">HTTP协议</a>
+<ul>
+<li><a href="#http%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94">HTTP协议的请求和响应</a></li>
+<li><a href="#%E8%AF%B7%E6%B1%82request-%E5%92%8C-%E5%93%8D%E5%BA%94-response">请求request 和 响应 response</a></li>
+<li><a href="#url-%E4%BB%8B%E7%BB%8D">URL 介绍</a></li>
+<li><a href="#%E8%B7%AF%E7%94%B1%E5%9C%B0%E5%9D%80">路由地址</a></li>
+<li><a href="#django-%E4%B8%AD%E7%9A%84-url%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE">Django 中的 URL路由配置</a></li>
+</ul>
+</li>
+<li><a href="#%E8%A7%86%E5%9B%BEview">视图view</a>
+<ul>
+<li><a href="#%E5%B8%A6%E6%9C%89%E5%88%86%E7%BB%84%E7%9A%84%E8%B7%AF%E7%94%B1%E5%92%8C%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">带有分组的路由和视图函数</a></li>
+<li><a href="#%E5%B8%A6%E6%9C%89%E5%91%BD%E5%90%8D%E5%88%86%E7%BB%84-pnamexxx-%E7%9A%84%E8%B7%AF%E7%94%B1%E5%92%8C%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">带有命名分组 <code>(?P&lt;name&gt;xxx)</code> 的路由和视图函数</a></li>
+<li><a href="#url-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%91%BD%E5%90%8D%E5%88%86%E7%BB%84-%E5%92%8C-%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">url 正则表达式命名分组 和 带有参数的视图函数</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94">请求和响应</a>
+<ul>
+<li><a href="#http-%E8%AF%B7%E6%B1%82">HTTP 请求</a></li>
+<li><a href="#http-%E5%93%8D%E5%BA%94">HTTP 响应</a></li>
+<li><a href="#get%E6%96%B9%E5%BC%8F%E4%BC%A0%E5%8F%82">GET方式传参</a>
+<ul>
+<li><a href="#get%E6%96%B9%E5%BC%8F%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96%E6%9F%A5%E8%AF%A2%E5%AD%97%E7%AC%A6%E4%B8%B2-query-string">GET方式查询参数获取(查询字符串 Query String)</a></li>
+</ul>
+</li>
+<li><a href="#post%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E7%9A%84%E8%8E%B7%E5%8F%96">POST传递参数的获取</a></li>
+<li><a href="#form-%E8%A1%A8%E5%8D%95%E7%9A%84name%E5%B1%9E%E6%80%A7">form 表单的name属性</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h1 id="%E3%80%8Adjango-web%E6%A1%86%E6%9E%B6%E3%80%8B">《Django Web框架》</h1>
+<pre class="hljs"><code><div>主讲: 魏明择
+版权: tedu.cn
+时间: 2019
+</div></code></pre>
+<ul>
+<li>2019年3月最新更新的内容</li>
+<li>此课程很重要</li>
+</ul>
+<h2 id="day01">day01</h2>
+<h3 id="django%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BB%8B%E7%BB%8D">Django框架的介绍</h3>
+<ul>
+<li>2005年发布,采用Python语言编写的开源框架</li>
+<li>早期的时候Django主做新闻和内容管理的</li>
+<li>一个重量级的 Python Web框架，Django 配备了常用的大部分组件
+<ol>
+<li>基本配置</li>
+<li>路由系统</li>
+<li>原生HTML模板系统</li>
+<li>视图 view</li>
+<li>Model模型,数据库连接和ORM数据库管理</li>
+<li>ORM模型系统</li>
+<li>中间件</li>
+<li>用户管理认证系统</li>
+<li>Cookie &amp; Seesion</li>
+<li>CSRF 跨站点请求伪造的保护</li>
+<li>Form表单验证</li>
+<li>分页</li>
+<li>数据库后台管理系统admin</li>
+<li>电子邮件发送系统</li>
+</ol>
+</li>
+</ul>
+<!-- 
+    1. 流程
+    1. 缓存
+    1. 序列化
+    1. 信号
+ -->
+<ul>
+<li>
+<p>Django的用途</p>
+<ul>
+<li>网站后端开发</li>
+<li>微信公众号后台开发</li>
+<li>微信小程序后台开发</li>
+<li>基于HTTP/HTTPS协议的后台服务器开发
+<ul>
+<li>在线语音/图像识别服务器</li>
+<li>在线第三方身份验证服务器等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Django的版本</p>
+<ul>
+<li>最新版本:2.2.x</li>
+<li>当前教学版本:1.11.8</li>
+</ul>
+</li>
+<li>
+<p>Django的官网</p>
+<ul>
+<li>官方网址: <a href="http://www.djangoproject.com">http://www.djangoproject.com</a></li>
+<li>中文文档(第三方):
+<ul>
+<li><a href="https://yiyibooks.cn/">https://yiyibooks.cn/</a></li>
+<li><a href="http://djangobook.py3k.cn/">http://djangobook.py3k.cn/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="django%E7%9A%84%E5%AE%89%E8%A3%85">Django的安装</h4>
+<ul>
+<li>
+<p>查看已安装的版本</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-keyword">import</span> django
+<span class="hljs-meta">&gt;&gt;&gt; </span>print(django.VERSION)
+(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>, <span class="hljs-number">8</span>, <span class="hljs-string">'final'</span>, <span class="hljs-number">0</span>)
+</div></code></pre>
+</li>
+<li>
+<p>安装</p>
+<ol>
+<li>在线安装
+<ul>
+<li><code>$ sudo pip3 install django # (安装django的最新版本)</code></li>
+<li>或</li>
+<li><code>$ sudo pip3 install django[==版本]</code></li>
+<li>如:
+<ul>
+<li><code>$ sudo pip3 install django==1.11.8</code>
+(安装django的指定版本)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>离线安装
+<ul>
+<li>下载安装包:</li>
+<li>安装离线包
+<ul>
+<li><code>$ tar -xvf Django-1.11.8.tar.gz</code></li>
+<li><code>$ cd Django-1.11.8</code></li>
+<li><code>$ sudo python3 setup.py install</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用wheel离线安装
+<ul>
+<li>下载安装包:
+<ul>
+<li><code>pip3 download -d /home/weimz/django_packs django==1.11.8</code></li>
+</ul>
+</li>
+<li>安装离线包
+<ul>
+<li>$ pip3 install Django-1.11.8.whl</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Django的卸载</p>
+<ul>
+<li>$ pip3 uninstall django</li>
+</ul>
+</li>
+<li>
+<p>Django 的开发环境</p>
+<ul>
+<li>Django 1.11.x 支持 Python 2.7, 3.4, 3.5 和 3.6（长期支持版本 LTS)</li>
+<li>注: Django 1.11.x 不支持 Python 3.7</li>
+</ul>
+</li>
+</ul>
+<h3 id="django%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91">Django框架开发</h3>
+<h4 id="%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8C%87%E4%BB%A4">创建项目的指令</h4>
+<ul>
+<li>$ django-admin startproject 项目名称</li>
+<li>如:
+<ul>
+<li>$ django-admin startproject mywebsite1</li>
+</ul>
+</li>
+<li>运行<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> mywebsite1</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py runserver</span>
+<span class="hljs-meta">#</span><span class="bash"> 或</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py runserver 5000  <span class="hljs-comment"># 指定只能本机使用127.0.0.1的5000端口访问本机</span></span>
+</div></code></pre>
+</li>
+</ul>
+<h4 id="django%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84">Django项目的目录结构</h4>
+<ul>
+<li>
+<p>示例:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> django-admin startproject mywebsite1</span>
+<span class="hljs-meta">$</span><span class="bash"> tree mywebsite1/工</span>
+mywebsite1/
+├── manage.py
+└── mywebsite1
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+
+1 directory, 5 files
+</div></code></pre>
+</li>
+<li>
+<p>项目目录结构解析:</p>
+<ul>
+<li>manage.py
+<ul>
+<li>此文件是项目管理的主程序,在开发阶段用于管理整个项目的开发运行的调式</li>
+<li><code>manage.py</code> 包含项目管理的子命令, 如:
+<ul>
+<li><code>python3 manage.py runserver</code> 启动服务</li>
+<li><code>python3 manage.py startapp</code> 创建应用</li>
+<li><code>python3 manage.py migrate</code> 数据库迁移</li>
+<li><code>...</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>mywebsite1 项目包文件夹
+<ul>
+<li>项目包的主文件夹(默认与项目名称一致)</li>
+</ul>
+<ol>
+<li><code>__init__.py</code>
+<ul>
+<li>包初始化文件,当此项目包被导入(import)时此文件会自动运行</li>
+</ul>
+</li>
+<li><code>wsgi.py</code>
+<ul>
+<li>WSGI 即 Web Server Gateway Interface</li>
+<li>WEB服务网关接口的配置文件，仅部署项目时使用</li>
+</ul>
+</li>
+<li><code>urls.py</code>
+<ul>
+<li>项目的基础路由配置文件，所有的动态路径必须先走该文件进行匹配</li>
+</ul>
+</li>
+<li><code>settings.py</code>
+<ul>
+<li>Django项目的配置文件, 此配置文件中的一些全局变量将为Django框架的运行传递一些参数</li>
+<li>setting.py 配置文件,启动服务时自动调用，</li>
+<li>此配置文件中也可以定义一些自定义的变量用于作用全局作用域的数据传递</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>settings.py</code> 文件介绍</p>
+<ol>
+<li>
+<p><code>BASE_DIR</code></p>
+<ul>
+<li>用于绑定当前项目的绝对路径(动态计算出来的), 所有文件都可以依懒此路径</li>
+</ul>
+</li>
+<li>
+<p><code>DEBUG</code></p>
+<ul>
+<li>用于配置Django项目的启用模式, 取值:
+<ol>
+<li>True 表示开发环境中使用 <code>调试模式</code>(用于开发中)</li>
+<li>False 表示当前项目运行在<code>生产环境中</code>(不启用调试)</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>ALLOWED_HOSTS</code></p>
+<ul>
+<li>设置允许访问到本项目的网络地址列表,取值:
+<ol>
+<li>[] 空列表,表示只有<code>127.0.0.1</code>, <code>localhost</code>, '[::1]' 能访问本项目</li>
+<li>['*']，表示任何网络地址都能访问到当前项目</li>
+<li>['*.tedu.cn', 'weimingze.com'] 表示只有当前两个主机能访问当前项目</li>
+</ol>
+<ul>
+<li>注意:
+<ul>
+<li>如果要在局域网其它主机也能访问此主机,启动方式应使用如下模式:</li>
+<li><code>python3 manage.py runserver 0.0.0.0:5000</code> # 指定网络设备所有主机都可以通过5000端口访问(需加<code>ALLOWED_HOSTS = ['*']</code>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>INSTALLED_APPS</code></p>
+<ul>
+<li>指定当前项目中安装的应用列表</li>
+</ul>
+</li>
+<li>
+<p><code>MIDDLEWARE</code></p>
+<ul>
+<li>用于注册中间件</li>
+</ul>
+</li>
+<li>
+<p><code>TEMPLATES</code></p>
+<ul>
+<li>用于指定模板的配置信息</li>
+</ul>
+</li>
+<li>
+<p><code>DATABASES</code></p>
+<ul>
+<li>用于指定数据库的配置信息</li>
+</ul>
+</li>
+<li>
+<p><code>LANGUAGE_CODE</code></p>
+<ul>
+<li>用于指定语言配置</li>
+<li>取值:
+<ul>
+<li>英文 : <code>&quot;en-us&quot;</code></li>
+<li>中文 : <code>&quot;zh-Hans&quot;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>TIME_ZONE</code></p>
+<ul>
+<li>用于指定当前服务器端时区</li>
+<li>取值:
+<ul>
+<li>世界标准时间: <code>&quot;UTC&quot;</code></li>
+<li>中国时区 : <code>&quot;Asia/Shanghai&quot;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>ROOT_URLCONF</code></p>
+<ul>
+<li>用于配置根级 url 配置 'mywebsite1.urls'</li>
+<li>如:
+<ul>
+<li><code>ROOT_URLCONF = 'mywebsite1.urls'</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>注: 此模块可以能过 <code>from django.conf import settings</code> 导入和使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="http%E5%8D%8F%E8%AE%AE">HTTP协议</h3>
+<ul>
+<li>在TCP/IP协议中位于应用层的协议</li>
+</ul>
+<h4 id="http%E5%8D%8F%E8%AE%AE%E7%9A%84%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94">HTTP协议的请求和响应</h4>
+<p><img src="images/request_response.png" alt="请求和向应"></p>
+<h4 id="%E8%AF%B7%E6%B1%82request-%E5%92%8C-%E5%93%8D%E5%BA%94-response">请求request 和 响应 response</h4>
+<pre class="hljs"><code><div>+--客户端1---+  request    +---- 服务器 ----+
+|          -+-------------+-&gt;             |
+|           |  response   |               |
+|         &lt;-+-------------+--             |
++-----------+             |               |
+                          |               |
++--客户端2---+  request    |               |
+|          -+-------------+-&gt;             |
+|           |  response   |               |
+|         &lt;-+-------------+--             |
++-----------+             |               |
+    ....                  +---------------+
+
+</div></code></pre>
+<h4 id="url-%E4%BB%8B%E7%BB%8D">URL 介绍</h4>
+<ul>
+<li>
+<p>url 即统一资源定位符 Uniform Resource Locator</p>
+</li>
+<li>
+<p>作用:</p>
+<ul>
+<li>用来表示互联网上某个资源的地址。</li>
+</ul>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>互联网上的每个文件都有一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。</li>
+</ul>
+</li>
+<li>
+<p>URL的一般语法格式为：</p>
+<pre class="hljs"><code><div>protocol :// hostname[:port] / path [?query][#fragment]
+(带方括号[]的为可选项)：
+</div></code></pre>
+</li>
+<li>
+<p>说明:</p>
+<ul>
+<li>
+<p>protocol（协议）</p>
+<ul>
+<li>http 通过 HTTP 访问该资源。 格式 <code>HTTP://</code></li>
+<li>https 通过安全的 HTTPS 访问该资源。 格式 <code>HTTPS://</code></li>
+<li>file 资源是本地计算机上的文件。格式: <code>file:///</code></li>
+<li>...</li>
+</ul>
+</li>
+<li>
+<p>hostname（主机名）</p>
+<ul>
+<li>是指存放资源的服务器的域名系统(DNS) 主机名、域名 或 IP 地址。</li>
+</ul>
+</li>
+<li>
+<p>port（端口号）</p>
+<ul>
+<li>整数，可选，省略时使用方案的默认端口；</li>
+<li>各种传输协议都有默认的端口号，如http的默认端口为80。</li>
+</ul>
+</li>
+<li>
+<p>path（路径）</p>
+<ul>
+<li>由零或多个“/”符号隔开的字符串，一般用来表示主机上的一个目录或文件地址。</li>
+</ul>
+</li>
+<li>
+<p>query(查询)</p>
+<ul>
+<li>可选，用于给动态网页传递参数，可有多个参数，用“&amp;”符号隔开，每个参数的名和值用“=”符号隔开。</li>
+</ul>
+</li>
+<li>
+<p>fragment（信息片断）</p>
+<ul>
+<li>字符串，用于指定网络资源中的片断。例如一个网页中有多个名词解释，可使用fragment直接定位到某一名词解释。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>如:</p>
+<ul>
+<li>http://www.tmooc.cn/live/</li>
+<li>https://www.baidu.com/</li>
+<li>http://www.tmooc.cn/course/300246.shtml</li>
+<li>http://www.tedu.com:8000/article/python.html</li>
+<li>http://tts.tmooc.cn/video/showVideo?menuId=657421&amp;version=AID201908</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E8%B7%AF%E7%94%B1%E5%9C%B0%E5%9D%80">路由地址</h4>
+<ul>
+<li>url 地址中不看域名部分即为路由地址</li>
+<li>如:
+<ul>
+<li>http://www.tedu.com:8000/article/python.html 的路由地址是 <code>/article/python.html</code></li>
+</ul>
+</li>
+<li>路由地址决定了服务器端如何处理这个请求</li>
+</ul>
+<h4 id="django-%E4%B8%AD%E7%9A%84-url%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE">Django 中的 URL路由配置</h4>
+<ol>
+<li>
+<p>settings.py 中的<code>ROOT_URLCONF</code></p>
+<pre class="hljs"><code><div>ROOT_URLCONF = 'mywebsite1.urls'
+</div></code></pre>
+<ul>
+<li>通过<code>ROOT_URLCONF</code>指定顶级url的配置
+<ul>
+<li>默认存在于主文件夹内 <code>urls.py</code> 主路由配置文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>urls.py 主路由配置文件</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/urls.py</span>
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    ...
+]
+</div></code></pre>
+<ul>
+<li>说明:
+<ul>
+<li>urlpatterns 是一个 url() 实例的列表,如:</li>
+</ul>
+</li>
+<li>作用:
+<ul>
+<li>该文件会包含 urlpatterns 的列表用于表示路由-视图映射,通过 url() 表示具体映射</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>url() 函数</p>
+<ul>
+<li>用于描述路由与视图函数的对应关系</li>
+<li>模块
+<ul>
+<li><code>from django.conf.urls import url</code></li>
+</ul>
+</li>
+<li>语法:
+<ul>
+<li>url(regex, views, kwargs=None, name=None)
+<ol>
+<li>regex: 字符串类型，匹配的请求路径，允许是正则表达式</li>
+<li>views: 指定路径所对应的视图处理函数的名称</li>
+<li>kwargs: 向视图中传递的参数，如果没有参数可以省略</li>
+<li>name: 为地址起别名，在模板中地址反向解析时使用</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>注:
+<ul>
+<li>每个正则表达式前面的r表示<code>'\'</code>不转义的原始字符串</li>
+<li>当urlpatterns内有多个url对象时，按自上而下的顺序进行配置，一但有 路由与url匹配成功，则后面的所有url被忽略</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="%E8%A7%86%E5%9B%BEview">视图view</h3>
+<ul>
+<li>
+<p>用于接收请求,处理请求并做出响应</p>
+</li>
+<li>
+<p>视图处理的函数的语法格式</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">xxx</span><span class="hljs-params">(request[, 其它参数...])</span>:</span>
+    <span class="hljs-keyword">return</span> 响应对象(HttpResponse对象)
+</div></code></pre>
+</li>
+<li>
+<p>示例:</p>
+<ul>
+<li>路由配置文件<code>urls.py</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/urls.py</span>
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^/'</span>, views.index_view),
+    url(<span class="hljs-string">r'^page1$'</span>, views.page1_view),
+    url(<span class="hljs-string">r'^page2$'</span>, views.page2_view),
+]
+</div></code></pre>
+<ul>
+<li>视图处理函数 <code>views.py</code></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/views.py</span>
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views
+<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index_view</span><span class="hljs-params">(request)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"这是首页"</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">page1_view</span><span class="hljs-params">(request)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"这是第1个页面"</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">page2_view</span><span class="hljs-params">(request)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"这是第2个页面"</span>)
+</div></code></pre>
+</li>
+<li>
+<p>练习</p>
+<ul>
+<li>建立一个小网站:
+<ul>
+<li>输入网址: http://127.0.0.1:8000, 在网页中输出 : 这是我的首页</li>
+<li>输入网址: http://127.0.0.1:8000/page1, 在网页中输出 : 这是编号为1的网页</li>
+<li>输入网址: http://127.0.0.1:8000/page2, 在网页中输出 : 这是编号为2的网页</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="%E5%B8%A6%E6%9C%89%E5%88%86%E7%BB%84%E7%9A%84%E8%B7%AF%E7%94%B1%E5%92%8C%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">带有分组的路由和视图函数</h4>
+<ul>
+<li>在视图函数内，可以用正则表达式分组 <code>()</code> 提取参数后用函数位置传参传递给视图函数</li>
+<li>一个分组表示一个参数,多个参数需要使用多个分组,并且使用个/隔开
+<ul>
+<li>如:
+<ul>
+<li>http://127.0.0.1:8000/year/2018</li>
+<li>http://127.0.0.1:8000/year/2019</li>
+<li>http://127.0.0.1:8000/year/????  # 四位数字</li>
+</ul>
+</li>
+<li>分组:</li>
+</ul>
+</li>
+<li>示例
+<ul>
+<li>路由配置文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/urls.py</span>
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^year/(\d{4})$'</span>, views.year_view),
+    url(<span class="hljs-string">r'^date/(\d{4})/(\d+)/(\d+)$'</span>, views.date_view),
+]
+</div></code></pre>
+<ul>
+<li>视图处理文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/views.py</span>
+<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">year_view</span><span class="hljs-params">(request, year)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"年:"</span> + year)  <span class="hljs-comment"># 注: year绑定字符串 '2019'</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">date_view</span><span class="hljs-params">(request, year, month, day)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(year + <span class="hljs-string">"年"</span> + month + <span class="hljs-string">"月"</span> + day + <span class="hljs-string">"日"</span>)  <span class="hljs-comment"># 注: year绑定字符串 '2019'</span>
+</div></code></pre>
+</li>
+<li>练习：
+<ul>
+<li>
+<p>定义一个路由的格式为:</p>
+<ul>
+<li>http://127.0.0.1:8000/整数/操作字符串/整数</li>
+</ul>
+</li>
+<li>
+<p>从路由中提取数据，做相应的操作后返回给浏览器</p>
+</li>
+<li>
+<p>如：</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>输入: 127.0.0.1:8000/100/add/200
+    页面显示结果：300
+输入: 127.0.0.1:8000/100/sub/200
+    页面显示结果：-100
+输入: 127.0.0.1:8000/100/mul/200
+    页面显示结果：20000
+</div></code></pre>
+</li>
+</ul>
+<h4 id="%E5%B8%A6%E6%9C%89%E5%91%BD%E5%90%8D%E5%88%86%E7%BB%84-pnamexxx-%E7%9A%84%E8%B7%AF%E7%94%B1%E5%92%8C%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">带有命名分组 <code>(?P&lt;name&gt;xxx)</code> 的路由和视图函数</h4>
+<h4 id="url-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%91%BD%E5%90%8D%E5%88%86%E7%BB%84-%E5%92%8C-%E5%B8%A6%E6%9C%89%E5%8F%82%E6%95%B0%E7%9A%84%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0">url 正则表达式命名分组 和 带有参数的视图函数</h4>
+<ul>
+<li>
+<p>在url 的正则表达式中可以使用命名分组(捕获分组)</p>
+</li>
+<li>
+<p>正表达式分名的名称必须在view中以关键字传参方式传入，因此视图函数必须能接收此参数</p>
+</li>
+<li>
+<p>每个捕获的参数都作为一个普通的python字符串传递给视图（不会做类型转换)</p>
+</li>
+<li>
+<p>urlpatterns中的每个正则表达式在第一次访问它们时被编译，这使得系统相当快</p>
+</li>
+<li>
+<p>示例:</p>
+</li>
+<li>
+<p>路由配置文件</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/urls.py</span>
+<span class="hljs-comment"># 以下示例匹配</span>
+<span class="hljs-comment"># http://127.0.0.1:8000/person/weimingze/35</span>
+<span class="hljs-comment"># http://127.0.0.1:8000/person/shibowen/29</span>
+<span class="hljs-comment"># http://127.0.0.1:8000/person/xiaowei/9</span>
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^person/(?P&lt;name&gt;\w+)/(?P&lt;age&gt;\d{1,2})'</span>,views.person_view),
+]
+</div></code></pre>
+</li>
+<li>
+<p>视图文件</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : &lt;项目名&gt;/views.py</span>
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views
+<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">person_view</span><span class="hljs-params">(request, name, age)</span>:</span>
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"姓名:"</span> + name + <span class="hljs-string">" 年龄:"</span> + age)
+</div></code></pre>
+</li>
+<li>
+<p>练习:</p>
+<ul>
+<li>访问地址:http://127.0.0.1:8000/birthday/四位数字/一到两位数字/一到两位数字</li>
+<li>最终输出: 生日为: xxxx年xx月xx日</li>
+<li>如:
+输入网址: http://127.0.0.1:8000/birthday/2015/12/11
+显示为: 生日为:2015年12月11日
+输入网址: http://127.0.0.1:8000/birthday/2/28/2008
+显示为: 生日为:2008年2月28日</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94">请求和响应</h3>
+<ul>
+<li>请求是指浏览器端通过HTTP协议发送给服务器端的数据</li>
+<li>响应是指服务器端接收到请求后做相应的处理后再回复给浏览器端的数据</li>
+</ul>
+<h4 id="http-%E8%AF%B7%E6%B1%82">HTTP 请求</h4>
+<ul>
+<li>
+<p>根据HTTP标准，HTTP请求可以使用多种请求方法。</p>
+</li>
+<li>
+<p>HTTP1.0定义了三种请求方法： GET, POST 和 HEAD方法(最常用)</p>
+</li>
+<li>
+<p>HTTP1.1新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。</p>
+</li>
+<li>
+<p>HTTP1.1 请求详述</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">序号</th>
+<th style="text-align:center">方法</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">GET</td>
+<td style="text-align:left">请求指定的页面信息，并返回实体主体。</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">HEAD</td>
+<td style="text-align:left">类似于get请求，只不过返回的响应中没有具体的内容，用于获取报头</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">POST</td>
+<td style="text-align:left">向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">PUT</td>
+<td style="text-align:left">从客户端向服务器传送的数据取代指定的文档的内容。</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">DELETE</td>
+<td style="text-align:left">请求服务器删除指定的页面。</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">CONNECT</td>
+<td style="text-align:left">HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">OPTIONS</td>
+<td style="text-align:left">允许客户端查看服务器的性能。</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">TRACE</td>
+<td style="text-align:left">回显服务器收到的请求，主要用于测试或诊断。</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>HttpRequest对象</p>
+<ul>
+<li>视图函数的第一个参数是HttpRequest对象</li>
+<li>服务器接收到http协议的请求后，会根据请求数据报文创建HttpRequest对象</li>
+<li>HttpRequest属性
+<ul>
+<li>path：字符串，表示请求的路由信息</li>
+<li>path_info: URL字符串</li>
+<li>method：字符串，表示HTTP请求方法，常用值：'GET'、'POST'</li>
+<li>encoding：字符串，表示提交的数据的编码方式
+<ul>
+<li>如果为None则表示使用浏览器的默认设置，一般为'utf-8'</li>
+<li>这个属性是可写的，可以通过修改它来修改访问表单数据使用的编码，接下来对属性的任何访问将使用新的encoding值</li>
+</ul>
+</li>
+<li>GET：QueryDict查询字典的对象，包含get请求方式的所有数据</li>
+<li>POST：QueryDict查询字典的对象，包含post请求方式的所有数据</li>
+<li>FILES：类似于字典的对象，包含所有的上传文件信息</li>
+<li>COOKIES：Python字典，包含所有的cookie，键和值都为字符串</li>
+<li>session：似于字典的对象，表示当前的会话，</li>
+<li>body: 字符串，请求体的内容(POST或PUT)</li>
+<li>environ: 字符串,客户端运行的环境变量信息</li>
+<li>scheme : 请求协议('http'/'https')</li>
+<li>request.get_full_path() : 请求的完整路径</li>
+<li>request.get_host() : 请求的主机</li>
+<li>request.META : 请求中的元数据(消息头)
+<ul>
+<li>request.META['REMOTE_ADDR']  : 客户端IP地址</li>
+<li>request.META['HTTP_REFERER'] : 请求源地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>请求示例</p>
+<ul>
+<li>图由配置文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : urls.py</span>
+<span class="hljs-keyword">from</span> django.conf.urls <span class="hljs-keyword">import</span> url
+<span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin
+
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views
+
+urlpatterns = [
+    url(<span class="hljs-string">r'^admin/'</span>, admin.site.urls),
+    url(<span class="hljs-string">r'^show_info'</span>, views.show_info),
+]
+</div></code></pre>
+<ul>
+<li>视图处理文件</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment"># file : views.py</span>
+<span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_info</span><span class="hljs-params">(request)</span>:</span>
+    html = <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"请求方式: "</span> + request.method + <span class="hljs-string">'&lt;/div&gt;'</span>
+    html += <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"request.GET: "</span> + str(dict(request.GET)) + <span class="hljs-string">'&lt;/div&gt;'</span>
+    html += <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"request.POST: "</span> + str(dict(request.POST)) + <span class="hljs-string">'&lt;/div&gt;'</span>
+    html += <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"request.COOKIES: "</span> + str(request.COOKIES) + <span class="hljs-string">'&lt;/div&gt;'</span>
+    html += <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"客户端浏览器协议是:request.scheme: "</span> + request.scheme + <span class="hljs-string">'&lt;/div&gt;'</span>
+    html += <span class="hljs-string">'&lt;div&gt;'</span> + <span class="hljs-string">"客户端的IP地址是：request.META['REMOTE_ADDR']: "</span> + str(request.META[<span class="hljs-string">'REMOTE_ADDR'</span>]) + <span class="hljs-string">'&lt;/div&gt;'</span>
+    <span class="hljs-comment"># html += '&lt;div&gt;' + "request.META:" + str(request.META) + '&lt;/div&gt;'</span>
+
+    <span class="hljs-keyword">return</span> HttpResponse(html)
+</div></code></pre>
+</li>
+</ul>
+<h4 id="http-%E5%93%8D%E5%BA%94">HTTP 响应</h4>
+<ul>
+<li>
+<p>当浏览者访问一个网页时，浏览者的浏览器会向网页所在服务器发出请求。当浏览器接收并显示网页前，此网页所在的服务器会返回一个包含HTTP状态码的信息头用以响应浏览器的请求。</p>
+</li>
+<li>
+<p>HTTP状态码的英文为HTTP Status Code。</p>
+</li>
+<li>
+<p>下面是常见的HTTP状态码：</p>
+<ul>
+<li>200 - 请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>404 - 请求的资源（网页等）不存在</li>
+<li>500 - 内部服务器错误</li>
+</ul>
+</li>
+<li>
+<p>HTTP状态码分类</p>
+<ul>
+<li>
+<p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th>分类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td style="text-align:center">2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td style="text-align:center">3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>Django中的响应对象HttpResponse:</p>
+<ul>
+<li>构造函数格式:
+<ul>
+<li><code>HttpResponse(content=响应体, content_type=响应体数据类型, status=状态码)</code></li>
+</ul>
+</li>
+<li>作用:
+<ul>
+<li>向客户端浏览器返回响应，同时携带响应体内容</li>
+</ul>
+</li>
+<li>参数:
+<ul>
+<li>content：表示返回的内容。</li>
+<li>status_code：返回的HTTP响应状态码(默认为200)。</li>
+<li>content_type：指定返回数据的的MIME类型(默认为&quot;text/html&quot;)。浏览器会根据这个属性，来显示数据。如果是text/html，那么就会解析这个字符串，如果text/plain，那么就会显示一个纯文本。
+<ul>
+<li>常用的Content-Type如下：
+<ul>
+<li><code>'text/html'</code>（默认的，html文件）</li>
+<li><code>'text/plain'</code>（纯文本）</li>
+<li><code>'text/css'</code>（css文件）</li>
+<li><code>'text/javascript'</code>（js文件）</li>
+<li><code>'multipart/form-data'</code>（文件提交）</li>
+<li><code>'application/json'</code>（json传输）</li>
+<li><code>'application/xml'</code>（xml文件）</li>
+</ul>
+</li>
+<li>注： 关键字MIME(Multipurpose Internet Mail Extensions)是指多用途互联网邮件扩展类型。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>其它HttpResponse响应对象</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+<th>状态码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HttpResponseRedirect</td>
+<td>重定响</td>
+<td>301</td>
+</tr>
+<tr>
+<td>HttpResponseNotModified</td>
+<td>未修改</td>
+<td>304</td>
+</tr>
+<tr>
+<td>HttpResponseBadRequest</td>
+<td>错误请求</td>
+<td>400</td>
+</tr>
+<tr>
+<td>HttpResponseNotFound</td>
+<td>没有对应的资源</td>
+<td>404</td>
+</tr>
+<tr>
+<td>HttpResponseForbidden</td>
+<td>请求被禁止</td>
+<td>403</td>
+</tr>
+<tr>
+<td>HttpResponseServerError</td>
+<td>服务器错误</td>
+<td>500</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="get%E6%96%B9%E5%BC%8F%E4%BC%A0%E5%8F%82">GET方式传参</h4>
+<ul>
+<li>GET请求方式中可以通过查询（Query） 将数据传递给服务器</li>
+</ul>
+<h5 id="get%E6%96%B9%E5%BC%8F%E6%9F%A5%E8%AF%A2%E5%8F%82%E6%95%B0%E8%8E%B7%E5%8F%96%E6%9F%A5%E8%AF%A2%E5%AD%97%E7%AC%A6%E4%B8%B2-query-string">GET方式查询参数获取(查询字符串 Query String)</h5>
+<ul>
+<li>
+<p>客户端传递参数给服务器端</p>
+<ul>
+<li>URL 格式: <code>网址?参数名1=值1&amp;参数名2=值2...</code></li>
+</ul>
+</li>
+<li>
+<p>服务器端接收参数</p>
+<ol>
+<li>判断 request.method 的值判断请求方式是否是get请求<pre class="hljs"><code><div><span class="hljs-keyword">if</span> request.method == <span class="hljs-string">'GET'</span>:
+    去往指定的模板进行显示
+<span class="hljs-keyword">else</span>:
+    接收其它请求提交的数据
+</div></code></pre>
+</li>
+<li>获取客户端请求GET请求提交的数据
+<ol>
+<li>语法<pre class="hljs"><code><div>request.GET['参数名']
+request.GET.get('参数名','默认值')
+request.GET.getlist('参数名')
+</div></code></pre>
+</li>
+<li>能够产生get请求方式的场合
+<ol>
+<li>地址栏手动输入, 如: http://www.sina.com.cn/?a=100&amp;b=200</li>
+<li><code>&lt;a href=&quot;地址?参数=值&amp;参数=值&quot;&gt;</code></li>
+</ol>
+ <!-- 2. location.href='地址?参数=值&参数=值' -->
+<ol start="3">
+<li>表单中的method为get<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">'get'</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/user/login"</span>&gt;</span>
+    姓名:<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"uname"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>说明</p>
+<ul>
+<li>一般查询字符串的大小会受到浏览器的的限制(不建议超过2048字节)</li>
+</ul>
+</li>
+<li>
+<p>练习:</p>
+<ul>
+<li>访问地址:http://127.0.0.1:8000/sum?start=数字&amp;stop=数字&amp;step=数字</li>
+<li>输出结果为sum(range(start, step, stop)) 和:</li>
+<li>如:
+<ul>
+<li>输入网址: http://127.0.0.1:8000/sum?start=1&amp;stop=101&amp;step=1</li>
+<li>页面显示: 结果: 5050</li>
+<li>输入网址: http://127.0.0.1:8000/sum?stop=101&amp;step=2</li>
+<li>页面显示: 结果: 2500</li>
+<li>输入网址: http://127.0.0.1:8000/sum?start=1&amp;stop=101&amp;step=2</li>
+<li>页面显示: 结果: 2550</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>练习:</p>
+<ul>
+<li>访问地址:http://127.0.0.1:8000/birthday?year=四位数字&amp;month=数字&amp;day=数字</li>
+<li>最终输出: 生日为: xxxx年xx月xx日</li>
+<li>如:
+<ul>
+<li>输入网址: http://127.0.0.1:8000/birthday?year=2015&amp;month=12&amp;day=11</li>
+<li>显示为: 生日为:2015年12月11日</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="post%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%E7%9A%84%E8%8E%B7%E5%8F%96">POST传递参数的获取</h4>
+<ul>
+<li>客户端通过表单等POST请求将数据传递给服务器端,如:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">'post'</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/user/login"</span>&gt;</span>
+    姓名:<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>
+<p>服务器端接收参数</p>
+<ul>
+<li>通过 request.method 来判断是否为POST请求,如:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> request.method == <span class="hljs-string">'POST'</span>:
+    处理POST请求的数据并响应
+<span class="hljs-keyword">else</span>:
+    处理非POST 请求的响应
+</div></code></pre>
+</li>
+<li>
+<p>使用post方式接收客户端数据</p>
+<ol>
+<li>方法</li>
+</ol>
+<pre class="hljs"><code><div>request.POST['参数名']
+request.POST.get('参数名','')
+request.POST.getlist('参数名')
+</div></code></pre>
+</li>
+<li>
+<p>取消csrf验证,否则Django将会拒绝客户端发来的POST请求</p>
+<ul>
+<li>取消 csrf 验证
+<ul>
+<li>删除 settings.py 中 MIDDLEWARE 中的 CsrfViewsMiddleWare 的中间件</li>
+</ul>
+<pre class="hljs"><code><div>MIDDLEWARE = [
+    ...
+    <span class="hljs-comment"># 'django.middleware.csrf.CsrfViewMiddleware',</span>
+    ...
+]
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="form-%E8%A1%A8%E5%8D%95%E7%9A%84name%E5%B1%9E%E6%80%A7">form 表单的name属性</h4>
+<ul>
+<li>在form表单控件提交数据时，会自动搜索本表单控件内部的子标签的name属性及相应的值，再将这些名字和值以键-值对的形式提交给action指定的服务器相关位置</li>
+<li>在form内能自动搜集到的name属性的标签的控件有<pre class="hljs"><code><div>&lt;input&gt;
+&lt;select&gt;
+&lt;textarea&gt;
+</div></code></pre>
+<ul>
+<li>如:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/page1"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"请输入"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"gender"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">1</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">0</span>&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"comment"</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">"5"</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">"10"</span>&gt;</span>附言...<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"提交"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+</div></code></pre>
+</li>
+</ul>
+
+</body>
+</html>

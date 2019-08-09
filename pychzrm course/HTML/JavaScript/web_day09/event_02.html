@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;
+            height:200px;
+            background:pink;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+    //1.鼠标事件
+        div.onclick = function(e){
+        /*鼠标事件对象，主要保存了鼠标的位置信息
+        offsetX offsetY:获取鼠标在元素坐标系中的位置
+        */
+            console.log("单击",e,e.offsetX,e.offsetY);
+        }
+        div.ondblclick = function(){
+            console.log("双击");
+        }
+        div.onmouseover = function(){
+            console.log("鼠标移入");
+        }
+        div.onmouseout = function(){
+            console.log("鼠标移出");
+        }
+        div.onmousemove = function(){
+            console.log("鼠标移动");
+        }
+    //2.键盘事件
+       onkeydown = function(e){
+       /*键盘对象事件
+        onkeydown:获取事件对象的which,功能键返回键盘编码，
+        字符集一律返回大写字母的ASC
+         onkeypress:获取事件对象的which,返回字符键的ASC码值，区分大小写
+       */
+         console.log("onkeydown键盘按键被按下",e,e.key,e.which);
+       };
+
+       onkeypress = function(e){
+            console.log("onkeypress字符按键被按下",e,e.key,e.which);
+       };
+       onkeyup = function(e){
+            console.log("onkeyup键盘按键被抬起");
+       };
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+/*清除浏览器的默认样式，设置页面基础样式*/
+body,h1,h2,h3,h4,h5,h6,p,ul,ol{
+    margin:0;  /*外边距*/
+    padding:0;  /*内边距*/
+    list-style:none;  /*去除列表项目符号(默认样式)*/
+
+}
+
+body{
+    font:12px "微软雅黑","黑体";  /*字体属性简写:font: 斜体 粗细 大小 名称*/
+    color:#9a9a9a;  /*字体颜色*/
+    background:#f1f3f4;
+}
+a{
+    text-decoration:none; /*文本装饰线:取值: none:取消装饰线*/
+    color:#9a9a9a;
+}
+input:focus{
+   outline:none; /*取消表单控件在焦点状态下的轮廓线,取none可以取消文本输入框默认轮廓线*/
+
+}
+/*设置外层容器的样式*/
+#container{
+    width:1000px;
+    margin:0 auto; /*外边距上下0，左右自动*/
+    margin-bottom:35px;
+}

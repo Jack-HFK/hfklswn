@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script>
+        //1.变量
+        var a =100;
+        var b;
+        b = 10.5;
+        var c = 1,d = 2,e = "hellow";
+        var uname,age;
+        uname = "老男人";
+        age = 25;
+        console.log(a,b,c,d,e);
+        console.log(uname,age);
+        var gender;
+        /*变量声明未赋值时默认为undefined*/
+        console.log(gender);
+        /*访问未声明未赋值的变量*/
+        //console.log(m)
+        /*省略var关键字定义变量,一律是全局变量*/
+        n = 1000,
+        console.log(n)
+
+
+        //2.常量，一经定义不能修改
+        const PI = 3.14;
+
+        //自定义半径，结合常量PI，计算圆的周长和面积
+        var r = 10;
+        var c = r*PI*2;
+        var s = r*r*PI;
+        //保留n位小数 toFixed(n)
+        c = c.toFixed(2)
+        console.log(c);
+        console.log(s);
+
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>

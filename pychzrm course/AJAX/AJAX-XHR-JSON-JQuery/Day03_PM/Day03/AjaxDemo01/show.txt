@@ -1,0 +1,37 @@
+1_wangwc_123456_wangwc@163.com_the king of tiolet|2_qtx_zhaomengmeng_qtx@163.com_齐天大圣
+
+
+1_wangwc_123456_wangwc@163.com_king of toilet|2_qtx_zhaomengmeng_qtx@163.com_齐天大圣|3_qtx_zhaomengmeng_qtx@163.com_齐天大圣|4_qtx1_zhaomengmeng_qtx@163.com_齐天大圣|5_weimz_123456_weimz@163.com_TeacherWei|6_weimz_123456_weimz@163.com_TeacherWei|7_wangwc_123456_abc@163.com_wangwc
+
+
+
+
+
+
+
+
+[
+    {
+        "model": "ajax.users",
+        "pk": 1,
+        "fields": {
+            "uname": "wangwc",
+            "upwd": "123456",
+            "uemail": "wangwc@163.com",
+            "nickname": "king of toilet"
+        }
+    },
+    {"model": "ajax.users", "pk": 2, "fields": {"uname": "qtx", "upwd": "zhaomengmeng", "uemail": "qtx@163.com", "nickname": "\u9f50\u5929\u5927\u5723"}}, {"model": "ajax.users", "pk": 3, "fields": {"uname": "qtx", "upwd": "zhaomengmeng", "uemail": "qtx@163.com", "nickname": "\u9f50\u5929\u5927\u5723"}}, {"model": "ajax.users", "pk": 4, "fields": {"uname": "qtx1", "upwd": "zhaomengmeng", "uemail": "qtx@163.com", "nickname": "\u9f50\u5929\u5927\u5723"}}, {"model": "ajax.users", "pk": 5, "fields": {"uname": "weimz", "upwd": "123456", "uemail": "weimz@163.com", "nickname": "TeacherWei"}}, {"model": "ajax.users", "pk": 6, "fields": {"uname": "weimz", "upwd": "123456", "uemail": "weimz@163.com", "nickname": "TeacherWei"}}, {"model": "ajax.users", "pk": 7, "fields": {"uname": "wangwc", "upwd": "123456", "uemail": "abc@163.com", "nickname": "wangwc"}}]
+
+
+
+
+/ajax/test?uname=wangwc&uage=30&uemail=xxx@xx&nickname=xxx
+
+
+
+
+
+
+
+

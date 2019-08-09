@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <a href="history_04.html">history_04.html</a>
+    <a href="姑娘.jpg">网页二</a>
+    <button onclick="history.forward()">前进</button>
+    <button onclick="history.back()">后退</button>
+    <button onclick="console.log(history.length)">获取length</button>
+    <input type="text" id="uinput">
+    <span id="code"></span>
+    <button id="btn">验证</button>
+    <script>
+        //元素的id属性值作为变量直接操作，存储元素本身
+        console.log(code);
+        //操作元素内容
+        code.innerHTML = "asde"  //设置读取当前元素的标签内容
+        //获取输入框的值   标签属性是元素对象的属性
+        btn.onclick = function(){
+            console.log(uinput.value);
+        }
+        //生成验证码
+        function get_code(){
+            var str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            var show = "";
+            //
+            for(var i = 1;i<5;i++){
+                show += str[parseInt(Math.random(str)*str.length)]
+            }
+            return show
+        }
+        //元素的id属性值作为变量直接操作，存储元素本身
+        console.log(code);
+        //操作元素内容
+        code.innerHTML = get_code().toUpperCase()  //设置读取当前元素的标签内容
+        //获取输入框的值
+        //事件处理函数
+        btn.onclick = function fun(){
+            //验证
+            if(code.innerHTML == uinput.value.toUpperCase()){
+            alert("输入正确")
+            }else{
+            alert("输入不正确")
+            }
+
+        }
+
+
+
+        /*Math对象*/
+        //向上取整：舍弃小数位，整数位+1
+        console.log(Math.ceil(0.99)) //1
+        //向下取整：舍弃小数位，保留整数位
+        console.log(Math.floor(0.99)) //0
+        //四舍五入取整
+        console.log(Math.round(0.51)) //1
+        console.log(Math.round(0.49)) //0
+        //生成0~1之间的随机小数
+        console.log(Math.random())
+
+
+
+    </script>
+</body>
+</html>

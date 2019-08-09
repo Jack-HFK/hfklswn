@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/jquery-1.11.3.js"></script>
+  <script>
+    $(function(){
+
+      //加载 /ajax/13-head 页面到#top中
+      $("#top").load("/ajax/13-head",function(resText){
+        console.log(resText);
+        window.setTimeout(function(){
+          $("#top").hide(5000);
+        },5000);
+      });
+
+    })
+  </script>
+</head>
+<body>
+  <div id="top"></div>
+  <h1>网页主体内容</h1>
+  <h1>网页底部内容</h1>
+</body>
+</html>

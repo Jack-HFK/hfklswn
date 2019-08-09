@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/static/jquery-1.11.3.js"></script>
+    <script>
+        $(function(){
+            //加载URL路径为/ajax/head-13的页面到#top中
+            $("#top").load("/ajax/head-13",function(resText){
+                console.log(resText);
+                window.setTimeout(function(){ //超时调用(一次性定时器)等待多久之后执行一次代码
+                    $("#top").hide(5000); //hide(5000) 隐藏功能，参数为隐藏起来所需要的时间
+                },5000);
+            });
+            //加载URL路径为/ajax/head-13的页面到#base中
+            $("#base").load("/ajax/head-13");
+        })
+    </script>
+</head>
+<body>
+    <div id="top"></div>
+    <br>
+    <h1>网页主题内容</h1>
+    <div id="base">网页底部内容</div>
+</body>
+</html>

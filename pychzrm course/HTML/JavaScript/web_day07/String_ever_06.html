@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // 1.接受用户输入的邮箱，提取用户名和服务商
+        var mailbox = prompt("请输入邮箱：")
+        //获取指定字符下标
+        var index = mailbox.indexOf("@")
+        //根据指定的下标截取字符串
+        var username = mailbox.substring(0,index)
+        var servername = mailbox.substring(index+1)
+        console.log(username,servername)
+
+        //2.从身份证号提取年月日信息
+        var uid = "130428158525661452"
+        var year = uid.substring(6,10)
+        var month = uid.substring(10,12)
+        var day = uid.substring(12,14)
+        console.log(year,month,day)
+
+        //3."101_5&201_7&301_9" 打印出来商品id为101，数量为5
+        var str = "101_5&201_7&301_9"
+        var arr = str.split("&");
+        for(var i = 0;i<arr.length;i++ ){
+            var arr2 = arr[i].split("_")
+            console.log(arr2[0],arr2[1])
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

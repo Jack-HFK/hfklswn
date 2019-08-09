@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>社保计算器</title>
+</head>
+<body>
+    <form action="/shebao" method='POST'>
+        {% csrf_token %}
+        <div>
+        <label for="id_base">请输入基数</label><input type="input" name="base" id="id_base">
+        </div>
+        <div>
+        <label>请输选择户口</label>
+        <select name="is_city">
+            <option value ="1">城镇户口</option>
+            <option value ="0">农村户口</option>
+        </select>
+        </div>
+        <input type="submit" value="开始计算">
+    </form>
+    {% if base %}
+    <table>
+        <tr><th>项目</th><th>个人缴纳</th><th>单位缴纳</th></tr>
+        <tr><td>养老保险</td><td>{{ yl_gr }}</td><td>{{ yl_gs }}</td></tr>
+        <tr><td>失业</td><td>{{ sy_gr }}</td><td>{{ sy_gs }}</td></tr>
+        <tr><td>工伤保险</td><td>{{ gs_gr }}</td><td>{{ gs_gs }}</td></tr>
+        <tr><td>生育保险</td><td>{{ shengyu_gr }}</td><td>{{ shengyu_gs }}</td></tr>
+        <tr><td>医疗保险</td><td>{{ yiliao_gr }}</td><td>{{ yiliao_gs }}</td></tr>
+        <tr><td>公积金</td><td>{{ gjj_gr }}</td><td>{{ gjj_gs }}</td></tr>
+        <tr><td>个人缴费总和</td><td>{{ gr }}</td><td></td></tr>
+        <tr><td>公司缴费总和</td><td>{{ gs }}</td><td></td></tr>
+        <tr><td>纳入国家全额总和</td><td>{{ total }}</td><td></td></tr>
+    </table>
+    {% endif %}
+</body>
+</html>

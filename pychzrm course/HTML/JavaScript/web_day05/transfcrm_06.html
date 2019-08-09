@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //1.强制类型转换
+        //1)转字符串
+        var a = 100;
+        var b = true;
+        var a1 = a.toString();
+        var b1 = b.toString();
+        console.log(a1,typeof a1);
+        console.log(b1,typeof b1);
+
+        //2)转number
+        /*整体转number,使用Number()*/
+        var s1 = "101";
+        var s2 = "101a";
+        var s3 = true;
+        var s4 = "true";
+        var s5 = null;
+        var s6;
+
+
+        console.log(Number(s1),s1);
+
+        /*转换失败返回NaN(Not a Number)*/
+        console.log(Number(s2),s2);
+
+        console.log(Number(s3),s3);
+
+        /*转换失败返回NaN(Not a Number)*/
+        console.log(Number(s4),s4);
+
+        console.log(Number(s5),s5);
+
+        console.log(Number(s6),s6);
+
+        /*提取字符串中的number数字
+        parseInt(n)
+        parseFloat(n)
+        */
+        console.log(parseInt(35.5));
+        console.log(parseInt("35.5"));
+        console.log(parseInt("a35.5"));
+        console.log(parseFloat("35.5"));
+        console.log(parseFloat("a35.5"));
+        console.log(parseFloat("35..5"));
+        console.log(parseFloat("35.5.6"));
+
+        //3)转Boolean
+        /*除零以外，其他数都为真,只有零值为假*/
+        console.log(Boolean(1))
+        console.log(Boolean("1"))
+        console.log(Boolean(" "))
+        console.log(Boolean("0"))
+        /*以下为零值*/
+        console.log(Boolean(0))
+        console.log(Boolean(0.0))
+        console.log(Boolean(""))
+        console.log(Boolean(null))
+        console.log(Boolean(undefined))
+        console.log(Boolean(NaN))
+
+
+        //2.隐世类型转换(自动类型转换)(以数学运算为例:+ - * / %)
+        var r1 = "字符串" + 88;
+        var r2 = "字符串" + "love";
+        var r3 = "字符串" + true;
+        var r4 = "字符串" + null;
+        var r5 = "字符串" + undefined;
+        var r6 = "字符串" + NaN;
+        console.log(r1,r2,r3,r4,r5,r6)
+        var r7 = 6 + 8 + "字符串" + 8;
+        console.log(r7);
+        var r8 = "100" + true;
+        console.log(r8);
+
+
+
+    </script>
+</body>
+</html>

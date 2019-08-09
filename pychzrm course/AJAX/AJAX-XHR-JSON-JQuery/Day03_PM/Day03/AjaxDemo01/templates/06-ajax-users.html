@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="/static/common.js"></script>
+  <script src="/static/jquery-1.11.3.js"></script>
+  <script>
+    $(function(){
+      $("#btnShow").click(function(){
+        var xhr = createXhr();
+        xhr.open("get","/ajax/06-server",true);
+
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState==4 && xhr.status==200){
+            var msg = xhr.responseText;
+            var html = "";
+            var users = msg.split("|");
+            for(var i=0;i<users.length;i++){
+              html += "<tr>";
+              //将每个人的信息通过 _ 再一次拆分
+              var infos = users[i].split('_');
+              html += "<td>"+infos[0]+"</td>";
+              html += "<td>"+infos[1]+"</td>";
+              html += "<td>"+infos[2]+"</td>";
+              html += "<td>"+infos[3]+"</td>";
+              html += "<td>"+infos[4]+"</td>";
+              html += "</tr>";
+            }
+            $("#content").html(html);
+          }
+        }
+
+        xhr.send(null);
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="btnShow">显示</button>
+  <table width="500" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>邮箱</th>
+        <th>昵称</th>
+      </tr>
+    </thead>
+    <tbody id="content"></tbody>
+  </table>
+</body>
+</html>

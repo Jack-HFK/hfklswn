@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>django教程之图书管理实验案例.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<!-- /TOC -->
+<h3 id="%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%AE%9E%E9%AA%8C%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3">创建数据对象实验案例讲解</h3>
+<ul>
+<li>目标
+<ul>
+<li>了解Django框架开发的基本步骤</li>
+<li>能够搭建网站来保存图书数据信息,能实现图书信息的添加，删除,修改，查看操作基本操作</li>
+</ul>
+</li>
+<li>基本功能:
+<ul>
+<li>添加图书，查看所有图书，修改图书售价，删除图书</li>
+</ul>
+</li>
+<li>MySQL 数据库名命名为: my_bookstore</li>
+<li>基本步骤为:
+<ol>
+<li>创建工程配置数据库</li>
+<li>创建 bookstore 应用能够显示主页功能</li>
+<li>为存放图书信息，创建模型类。</li>
+<li>实现添加新书功能</li>
+<li>实现查看新书功能</li>
+<li>实现修改图书 <code>零售价</code> 信息功能</li>
+<li>实现删除图书信息</li>
+</ol>
+</li>
+<li>详细步骤如下:
+<ol>
+<li>
+<p>创建工程配置数据库</p>
+<ol>
+<li>创建Django工程<pre class="hljs"><code><div>$ django-admin startproject mywebsite_bookstore
+$ cd mywebsite_bookstore
+$ ls  # 查看当前工程目录
+</div></code></pre>
+</li>
+<li>创建一个新的数据库 my_bookstore<pre class="hljs"><code><div>$ mysql -u root -p123456
+Enter password:
+SQL&gt; create database my_bookstore default charset utf8 collate utf8_general_ci;
+</div></code></pre>
+</li>
+<li>修改mywebsite_bookstore 工程的的配置文件 settings.py 文件配置  MySql 数据库连接<pre class="hljs"><code><div><span class="hljs-comment"># file : mywebsite_bookstore/settings.py</span>
+DATABASES = {
+    <span class="hljs-string">'default'</span> : {
+        <span class="hljs-string">'ENGINE'</span>: <span class="hljs-string">'django.db.backends.mysql'</span>,
+        <span class="hljs-string">'NAME'</span>: <span class="hljs-string">'my_bookstore'</span>,  <span class="hljs-comment"># 数据库名称,需要自己定义</span>
+        <span class="hljs-string">'USER'</span>: <span class="hljs-string">'root'</span>,  <span class="hljs-comment"># 修改为自己的用户名</span>
+        <span class="hljs-string">'PASSWORD'</span>: <span class="hljs-string">'123456'</span>,  <span class="hljs-comment"># 管理员密码</span>
+        <span class="hljs-string">'HOST'</span>: <span class="hljs-string">'127.0.0.1'</span>,  <span class="hljs-comment"># 修改自己的IP地址</span>
+        <span class="hljs-string">'PORT'</span>: <span class="hljs-number">3306</span>,   <span class="hljs-comment"># 一般不要修改</span>
+    }
+}
+</div></code></pre>
+</li>
+<li>添加 mysql 数据库 python 接口支持
+<ul>
+<li>修改项目中__init__.py 加入如下内容来提供pymysql引擎的支持<pre class="hljs"><code><div><span class="hljs-comment"># file : mywebsite_bookstore/__init__.py</span>
+<span class="hljs-keyword">import</span> pymysql
+pymysql.install_as_MySQLdb()
+</div></code></pre>
+</li>
+<li>此处可以用 '$ python manage.py runserver' 来验证数据库是否配置成功</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>创建 bookstore 应用能够显示主页功能</p>
+<ol>
+<li>创建 bookstore app 应用<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py startapp bookstore</span>
+</div></code></pre>
+</li>
+<li>在 settings.py 中注册此app<pre class="hljs"><code><div># file : mywebsite_bookstore/settings.py
+INSTALLED_APPS = [
+    ...
+    'bookstore',  #  新加此行
+]
+</div></code></pre>
+</li>
+<li>在当前工程文件夹内添加存放模板的文件夹<pre class="hljs"><code><div>$ mkdir templates
+</div></code></pre>
+</li>
+<li>添加配置模板文件夹<pre class="hljs"><code><div>TEMPLATES = [
+    {
+        ......
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # 加入模板文件目录
+        ......
+    },
+]
+</div></code></pre>
+</li>
+<li>在模板文件夹mywebsite_bookstore/templates下创建<code>index.html</code>模版内容如下:<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>书库首页<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bookstore/add"</span>&gt;</span>添加新图书<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bookstore/list_all"</span>&gt;</span>显示所有图书<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>为bookstore/views.py 中添加视图 homepage 函数<pre class="hljs"><code><div># file : bookstore/views.py
+
+def homepage(request):
+    return render(request, 'index.html')
+</div></code></pre>
+</li>
+<li>为 bookstore app 添加子路由文件urls.py<pre class="hljs"><code><div># 创建文件: bookstore/urls.py
+from django.conf.urls import url
+from . import views
+urlpatterns = [
+    url(r'^$', views.homepage),
+]
+</div></code></pre>
+</li>
+<li>在mywebsite_bookstore/urls.py 将主路由的/bookstore指向此分支路由<pre class="hljs"><code><div># file : mywebsite_bookstore/urls.py
+from django.conf.urls import url
+from django.conf.urls import include  # &lt;-- 新导入 include 函数
+urlpatterns = [
+    ...
+    url(r'^bookstore/', include('bookstore.urls')),
+]
+</div></code></pre>
+</li>
+<li>测试程序是否能显示bookstore中的主页/bookstore/
+<ul>
+<li>启动程序进行测试
+<ul>
+<li><code>$ python3 manage.py runserver</code></li>
+</ul>
+</li>
+<li>在浏览器中输入地址:
+<ul>
+<li><a href="http://127.0.0.1:8000/bookstore">http://127.0.0.1:8000/bookstore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>为存放图书信息，创建模型类。</p>
+<ol>
+<li>修改 bookstore/models.py 添加数据模型类表.
+<ul>
+<li>添入一个模型类,有如下五个字段
+<ol>
+<li>title - 书名,  CharField, 唯一不能重复</li>
+<li>price - 定价, DecimalField, 添加最大长度7位有效数字，小数点以后保留2位</li>
+<li>pub_house - 出版社, CharField, 最大长度100字节,缺省参数</li>
+<li>market_price - 零售价, DecimalField，最大长度7位有效数字，小数点以后保留2位，缺省值是9999</li>
+</ol>
+</li>
+<li>示例代码<pre class="hljs"><code><div><span class="hljs-comment"># file : bookstore/models.py</span>
+<span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Book</span><span class="hljs-params">(models.Model)</span>:</span>
+    title = models.CharField(<span class="hljs-string">"书名"</span>, max_length=<span class="hljs-number">50</span>, default=<span class="hljs-string">"untitled"</span>)
+    pub_house = models.CharField(<span class="hljs-string">"出版社"</span>, max_length=<span class="hljs-number">100</span>, default=<span class="hljs-string">''</span>)
+    price = models.DecimalField(<span class="hljs-string">'定价'</span>, max_digits=<span class="hljs-number">7</span>, decimal_places=<span class="hljs-number">2</span>, default=<span class="hljs-number">0.0</span>)
+    market_price = models.DecimalField(<span class="hljs-string">'零售价'</span>, max_digits=<span class="hljs-number">7</span>, decimal_places=<span class="hljs-number">2</span>, default=<span class="hljs-number">9999</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>生成迁移文件并执行迁移<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> python3 manage.py makemigrations</span>
+<span class="hljs-meta">$</span><span class="bash"> python3 manage.py migrate</span>
+</div></code></pre>
+<ul>
+<li>进入MYSQL 数据库查看数据表是否自动生成<pre class="hljs"><code><div>$ mysql -uroot -p123456
+SQL&gt; show databases;
+SQL&gt; use my_bookstore;
+SQL&gt; show tables;
+</div></code></pre>
+<ul>
+<li>注: 看到 bookstore_book 数据表意为上述操作成功</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>实现添加新书功能</p>
+<ol>
+<li>添加新模板 templates/new_book.html 实现带有表单的html界面<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>添加新书<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/bookstore/add"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"id_new"</span>&gt;</span>书名<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"title"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入新书名"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id_new"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"id_pub"</span>&gt;</span>出版社<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pub_house"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入出版社名"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id_pub"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"id_price"</span>&gt;</span>定价<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"price"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入定价"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id_price"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"id_mk_price"</span>&gt;</span>零售价<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"market_price"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"请输入零售价"</span> <span class="hljs-attr">required</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"id_mk_price"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"添加新书"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>在bookstore 应用内添加视图函数 new_book 来处理添加新书的业务逻辑<pre class="hljs"><code><div>from django.http import HttpResponse
+from . import models
+def new_book(request):
+    if request.method == 'GET':
+        return render(request, 'new_book.html')
+    elif request.method == 'POST':
+        title = request.POST.get('title', '')
+        pub_house = request.POST.get('pub_house', '')
+        price = request.POST.get('price', '')
+        market_price = request.POST.get('market_price', '')
+        # 用Book.object管理器的create方法来创建新书
+        abook = models.Book.objects.create(title=title,
+                                        price=price,
+                                        market_price=market_price,
+                                        pub_house=pub_house)
+        print('添加新书,成功添加新书:', abook.title)
+        return HttpResponse('&lt;a href=&quot;/bookstore&quot;&gt;添加新书成功，点我跳转到首页&lt;/a&gt;')
+</div></code></pre>
+</li>
+<li>在bookstore/urls.py 中添加 /bookstore/add 路由来映射此视图函数<pre class="hljs"><code><div>urlpatterns = [
+    url(r'^$', views.homepage),
+    url(r'^add$', views.new_book),
+]
+</div></code></pre>
+</li>
+<li>去掉项目配置文件 settings.py 中的 CSRF中间件<pre class="hljs"><code><div>MIDDLEWARE = [
+    ...
+    # 'django.middleware.csrf.CsrfViewMiddleware',  # 注释掉此行
+    ...
+]
+</div></code></pre>
+</li>
+<li>测试添加图书是成功
+<ul>
+<li>进入网址<a href="http://127.0.0.1:8000/bookstore/add">http://127.0.0.1:8000/bookstore/add</a></li>
+<li>添加图书
+<ul>
+<li><img src="images/bookstore_add.png" alt=""></li>
+</ul>
+</li>
+<li>显示
+<ul>
+<li><img src="images/bookstore_add_result.png" alt=""></li>
+</ul>
+</li>
+<li>查看数据库显示如下:<pre class="hljs"><code><div>mysql&gt; select * from bookstore_book;
++----+--------+-------+-----------------------+--------------+
+| id | title  | price | pub_house             | market_price |
++----+--------+-------+-----------------------+--------------+
+|  1 | Python | 58.50 | 清华大学出版社        |        50.00 |
++----+--------+-------+-----------------------+--------------+
+1 rows in set (0.00 sec)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>实现查看新书功能</p>
+<ol>
+<li>添加新模板 templates/book_list.html 实现带有表单的html界面<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>图书列表<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bookstore"</span>&gt;</span>返回首页<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>书名<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>出版社<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>定价<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>零售价<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>修改<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">th</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    {% for abook in books %}
+        <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ abook.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ abook.pub_house }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ abook.price }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>{{ abook.market_price }}<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bookstore/mod/{{ abook.id }}"</span>&gt;</span>修改<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/bookstore/del/{{ abook.id }}"</span>&gt;</span>删除<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+    {% endfor %}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>在bookstore 应用内添加视图函数 list_books 来处理获取图书列表，显示图书的目的<pre class="hljs"><code><div>def list_books(request):
+    books = models.Book.objects.all()
+    return render(request, 'book_list.html', locals())
+</div></code></pre>
+</li>
+<li>在bookstore/urls.py 中添加 /bookstore/add 路由来映射此视图函数<pre class="hljs"><code><div>urlpatterns = [
+    ...
+    url(r'^list_all', views.list_books),  # &lt;&lt;== 此行是新加的
+]
+</div></code></pre>
+</li>
+<li>测试显示图书功能
+<ul>
+<li>启动 网站服务器 'python3 manage.py runserver'</li>
+<li>进入网址<a href="http://127.0.0.1:8000/bookstore/list_all">http://127.0.0.1:8000/bookstore/list_all</a> 显示添加的所有图书信息</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>实现修改图书 <code>零售价</code> 信息功能</p>
+<ol>
+<li>添加新模板 templates/mod_price.html 实现带有表单的html界面<pre class="hljs"><code><div><span class="hljs-meta">&lt;!doctype html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>修改价格<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"/bookstore/mod/{{ abook.id }}"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"post"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>书名: {{ abook.title }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>版社名: {{ abook.pub_house }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>定价: {{ abook.price }}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"market_price"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"{{ abook.market_price }}"</span><span class="hljs-attr">placeholder</span>=<span class="hljs-string">"零售价"</span> <span class="hljs-attr">required</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"修改价格"</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+<li>在bookstore 应用内添加视图函数 mod_book_info 来处理获修改图书的信息<pre class="hljs"><code><div>def mod_book_info(request, book_id):
+    # 先根据book_id 找到对应的一本书
+    try:
+        abook = models.Book.objects.get(id=book_id)
+    except:
+        return HttpResponse(&quot;没有找到ID为&quot; + book_id + &quot;的图书信息&quot;)
+
+    if request.method == 'GET':
+        return render(request, &quot;mod_price.html&quot;, locals())
+    elif request.method == 'POST':
+        try:
+            m_price = request.POST.get('market_price', '0.0')
+            abook.market_price = m_price
+            abook.save()  # 提交修改
+            return HttpResponse(&quot;修改成功&quot;)
+        except:
+            return HttpResponse(&quot;修改失败&quot;)
+</div></code></pre>
+</li>
+<li>在bookstore/urls.py 中添加 /bookstore/add 路由来映射此视图函数<pre class="hljs"><code><div>urlpatterns = [
+    ...
+    url(r'^mod/(\d+)$', views.mod_book_info),
+]
+</div></code></pre>
+</li>
+<li>测试修改图书价格功能
+<ul>
+<li>启动 网站服务器 'python3 manage.py runserver'</li>
+<li>进入网址<a href="http://127.0.0.1:8000/bookstore/list_all">http://127.0.0.1:8000/bookstore/list_all</a> 点击某个图书的修改信息</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>实现删除图书信息</p>
+<ol>
+<li>在bookstore 应用内添加视图函数 del_book 来处理获删除图书的信息<pre class="hljs"><code><div>from django.http import HttpResponseRedirect  # 改入 HttpResponseRedirect模块用于 重定向url
+def del_book(request, book_id):
+    try:
+        abook = models.Book.objects.get(id=book_id)
+        abook.delete()
+        return HttpResponseRedirect('/bookstore/list_all')
+    except:
+        return HttpResponse(&quot;没有找到ID为&quot; + book_id + &quot;的图书信息,删除失败&quot;)
+</div></code></pre>
+</li>
+<li>在bookstore/urls.py 中添加 /bookstore/del 路由来映射此视图函数<pre class="hljs"><code><div>urlpatterns = [
+    ...
+    url(r'^del/(\d+)$', views.del_book),
+]
+</div></code></pre>
+</li>
+<li>测试修改图书价格功能
+<ul>
+<li>启动 网站服务器 'python3 manage.py runserver'</li>
+<li>进入网址<a href="http://127.0.0.1:8000/bookstore/list_all">http://127.0.0.1:8000/bookstore/list_all</a> 点击某个图书的<code>删除</code>来删除该图书</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>将以下表格中的内容存放到数据库中</p>
+<pre class="hljs"><code><div>+----+---------+-------+--------------+----------------+
+| id | title   | price | market_price | pub_house      |
++----+---------+-------+--------------+----------------+
+|  1 | C       | 30.00 |        35.00 | 清华大学出版社 |
+|  2 | C++     | 40.00 |        45.00 | 清华大学出版社 |
+|  3 | Java    | 50.00 |        55.00 | 清华大学出版社 |
+|  4 | Python  | 20.00 |        25.00 | 清华大学出版社 |
+|  5 | Python3 | 60.00 |        65.00 | 清华大学出版社 |
+|  6 | Django  | 70.00 |        75.00 | 清华大学出版社 |
+|  7 | JQuery  | 90.00 |        85.00 | 机械工业出版社 |
+|  8 | Linux   | 80.00 |        65.00 | 机械工业出版社 |
+|  9 | Windows | 50.00 |        35.00 | 机械工业出版社 |
+| 10 | HTML5   | 90.00 |       105.00 | 清华大学出版社 |
++----+---------+-------+--------------+----------------+
+</div></code></pre>
+</li>
+<li>
+<p>扩展功能(自己实现,不提供源代码)</p>
+<ol>
+<li>写一个页面，让用户输入输入一个价格，列出所有低于这个价格的图书（使用 <code>__lt</code>查询谓词)</li>
+<li>写一个页面，输入一个图书名字的一部分，列出所有包含此关键字的图书（使用<code>__contains</code>查询谓词)</li>
+<li>写一个页面来列出所有降价销售的图书(使用F()对象进行查询)</li>
+<li>写一个页面显示出不是&quot;清华大学出版社&quot; 且 价格小于50元的图书(提示: 使用Q()对象,~Q(pub_houst=&quot;清华大学出版社&quot;)&amp;Q(price__lt=50))</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+
+</body>
+</html>

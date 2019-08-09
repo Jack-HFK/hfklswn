@@ -1,0 +1,95 @@
+关系映射的多对多
+    class A(models.Model):
+       ..
+    class B(models.Model):
+       ab = models.ManyToManyField(A)
+    a = A()
+    b = a.b_set.create(...)
+    根据a 找映射B类对象
+       a.b_set.all()   #
+              .filter()
+    根据b 找映射A类对象
+       a.ab.all()
+
+cookies
+  存储于浏览器(客户端)端一段数据
+      键(cookies名称)    值     超期时间
+      HttpResponse.set_cookies(键, 值,
+            max_age=None, expires=None)
+      HttpResponse.delete_cookies(键)
+
+session 会话
+    request.session 绑定SessionStore
+    添加/修改:
+        request.session['键'] = 值
+    删除:
+        del request.session['键']
+    取值:
+        if '键' in request.session:
+            val = request.session['键']
+        else
+            val = 0
+        try:
+            val = request.session['键']
+        except:
+            val = 0
+        val = request.session.get('键', 0)
+
+
+
+
+练习:
+   1. 完成注册功能
+   2. 添加云笔记
+   3. 列表显示云笔记
+   4. 删除云笔记
+   5. 修改之前云笔记的内容
+
+1. 完成注册功能
+   模板:
+      templates/user/reg.html
+    视图:
+       reg_view(request):
+    路由:
+       /user/reg
+准备 创建应用 note
+   添加子路由 /note/urls.py:
+      /note/add    添加笔记
+      /note/       显示笔记列表
+      /note/mod    修改笔记
+      /note/del    删除笔记
+2. 添加云笔记
+   路由： /note/add
+   视图：　def add_view(request)
+   模板:  templates/note/add_note.html
+3. 列表显示云笔记
+   路由： /note/
+   视图：　def list_view(request)
+   模板:  templates/note/list_note.html
+4. 删除云笔记
+   路由： /note/del/(\d+)
+   视图：　def del_view(request, id)
+              返回列表页  ／note/
+5. 修改之前云笔记的内容
+   路由： /note/mod/(\d+)  # (\d+) 提取id
+   视图：　def mod_view(request, id)
+   模板:  templates/note/mod_note.html
+
+
+
+
+
+
+添加模型类
+　　class Note
+
+在mysite/middleware 文件夹
+       __init__.py
+       mymw.py  # 此文件用于写middleware类
+
+
+
+练习:
+  限定某个IP地址如果向/user/reg 路由发送5次
+  POST请求时,将阻止此 IP地址再次访问
+  

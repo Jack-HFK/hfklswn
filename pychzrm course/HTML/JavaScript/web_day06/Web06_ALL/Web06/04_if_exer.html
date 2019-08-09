@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var year = prompt("年");
+        var month = prompt("月");
+        var day = Number(prompt("日"));
+        var sum = 0;
+        //整月天数累加,当前月天数累加
+        if( month == 1){
+            sum = day;
+        }else if(month == 2){
+            sum = 31 + day;
+        }else if(month == 3){
+            sum = 31 + 28 + day;
+        }
+        //闰年判断(year ,month > 2)
+        console.log(sum);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

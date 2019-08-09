@@ -1,0 +1,114 @@
+day4 回顾：
+  添加
+    1.
+      模型类.objects.create(字段=值1,字段2=值2)
+    2.
+      obj = 模型类(字段=值1,字段2=值2)
+      obj.字段3 = 值3
+      obj.save()
+  修改
+      1. 修改全部查询结果集
+        books = Book.objects.all()
+        books.update(price=100)
+      2. 修改单个结果
+        abook = Book.objects.get(id=1)
+        abook.price = 120
+        abook.save()
+  删除
+    1. 
+        books = Book.objects.all()
+        books.delete()
+    2. 
+        abook = Book.objects.get(id=1)
+        abook.delete()
+  查询
+    管理器objects
+       books = Book.objects.all()
+       books = Book.objects.filter(id__gt=10)
+       books = Book.objects.values()
+       books = Book.objects.values_list()
+       books = Book.objects.order_by('price')
+       abook = Book.objects.get(id=10)
+       books = Book.objects.exclude(id=10)
+    查询谓词
+       __gt
+       __gte
+       __lt
+       __lte
+       __contains
+       __startswith
+       ...
+
+
+day5笔记:
+books = models.Book.objects.filter(
+    pub="清华大学出版社", price__lt=50
+    )
+
+from django.db.models import Q
+# 或 用 | 
+books = models.Book.objects.filter(
+    Q(pub="清华大学出版社") | Q(price__lt=50)
+    )
+# 与 用 &
+books = models.Book.objects.filter(
+    Q(pub="清华大学出版社") & Q(price__lt=50)
+    )
+# 不是清华大学出版社 且 定价小于 50
+books = models.Book.objects.filter(
+    ~Q(pub="清华大学出版社") & Q(price__lt=50)
+    )
+
+# 不是清华大学出版社 且 定价不 小于 50
+books = models.Book.objects.filter(
+    ~Q(pub="清华大学出版社") & Q(price__gte=50)
+    )
+
+books = models.Book.objects.filter(
+    ~Q(pub="清华大学出版社") & ~Q(price__lt=50)
+    )
+
+一对一映射
+     作家     作家夫人
+   王老师 ---> 王夫人
+   祁老师 ---> 祁夫人
+   吕老师
+
+# 添加祁老师
+qi = models.Author.objects.create(
+    name='祁老师', age=28)
+
+MrsQi = models.Wife.objects.create(
+    name='祁夫人', author=qi
+)
+
+lvze = models.Author.objects.create(
+    name='小泽老师', age=30)
+
+
+
+
+
+一对多示例:
+   创建一个应用 one2many
+       python3 manage.py startapp one2many
+    安装此应用:
+       INSTALLED_APP = [
+           ...
+           'one2many'
+       ]
+
+
+pub1 = models.Publisher.objects.create(
+    name="清华大学出版社")
+models.Book2.objects.create(title='C++', pub=pub1)
+models.Book2.objects.create(title='Java', pub=pub1)
+models.Book2.objects.create(title='Python', pub=pub1)
+
+pub2 = models.Publisher.objects.create(
+    name="北京大学出版社")
+models.Book2.objects.create(title='水浒', pub=pub2)
+models.Book2.objects.create(title='西游记', pub=pub2)
+
+
+

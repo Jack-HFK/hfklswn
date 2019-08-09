@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        /*
+            接收用户输入的身高(m)和体重(kg)
+            计算bmi = 体重/(身高 *身高)
+            对bmi保留1位小数
+            并且判断身体指数:
+                bmi < 18.5 "太瘦了"
+                18.5 ~ 23.9 "健康"
+                bmi > 23.9 "注意身体健康"
+        */
+        var w = prompt("请输入体重(kg)");
+        var h = prompt("请输入身高(m)");
+        var bmi = w / (h * h);
+        var bmi2 = bmi.toFixed(1);
+        //console.log(bmi,bmi2,typeof bmi2);
+        var r = bmi2>23.9? "注意": bmi2>=18.5 ? "健康" : "太瘦";
+        console.log(bmi2,r)
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

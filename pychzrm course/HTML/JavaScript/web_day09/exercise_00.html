@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #di {
+            width:600px;
+            height:400px;
+            margin:0 auto;
+        }
+        #di img{
+            width:600px;
+            height:400px;
+        }
+    </style>
+</head>
+<body>
+    <!--
+        1.实现网页轮播图
+            方式一:控制图片的隐藏与显示
+            方式二:切换图片路径
+
+        -->
+        
+        <div id="di">
+            <img src="姑娘.jpg" alt="" id="i1">
+        </div>
+        <script>
+            //1.保留图片路径
+            var list01 = ["姑娘.jpg","落月.jpg","你是谁.jpg"]
+            //2.保存图片的索引
+            var index = 0;
+            //3.开启间歇调用
+            var timer = setInterval(autoPlay,1000);
+            function autoPlay(){
+                //更新索引
+                index ++;
+                //判断是否越界
+                if(index == list01.length){
+                    index = 0;
+                }
+                //修改元素属性
+                i1.src = list01[index];
+            }
+        </script>
+
+</body>
+</html>

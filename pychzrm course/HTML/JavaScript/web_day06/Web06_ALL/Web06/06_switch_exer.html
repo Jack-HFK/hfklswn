@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var year = prompt("年");
+        var month = prompt("月");
+        var day = Number(prompt("日"));
+        var sum = 0;
+        //1.整月天数的累加
+        switch(month-1){//整月最多取到11月
+            //省略break会从当前匹配的case开始向后执行所有代码语句
+            case 11:
+                sum += 30;
+            case 10:
+                sum += 31;
+            case 9:
+                sum += 30;
+            case 8:
+                sum += 31;
+            case 7:
+                sum += 31;
+            case 6:
+                sum += 30;
+            case 5:
+                sum += 31;
+            case 4:
+                sum += 30;
+            case 3:
+                sum += 31;
+            case 2:
+                sum += 28;
+                if(year%4==0&&year%100!=0 || year%400==0){
+                    sum++;
+                }
+            case 1:
+                sum += 31;
+        }
+        //2.当前月天数的累加
+        sum += day;
+        console.log(sum);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

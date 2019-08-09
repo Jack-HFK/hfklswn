@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block mytitle %}主页{% endblock mytitle%}</title>
+</head>
+<body>
+    <h1 style="background-color:lime;">登录注册</h1>
+    <!--    {% block block_name %}
+    定义模板块,此模板块可以被子模板重新定义的同名块覆盖
+    {% endblock block_name %}-->
+
+    {% block page_content %}
+    <h1 style="background-color:pink;">主页内容</h1>
+    {% endblock page_content %}
+    <h1 style="background-color:green;">请联系我们010-110</h1>
+
+</body>
+</html>

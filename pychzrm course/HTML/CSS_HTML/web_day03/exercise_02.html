@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <style>
+        /*id选择器*/
+        #nav{
+            width:500px;
+            height:50px;
+            background:orange;
+            color:#fff;
+            font-size:24px;
+            /*把文本内容设置大小为0，处理水平方向上换行导致的空隙，
+            子元素需要手动设置可见大小*/
+            font-size:0px;
+        }
+        a{
+            /*设置a标签的字体显示大小*/
+            font-size:22px;
+            color:#fff;
+            /*去掉超链接文本下划线*/
+            text-decoration:none;
+            /*转化元素类型*/
+            /*display（取值）:block(块元素)/inline(行内元素)/
+            inline-block(行内块元素)/none(隐藏)*/
+            display:inline-block;
+            width:100px;
+            height:50px;
+            /*文本水平居中*/
+            text-align:center;
+            /*一行文本在当前行中永远垂直居中，
+            可以设置行高与元素高度保持一致，
+            实现一行文本的垂直居中效果*/
+            line-height:50px;
+        }
+        a:hover{
+            /*设置悬停时的状态*/
+            background:pink;
+        }
+        a{
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 完善横向导航栏,模块500*50,实现整体居中,
+    内部导航项之间添加10像素外边距-->
+      <!--导航栏：设置整体尺寸，设置导航项-->
+    <div id="nav" >
+        <!--文本属性可以被继承，但是超链接的文本颜色需要单独设置
+        表单控件的文本样式也需要单独设置
+        <span>测试</span>
+        <input type=""
+        -->
+        <!--代码中的换行会被解释为一个空格字符，影响布局-->
+        <a href="">天猫</a>
+        <a href="">淘宝</a>
+        <a href="">京东</a>
+        <a href="">拼多多</a>
+        <a href="">唯品会</a>
+
+    </div>
+    <div id="main">
+
+    </div>
+</body>
+</html>

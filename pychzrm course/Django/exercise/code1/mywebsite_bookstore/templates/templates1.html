@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>模板：动态的html网页</div>
+    <div>通过 loader 获取模板 , 通过 HttpResponse 进行响应</div>
+    <div>变量1:{{变量1}}</div>
+    <div>
+        {% load static %}
+        静态文件：图片<img src="/static/meinv.png" alt="加载失败">
+        <!--防止页面中访问路径stasic改变，使用模板变量代替防止变化-->
+        静态文件：图片<img src="{% static 'lena.jpg' %}" alt="加载失败">
+
+    </div>
+</body>
+</html>

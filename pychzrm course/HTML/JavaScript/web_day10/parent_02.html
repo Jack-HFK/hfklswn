@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--引入jquery文件-->
+    <script src="jquery-1.11.3.js"></script>
+    <script></script>
+</head>
+<body>
+    <div id="box">
+        <span>参考</span>
+
+        <p>
+            <span>p----->span</span>
+        </p>
+        <b></b>
+        <span>参考</span>
+        <b></b>
+    </div>
+    <script>
+        //-----根据层级结构获取元素--------
+
+        //parent()获取父元素
+        console.log($("p").parent());
+
+        //parents('selector')获取满足选择器的祖先元素
+        console.log($("p").parents(),$("p").parents("box"));
+
+        //children()/children("selector")返回满足选择器的直接子元素
+        console.log($("div").children(),$("div").children("p"));
+
+        //find("selector")获取所有的后代元素(包含直接与间接)
+        console.log($("div").find("span"));
+
+        //next()/next("selector")返回下一个兄弟元素/返回下一个兄弟元素,必须满足选择器
+        console.log($("p").next(),$("p").next("b"));
+
+        //prev()/prev("selector")返回前一个兄弟元素/返回前一个兄弟元素,要求满足选择器
+        console.log($("p").prev(),$("p").prev("span"));
+
+        //siblings()/siblings("selector")返回所有的兄弟元素/满足选择器的所有兄弟元素
+         console.log($("p").siblings(),$("p").siblings("b"));
+
+
+         //---------元素的创建--------
+         var h1 = $("<h1 id="d2">动态创建</h1>");
+         var h2 = $("<h2></h2>");
+         h2.html("二级标题").css("background","blue").attr("color","pink");
+         console.log(h1,h2);
+         //添加节点
+         //作为子元素添加到父元素的头尾位置
+         $("#box").append(h1);//父元素的末尾子元素
+         $("#box").prepend(h2);//父元素的开头子元素
+         //作为兄弟元素添加
+         $("#box").after("h1"); 		//在div的后面添加兄弟元素
+         $("#box").before("h2");	    //在div的前面添加兄弟元素
+
+         var h3 = $("<h3>你大爷的</h3>")
+         $("#box").prepend(h3);         //div父元素的开头子元素
+         var h4 = $("<h4>你二爷的</h3>")
+         $("#box").append(h3);          //div父元素的结尾子元素
+         var a1 = $(<a href="">超链接1</a>);
+         var a2 = $(<a href="">超链接2</a>);
+         h3.after(a1)   //在h3的后面添加兄弟元素
+         h4.before(a2)  //在h4的前面添加兄弟元素
+
+         //移除元素
+         //h3.remove()
+
+    </script>
+</body>
+</html>

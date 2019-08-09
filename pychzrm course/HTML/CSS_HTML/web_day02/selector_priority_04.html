@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .c1{
+            color:yellow;
+        }
+
+        #d1{
+            color:pink;
+        }
+
+        h1{
+            color:red;
+        }
+        h1{
+            color:lime;
+        }
+
+        /*十六进制表示颜色，以#前缀，每两位为一组
+        代表一种三原色（r,g,b）每位字符取值范围0-9，a-f
+        ff(十进制的255)：红绿蓝最大值*/
+        #d1{
+            color:#997669;
+        }
+
+
+        div h1{/*1+1*/
+            color:red;
+        }
+        div .c1{/*1+10*/
+            color:green;
+        }
+        div #d1{/*1+100*/
+            color:#0099
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <!--标签与标签选择器，后来居上-->
+        <!--类选择器比标签选择器优先级高-->
+        <!--id选择器优先级大于类选择器大于标签选择器-->
+        <h1 id="d1" class="c1">嵌套</h1>
+    </div>
+
+
+
+</body>
+</html>

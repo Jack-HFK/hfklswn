@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>传参测试</title>
+</head>
+<body>
+   <h5>myvar = {{ myvar }}</h5>
+   <h5>myvar + 1= {{ myvar | add:1}}</h5>
+   <h5>mystr = {{ mystr }}</h5>
+   <h5>mystr:truncatechars:10 = {{ mystr|truncatechars:10 }}</h5>
+   <h5>mystr|upper = {{ mystr|upper }}</h5>
+   <h5>mylist = {{ mylist }}</h5>
+   <h5>mylist[1] = {{ mylist.1 }}</h5>
+   <h5>person = {{ person }}</h5>
+   <h5>person['age'] = {{ person.age }}</h5>
+   <h5>myfun1() = {{ myfun1 }}</h5>
+   <h5>dog1.show_info() = {{ dog1.show_info }}</h5>
+   <h5>aaa = {{ aaa }}</h5>
+   <h5>你是：
+       {% if money > 100000000 %}
+       <b>富翁</b>
+       {% elif money > 100000 %}
+       <i>有钱人</i>
+       {% endif %}
+   </h5>
+   {% if money > 0 %}
+   <h1>钱包里有钱</h1>
+   {% endif %}
+    <select>
+        {% for c in city %}
+        <option>{{ c }}</option>
+        {% empty %}
+        <option>请添加数据</option>
+        {% endfor %}
+    </select>
+
+    <ul>
+        {% for c in city %}
+        {% if forloop.first %}
+        <li>=============</li>
+        {% endif %}
+        <li>第{{ forloop.counter }}个城市：{{ c }}</li>
+        {% endfor %}
+    </ul>
+    {% comment "我今天心情不好" %}
+     这是多行注释里的内容
+    {% endcomment %}
+
+    {# 这是一行不显示的内容 #}
+    末尾
+
+</body>
+</html>

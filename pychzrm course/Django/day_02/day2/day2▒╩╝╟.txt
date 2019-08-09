@@ -1,0 +1,89 @@
+day1 回顾
+
+Django
+  1. 安装　
+      sudo pip3 install django==1.11.8
+  2. 创建django 项目
+     django-admin startproject <项目名称>
+     django-admin startproject mysite1
+
+  3. mysite1/
+          manage.py  # 项目管理的主模块
+          mysite1/
+             __init__.py
+             settings.py  # 项目配置文件
+                 DEBUG = True
+                 ALLOWED_HOST = []
+                 TIME_ZONE = 'UTC' # 'Asia/Shanghai'
+                 LANGUAGE_CODE = 'zh-hans' # 'en-us'
+                 BASE_DIR = 当前项目所在位置的绝对路径
+                 ROOT_URLCONF = 'mysite1.urls'
+             urls.py      # 主路由配置文件
+             wsgi.py      # wsgi布署的文件
+
+URL
+   http  ://  127.0.0.1  :8000 /   path?(查询)#urls
+   路由:
+
+主路由配置文件
+   # file : urls.py
+   from django.conf.urls import url
+   urlpatterns = [
+       url(r'^page', views.page_view),
+       # 注： 如果page匹配成功，则page1和page2略过
+       url(r'^page1', views.page1_view),
+       url(r'^page2', views.page2_view),
+       # /date/2008/1/12  ->date_view(req,'2008', '1', '12')
+       url(r'^date/(\d{4})/(\d{1,2})/(\d+)',
+            views.date_view
+       # /person/weimingze/35
+       # /person/lvze/30 ->person_view(req, name="lvze", age='30')
+       url(r'^person/(?P<name>\w+)/(?P<age>\d+)',
+             views.person_view),
+   ]
+
+请求和响应
+  request    response
+
+请求方式
+   HTTP 1.0 GET/POST/HEAD
+   HTTP 1.1 PUT/DELETE/CONNECT/...
+  
+   def xxx_view(request):
+       ...
+   request.method     'GET' / 'POST'
+   request.GET   绑定QueryDict
+           request.GET[键]
+           request.GET.get(键, 默认值)
+           request.GET.getlist(键)  返回列表
+   request.POST   绑定QueryDict
+           request.POST[键]
+           request.POST.get(键, 默认值)
+           request.POST.getlist(键)  返回列表
+   request.path
+   request.META
+          .COOKIE
+          .session
+Http响应
+  HttpResponse 对象
+    HttpResponse(包体的内容， status=状态码，content_type='text/html')
+
+GET请求传参：
+   /page?start=1&stop=100
+   request.GET
+
+PyCharm社区版调试Django程序配置
+   1. 选择 Add Configuration
+   2. 选择 左上角 + 号 选择 "Python"
+      1. script path 里选manage.py 的路径 
+      2. 在 parameters 里填入runserver
+
+POST请求示例：
+   如果是GET请求访问 /test_post 返回表单
+   如果是POST请求访问 /test_post 返回提交的数据
+
+能传递给模板的数据类型有：
+   int, float, bool, dict, list, 
+   函数，对象的方法
+   示例见：
+      mysite2/templates/mypage2.html

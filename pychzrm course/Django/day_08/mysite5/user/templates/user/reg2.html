@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单注册</title>
+</head>
+<body>
+    <div>
+        <form action="/user/reg" method="post">
+            <!-- 跨站请求伪造保护 CSRF-->
+            {% csrf_token %}
+            <!--将 form 中的每个属性(控件/文本)都使用p标记包裹起来再显示-->
+            {{ reg2.as_p }}
+            <!--将 form 中的每个属性(控件/文本)都使用li标记包裹起来再显示-->
+            {{ reg2.as_ul }}
+            <!--将 form 中的每个属性(控件/文本)都使用tr标记包裹起来再显示-->
+            {{form.as_table}}
+
+            {% for i in reg2 %}
+                {{ i,label }} {{i}}
+            {% endif %}
+
+            <input type="submit" value="注册2">
+
+        </form>
+    </div>
+</body>
+</html>

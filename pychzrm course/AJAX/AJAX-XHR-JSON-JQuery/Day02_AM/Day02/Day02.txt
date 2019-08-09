@@ -1,0 +1,48 @@
+回顾：
+	1.核心对象 - xhr
+		if(window.XMLHttpRequest){
+			return new XMLHttpRequest();
+		}else{
+			return new ActiveXObject("Micosoft.XMLHTTP");
+		}
+	2.xhr 的成员
+		1.方法 - open(method,url,async)
+		2.属性 - readyState
+			4:服务器端响应完毕
+		3.属性 - status
+			200:服务器端正确响应所有信息
+		4.属性 - responseText
+		5.事件 - onreadystatechange
+		6.方法 - send(body)
+			get : null
+			post : 发送的数据
+
+
+======================================
+1.使用AJAX发送POST请求
+	1.创建xhr
+	2.创建请求
+		1.请求方式改为post
+		2.有请求参数的话不能拼在地址的后面
+		3.设置回调函数
+		4.设置请求消息头 - Content-Type
+			xhr.setRequestHeader(
+				"Content-Type",
+				"application/x-www-form-urlencoded"
+			)
+		5.发送请求
+			请求数据放在send()的参数位置处
+			示例:
+				xhr.send("name=wangwc&age=30&gender=男");
+
+
+
+
+
+
+
+
+
+
+
+

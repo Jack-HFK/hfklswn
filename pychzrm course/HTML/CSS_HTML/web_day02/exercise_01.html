@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+
+        <form action="/hfklswn" method="get"
+          enctype="application/x-www-form-urlencoded">
+            <h1>增加管理员</h1>
+            <tr>
+                <td>姓名：</td>
+                <td >
+                   <input type="text" name="username"
+                          placeholder="姓名以字母数字组成" maxlength="10">
+                <td>10个字符以内</td>
+                </tr>
+
+            <tr>
+                <td>密码：</td>
+                <td>
+                    <input type="password" name="password"
+                              placeholder="不得出现特殊符号" maxlength="10">
+                </td>
+                <td>10个字符以内</td>
+            </tr>
+            <tr>
+                <td>性别：</td>
+                <td colspan="2">
+                    <input type="radio" name="gender" value="man">男士
+                    <input type="radio" name="gender" value="woman">女士
+                </td>
+            </tr>
+            <tr>
+                <td>角色：</td>
+                <td >
+                    <input type="checkbox" name="role" value="superAdmin" checked>超级管理员
+                    <br>
+                    <input type="checkbox" name="role" value="billAdmin">账单管理员
+                </td>
+                <td>至少选一个</td>
+            </tr>
+            <tr>
+                <td>头像：</td>
+                <td colspan="2">
+                    <input type="file" name="uime" value="">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="保存">
+                    <input type="reset" value="重填">
+                </td>
+                <td></td>
+            </tr>
+        </form>
+
+    </table>
+
+
+
+
+
+
+
+
+
+
+    <br>
+    <!--网页表单标签-->
+    <!--form负责提交数据给服务器.标签属性-->
+    <!--action数据的提交地址（交给后端某个程序处理）-->
+    <!--method指定的数据的提交方式，默认为get(明文提交方式，不保密)
+    同时指定编码类型为enctype="application/x-www-form-urlencoded"-->
+    <!--enctype指定数据的编码方式，默认转换字符串，拼接在URL后面(urlencoded)
+    如果涉及二进制数据(图片，音视频等)必须设置提交方式为post
+    同时指定编码类型为multipart/from-date-->
+    <form action="/hfklswn" method="get"
+          enctype="application/x-www-form-urlencoded">
+          <!--段落标签-->
+          <p>
+              <!--type="text"普通输入文本框-->
+              <!--name="控件名称"控件名称和用户名组成键值对一起传送-->
+              <!--placeholder="展现给用户的：文本提示"-->
+              <!--maxlength="文本最大输入限制"-->
+              姓名：&nbsp;<input type="text" name="username"
+                              placeholder="姓名以字母数字组成" maxlength="10">
+          </p>
+          <p>
+              <!--type="text"密码输入文本框-->
+              <!--name="控件名称"控件名称和用户名组成键值对一起传送-->
+              <!--placeholder="展现给用户的：文本提示"-->
+              <!--maxlength="文本最大输入限制"-->
+              密码：&nbsp;<input type="password" name="password"
+                              placeholder="不得出现特殊符号" maxlength="10">
+          </p>
+          <p>
+               <!--type="radio"单选按钮-->
+               <!--向服务器发送必须（有名：有值）(gender=body格式提交)-->
+               <!--checked表示按钮的默认选中-->
+               <!--name="控件名称"控件名称和用户名必须保持一直-->
+               <!--value设置控件的值-->
+              <input type="radio" name="gender" value="man" checked>
+              <label for="man">男士</label>
+              <input type="radio" name="gender" value="woman" >
+              <label for="woman">女士</label>
+                <!--label for id 实现文本与控制的绑定，
+                将label标签的属性for取值为对应控制的id值
+                for属性值与id值保持一致，实现文本的关联
+                for取值必须和文本取值保持一致，点击文本时for取值才能同步
+                name="控件名称"控件名称和用户名必须保持一至-->
+          </p>
+          <p>
+              角色： &nbsp;
+              <input type="checkbox" name="role" value="super_admin" checked>
+              <label for="super_admin">超级管理员</label>
+              <br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="checkbox" name="role" value="billing_clerk">
+              <label for="billing_clerk">账单管理员</label>
+
+          </p>
+          头像：&nbsp;<input type="submit" value="选择文件" >
+          <br>
+          <br>
+          <input type="submit" value="保存">
+          <input type="reset" value="重填">
+    </form>
+
+
+</body>
+</html>

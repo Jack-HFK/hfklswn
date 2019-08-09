@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //1.数组的创建
+        var arr1 = ["超哥哥",30,true];
+        console.log(arr1);
+        //使用new关键字创建
+        var arr2 = new Array("小泽",31,false);
+        console.log(arr2);
+        //特殊
+        var arr3 = [5];
+        //使用new关键字传递一个整数参数创建数组,代表初始化数组长度
+        var arr4 = new Array(5);
+        console.log(arr3,arr4);
+        //2.操作数组元素(根据元素索引)
+        console.log(arr3[0]);
+        arr4[0] = "老祁";
+        arr4[2] = "大旭";
+        arr4[8] = "AI";
+        console.log(arr4);
+        //3.数组对象的属性:length
+        console.log(arr4.length);
+        //4.遍历数组元素
+        //创建数组,包含若干元素,实现数组元素的正序遍历和倒序遍历
+        var arr5 = [1,2,3,4,5];
+        //普通for循环
+        for(var i = 0;i < arr5.length;i++){
+            console.log(arr5[i]);
+        }
+        for(var i = arr5.length-1;i >= 0;i--){
+            console.log(arr5[i]);
+        }
+        console.log("-------------------------");
+        //for-in循环
+        for( var i in arr5){
+            console.log(i,arr5[i]);
+        }
+        //数组对象提供的遍历方法,forEach(function (){})
+        arr5.forEach(function (elem,index){
+            console.log("-----:",elem);
+        });
+        /*
+        1.循环接收用户输入,将数据存储在数组中,直至输入"exit"结束,
+        控制台打印数组
+        2.声明包含若干元素的数组,打印数组中的最大值
+
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

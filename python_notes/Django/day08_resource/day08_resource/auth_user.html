@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>auth_user.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%80%8Adjango-%E6%95%99%E7%A8%8B%E3%80%8B">《Django 教程》</h1>
+<ul>
+<li>讲师: 魏明择</li>
+<li>时间: 2019</li>
+</ul>
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<!-- TOC depthFrom:3 depthTo:5 -->
+<ul>
+<li><a href="#django%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-%E4%BD%BF%E7%94%A8django%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F">Django中的用户认证 (使用Django认证系统)</a>
+<ul>
+<li><a href="#auth%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B%E6%93%8D%E4%BD%9C">auth基本模型操作:</a></li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89user%E6%A8%A1%E5%9E%8B">自定义User模型</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h3 id="django%E4%B8%AD%E7%9A%84%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-%E4%BD%BF%E7%94%A8django%E8%AE%A4%E8%AF%81%E7%B3%BB%E7%BB%9F">Django中的用户认证 (使用Django认证系统)</h3>
+<ul>
+<li>
+<p>Django带有一个用户认证系统。 它处理用户账号、组、权限以及基于cookie的用户会话。</p>
+</li>
+<li>
+<p>作用:</p>
+<ol>
+<li>添加普通用户和超级用户</li>
+<li>修改密码</li>
+<li>登陆和退出管理</li>
+<li>查看已登陆用户</li>
+</ol>
+</li>
+<li>
+<p>文档参见</p>
+<ul>
+<li><a href="https://docs.djangoproject.com/en/1.11/topics/auth/">https://docs.djangoproject.com/en/1.11/topics/auth/</a></li>
+</ul>
+</li>
+<li>
+<p>User模型类</p>
+<ul>
+<li>位置: <code>from django.contrib.auth.models import User</code></li>
+</ul>
+</li>
+<li>
+<p>默认user的基本属性有：</p>
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>类型</th>
+<th>是否必须存在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>username</td>
+<td>用户名</td>
+<td>是</td>
+</tr>
+<tr>
+<td>password</td>
+<td>密码</td>
+<td>是</td>
+</tr>
+<tr>
+<td>email</td>
+<td>邮箱</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>first_name</td>
+<td>名</td>
+<td></td>
+</tr>
+<tr>
+<td>last_name</td>
+<td>姓</td>
+<td></td>
+</tr>
+<tr>
+<td>is_superuser</td>
+<td>是否是管理员帐号(/admin)</td>
+<td></td>
+</tr>
+<tr>
+<td>is_staff</td>
+<td>是否可以访问admin管理界面</td>
+<td></td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>是否是活跃用户,默认True。一般不删除用户，而是将用户的is_active设为False。</td>
+<td></td>
+</tr>
+<tr>
+<td>last_login</td>
+<td>上一次的登录时间</td>
+<td></td>
+</tr>
+<tr>
+<td>date_joined</td>
+<td>用户创建的时间</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>数据库表现形式</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>mysql&gt; <span class="hljs-keyword">use</span> myauth;
+mysql&gt; desc auth_user;
++<span class="hljs-comment">--------------+--------------+------+-----+---------+----------------+</span>
+| Field        | Type         | Null | Key | Default | Extra          |
++<span class="hljs-comment">--------------+--------------+------+-----+---------+----------------+</span>
+| id           | int(11)      | NO   | PRI | NULL    | auto_increment |
+| password     | varchar(128) | NO   |     | NULL    |                |
+| last_login   | datetime(6)  | YES  |     | NULL    |                |
+| is_superuser | tinyint(1)   | NO   |     | NULL    |                |
+| username     | varchar(150) | NO   | UNI | NULL    |                |
+| first_name   | varchar(30)  | NO   |     | NULL    |                |
+| last_name    | varchar(30)  | NO   |     | NULL    |                |
+| email        | varchar(254) | NO   |     | NULL    |                |
+| is_staff     | tinyint(1)   | NO   |     | NULL    |                |
+| is_active    | tinyint(1)   | NO   |     | NULL    |                |
+| date_joined  | datetime(6)  | NO   |     | NULL    |                |
++<span class="hljs-comment">--------------+--------------+------+-----+---------+----------------+</span>
+11 rows in <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)
+</div></code></pre>
+<h4 id="auth%E5%9F%BA%E6%9C%AC%E6%A8%A1%E5%9E%8B%E6%93%8D%E4%BD%9C">auth基本模型操作:</h4>
+<ul>
+<li>创建用户
+<ul>
+<li>创建普通用户create_user<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.contrib.auth <span class="hljs-keyword">import</span> models
+user = models.User.objects.create_user(username=<span class="hljs-string">'用户名'</span>, password=<span class="hljs-string">'密码'</span>, email=<span class="hljs-string">'邮箱'</span>,...)
+...
+user.save()
+</div></code></pre>
+</li>
+<li>创建超级用户create_superuser<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.contrib.auth <span class="hljs-keyword">import</span> models
+user = models.User.objects.create_superuser(username=<span class="hljs-string">'用户名'</span>, password=<span class="hljs-string">'密码'</span>, email=<span class="hljs-string">'邮箱'</span>,...)
+...
+user.save()
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>删除用户<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.contrib.auth <span class="hljs-keyword">import</span> models
+<span class="hljs-keyword">try</span>:
+    user = models.User.objects.get(username=<span class="hljs-string">'用户名'</span>)
+    user.is_active = <span class="hljs-keyword">False</span>  <span class="hljs-comment"># 记当前用户无效</span>
+    user.save()
+    print(<span class="hljs-string">"删除普通用户成功！"</span>)
+<span class="hljs-keyword">except</span>:
+    print(<span class="hljs-string">"删除普通用户失败"</span>)
+<span class="hljs-keyword">return</span> HttpResponseRedirect(<span class="hljs-string">'/user/info'</span>)
+</div></code></pre>
+</li>
+<li>修改密码set_password<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.contrib.auth <span class="hljs-keyword">import</span> models
+<span class="hljs-keyword">try</span>:
+    user = models.User.objects.get(username=<span class="hljs-string">'laowei'</span>)
+    user.set_password(<span class="hljs-string">'654321'</span>)
+    user.save()
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"修改密码成功！"</span>)
+<span class="hljs-keyword">except</span>:
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"修改密码失败！"</span>)
+</div></code></pre>
+</li>
+<li>检查密码是否正确check_password<pre class="hljs"><code><div><span class="hljs-keyword">from</span> django.contrib.auth <span class="hljs-keyword">import</span> models
+<span class="hljs-keyword">try</span>:
+    user = models.User.objects.get(username=<span class="hljs-string">'laowei'</span>)
+    <span class="hljs-keyword">if</span> user.check_password(<span class="hljs-string">'654321'</span>):  <span class="hljs-comment"># 成功返回True,失败返回False</span>
+        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"密码正确"</span>)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"密码错误"</span>)
+<span class="hljs-keyword">except</span>:
+    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">"没有此用户！"</span>)
+</div></code></pre>
+</li>
+</ul>
+<h4 id="%E8%87%AA%E5%AE%9A%E4%B9%89user%E6%A8%A1%E5%9E%8B">自定义User模型</h4>
+<ul>
+<li>当django自带的 django.contrib.auth.models.User 的属性不能满足我们现有的需求时，可以自定义User模型</li>
+<li>如，向用户中加入姓别和家庭住址字段等</li>
+<li>自定义User 类需要继承自 django.contrib.auth.models.AbstractUser, 如:</li>
+</ul>
+<pre class="hljs"><code><div>rom django.contrib.auth.models <span class="hljs-keyword">import</span> AbstractUser
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span><span class="hljs-params">(AbstractUser)</span>:</span>
+    address = models.CharField(<span class="hljs-string">"住址"</span>, max_length=<span class="hljs-number">100</span>)
+    mobile = models.CharField(<span class="hljs-string">"手机号"</span>, max_length=<span class="hljs-number">15</span>)
+    ...
+</div></code></pre>
+<ul>
+<li>自定义User类后需要再次做迁移操作</li>
+<li>文档参见<a href="https://docs.djangoproject.com/en/1.11/topics/auth/customizing/">https://docs.djangoproject.com/en/1.11/topics/auth/customizing/</a></li>
+</ul>
+
+</body>
+</html>

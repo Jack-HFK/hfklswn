@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/一代枭雄/day15" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/一代枭雄/ManagerSysem/manager_system" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/一代枭雄/day16/my_ project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/一代枭雄/day16/project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/一代枭雄/day16/my_project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_one/project_month01/2048" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_one/project_month01/2048/game_2048" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_one/project_month01/exercise_2048/2048" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/day2_PM" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_one/day18" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_dict" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_http" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_http/HttpServer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_http/WebFrame" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_http/httpserver/HttpServer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/journey_two/project_http/httpserver/WebFrame" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/exercise_kung_fu/project_dict/HttpServer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Django/day_06/code/mysite5" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Django/day_07/mysite5" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Django/day_07/day7_ALL" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Django/exercise/code1/mywebsite_bookstore" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project/code" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Project/blog" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/Django/day_08/mysite6/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/Django/exercise/code3/venv" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+  <component name="TestRunnerService">
+    <option name="projectConfiguration" value="Twisted Trial" />
+    <option name="PROJECT_TEST_RUNNER" value="Twisted Trial" />
+  </component>
+</module>

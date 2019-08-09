@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //循环输出一百次""
+        var i = 101;
+        do{
+            console.log("超哥哥最帅");
+            //更新循环变量
+            i++;
+        }while(i < 101);
+        i = 101;
+        while(i < 101){
+            console.log("小泽老师最美");
+            i++;
+        }
+
+        for(var i = 1;i < 101;i++){
+            //循环体
+            console.log("老祁的B-box真棒");
+        }
+        /*控制循环体的执行:break/continue*/
+        for(var i = 1; i < 11;i++){
+            console.log(i);
+            if(i == 5){
+            //一旦执行break,循环体中后面的代码都不执行
+                continue;
+            }
+            console.log("-------------");
+        }
+        /*循环接收用户输入,并且在控制台输出;直至用户
+        输入"exit"表示退出*/
+        /*
+        while(true){
+            var input = prompt("请输入");
+            if(input == "exit"){
+                //结束循环
+                break;
+            }
+            console.log(input);
+        }
+        */
+        /*
+        var input;
+        do{
+            input = prompt("请输入");
+            if(input != "exit")
+                console.log(input);
+        }while(input != "exit")
+        */
+
+        /*
+            控制台输出乘法表(循环嵌套)
+            1 * 1
+        */
+        for(var i = 1; i <= 9; i++){
+            var show = "";
+            for(var j = 1; j <= i;j++){
+            //制表符 \t
+                show += i + "*" + j + "=" + i*j + "\t";
+            }
+            //按行输出
+            console.log(show);
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

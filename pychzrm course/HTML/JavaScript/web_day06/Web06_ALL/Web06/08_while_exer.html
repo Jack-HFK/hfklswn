@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var year = prompt("年");
+        var month = prompt("月");
+        var day = Number(prompt("日"));
+        var sum = 0;
+        //1.整月天数的累加
+        var i = 1;
+        while(i < month){ //1~month-1
+            switch(i){
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                    sum += 31;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    sum += 30;
+                    break;
+                case 2:
+                    sum += 28;
+                    if(year%4==0&&year%100!=0 || year%400==0){
+                        sum++;
+                    }
+            }
+            i++;
+        }
+        //2.当前月天数的累加
+        sum += day;
+        console.log(sum);
+
+        /*
+        switch(i==1){
+            case true
+        }
+        */
+    </script>
+</head>
+<body>
+
+</body>
+</html>

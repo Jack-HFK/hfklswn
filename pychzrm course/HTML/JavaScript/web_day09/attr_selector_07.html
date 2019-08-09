@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+      <!--引入jquery文件-->
+    <script src="jquery-1.11.3.js"></script>
+</head>
+<body>
+    <h1>酒仙</h1>
+    <h1 id="d1">酒圣</h1>
+    <h1 id="d2">酒神</h1>
+    <h1 id="cd">酒鬼</h1>
+    <h1 id="adi">酒祖</h1>
+    <ul>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+    <ul>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+    <script>
+        //属性选择器
+        console.log($("[id]"));//匹配包含指定属性的元素
+        console.log($("[id='d1']"));// 匹配属性名=属性值的元素
+        console.log($("[id^=d]"));// 匹配属性值以d开头的元素
+        console.log($("[id$=d]"));// 匹配属性值以d结尾的元素
+        console.log($("[id*=d]"));// 匹配属性值包含指定字符的元素
+        //子元素过滤选择器
+        $("li:first").css("color","red")
+                                //:first-child 匹配第一个子元素
+        $("li:first-child").css("background","yellow")
+                                //last-child 匹配最后一个子元素
+        $("li:last-child").css("background","lime")
+                                //nth-child(n) 匹配第n个子元素(n从1开始计数)
+        $("li:nth-child(2)").css("text-align","center")
+
+
+    </script>
+</body>
+</html>

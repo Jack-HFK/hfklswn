@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //1.创建字符串
+        var str1 = "公子";
+        var str2 = new String("new方法创建");
+        console.log(str1,str2);
+        //2.字符串采用数组结构存储每位字符，可以使用数组方法操作字符
+        console.log(str1[1],str2[0]);
+        //遍历字符串
+        for(var i = 0;i <str2.length;i++){
+            console.log(str2[i]);
+        }
+        //转换字母大小写
+        var s3 = "maria";
+        var r1 = s3.toUpperCase();
+        var r2 = s3.toLowerCase();
+        console.log(s3,r1,r2)
+        //获取指定下标的字符或字符编码
+        var r3 = s3.charAt(3);
+        var r4 = s3.charCodeAt(3);
+        console.log(s3,r3,r4)
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

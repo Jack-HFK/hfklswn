@@ -1,0 +1,156 @@
+day02 回顾
+  请求 HttpRequest 和响应 HttpResponse
+    def xxx_view(request):
+        if request.method == "GET":
+           return HttpResponse("GET")
+        elif request.method == 'POST':
+            return HttpResponse("POST")
+
+  get请求:
+    request.GET (QueryDict类型的字典)
+    request.GET['key']
+    request.GET.get('key', 默认值)
+    request.GET.getlist('key')
+  post 请求
+    request.POST (QueryDict类型的字典)
+    request.POST['key']
+    request.POST.get('key', 默认值)
+    request.POST.getlist('key')
+    post请求要提交成功需要注释掉 CsrfViewMiddleware
+
+Django遵循的设计模式
+   MTV 
+     M-model
+     T-template
+     V-view
+
+模板:
+  动态的html
+  配置模板
+    settings.py 
+    TEMPLATES = [
+      {
+        DIRS = [os.path.join(BASE_DIR, 'templates')]
+      }
+    ]
+    模板的加载
+    def xxx_view(request):
+        return render(request, 'xxx.html', locals())
+
+    def xxx_view(request):
+        t = loader.get_template('xxx.html')
+        html = t.render(locals())
+        return HttpResponse(html)
+
+模板的变量:
+   {{ 变量名 }}
+   {{ 变量名.列表的索引 }}
+   {{ 变量名.字典的键 }}
+   {{ 函数名 }}
+   {{ 对象.方法名 }}
+模板的if 标签
+    {% if xxxx %}
+      ...
+    {% elif yyyy %}
+      ...
+    {% else %}
+       ...
+    {% endif %}
+
+模板的 for 标签
+    {% for 变量 in 可迭代对象 %}
+       ...
+    {% empty %}
+       ...
+    {% endfor %}
+  内置变量forloop
+       forloop.counter0
+       forloop.counter
+       forloop.revcounter
+       forloop.revcounter0
+       forloop.first
+       ...
+模板的注释
+  {#    #}
+  {% comment %}
+    ...
+  {% endcomment %}
+过滤器 
+  {{ mystr | upper }}
+
+模板的继承
+  myfile.html
+  <html>
+  ....
+     {% block name1 %}
+        <h1>父模板的内容 </h1>
+     {% endblock name1 %}
+     {% block name2 %}
+        <h1> 标题1 </h1>
+     {% endblock name2 %}
+  </html>
+
+  # myfile2.html
+  {% extends 'myfile.html' %}
+     {% block name2 %}
+        <h1> 标题2 </h1>
+     {% endblock name2 %}
+
+url 反向解板
+   url(r'^xxx', xxx_view, name='xxx')
+   url(r'^yyy(\d+)(\w+)', yyy_view, name='yyy')
+  模板中
+    {% url 'xxx' %}
+    {% url 'yyy' '123' 'tedu'}
+    /yyy123tedu
+
+
+
+day3笔记
+静态文件 
+   https://www.baidu.com/img/bd_logo1.png
+路由地址(url地址):
+    /img/bd_logo1.png
+
+存储位置
+    /home/tarena/django/day3/code/bd_logo1.png
+
+示例:
+  路由:
+    /static/images/meinv.png
+  存储位置
+    /home/tar.../mysite3/static/images/meinv.png
+
+路由
+127.0.0.1:8000/show_image
+
+
+
+mysql 数据
+  mysql -u root -p123456
+
+  用户名: root
+  密码: 123456
+  IP地址: 127.0.0.1
+  端口号: 3306
+  数据库名: 'mysite3_db'
+
+  sql> create database mysite3_db default charset utf8 collate utf8_general_ci;
+
+        create database mysite3_db default charset utf8 collate utf8_general_ci;
+
+
+练习:
+   在bookstore/models.py 中再加入下个模型类
+   　　class Author(....):
+          # 姓名
+          name = ...
+          # 年龄
+          age = .....
+          # 其它自己尝试
+    运行迁移，查看数据库的变量
+    
+
+
+
+

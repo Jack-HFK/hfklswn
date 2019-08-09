@@ -1,0 +1,84 @@
+前情回顾
+
+1. 基础概念
+  
+	* 为什么用数据库
+	* 什么是数据库
+	* 数据库简单分类
+
+	   关系型 & 非关系型
+
+		 开源 & 非开源
+	
+	* 数据库的组成和基本概念
+	  
+		数据元素-->记录-->数据表-->数据库
+
+		数据库 (database)
+		数据表 (table)
+		字段 (column)
+		记录 (row)
+		主键 (primary key)
+
+2. mysql  
+   
+	 关系型  开源  c/c++  安装
+
+3. SQL
+
+  * 数据库操作
+	  show databases;
+		create database [dbName];
+		select database();
+		show create database [dbName];
+		use [db];
+		drop database [db];
+
+	* 数据表
+	  
+		show tables;
+		create table [tName] (column1 type,column2 type);
+		
+		描述 : primary key   主键
+		       unsigned  数字无符号
+					 default  设置默认值
+					 not null  不许为空
+					 auto_increment  主键自增1
+		
+		数据类型 :  数字 (整数 小数 布尔)
+		            字符串 (char  varchar text blob enum set)
+								时间日期
+		       
+    desc [table];
+		drop table [tName];
+	
+	* 数据的增删改查
+	  
+		insert into [tName] ... values ..
+		delete from [tName] where ...
+		update [tName] set ... where ...
+		select ... from [tName] where ...
+	
+	 where子句 :  算数  逻辑  比较 
+********************************************
+
+练习 : 
+
+创建表
+  
+编号   运动员   报名时间(datetime)     成绩(time)
+
+
+练习:
+
+dict下创建数据表 words
+
+id  word  mean三个字段 ,要求存储单词本
+
+
+作业 :  1. 数据库 总结, sql语句熟记
+        2. 文件存储 写
+
+
+
+

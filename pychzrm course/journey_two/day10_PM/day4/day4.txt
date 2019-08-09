@@ -1,0 +1,82 @@
+前情回顾
+
+1. 进程通信方法
+   
+	 管道通信 : Pipe()   recv()   send()
+
+	 消息队列 : Queue()  put()  get()
+
+	 共享内存 : Value()  Array()
+
+	 信号量 : Semaphore()  acquire()  release()
+
+2. 线程创建  threading
+   
+	 Thread()  创建线程对象
+	 start()  启动线程
+	 join()  回收线程
+
+	 线程对象属性 : name   daemon 
+
+3. 自定义线程类
+
+   * 继承Thread
+	 * 重写 __init__   run
+
+4. 同步互斥方法
+   
+	 Event :   e.set()  e.clear()  e.wait()
+
+	 Lock  :  lock.acquire()   lock.release()
+
+	 死锁 :  导致程序阻塞,无法运行,是我们不想看到的
+
+实验
+
+  Single CPU: 9.77295470237732
+	Single IO: 6.075256824493408
+
+  Thread cpu: 10.264439821243286
+	Thread io: 6.321307420730591
+
+	Process cpu: 5.008460283279419
+	Process io: 3.083393096923828
+
+**********************************************
+
+FTP文件服务器分析
+
+1. 技术点分析
+
+   * 并发模型   多线程并发
+	 * 网络传输   TCP传输
+
+2. 结构设计
+   
+	 * 客户端发起请求 --> 界面
+      list    get filename   put filename
+
+	 * 类封装
+
+3. 功能模块
+   
+	 * 网络并发结构
+	 * 查看文件列表
+	 * 下载文件
+	 * 上传文件
+	 * 退出
+
+4. 协议设定
+
+  * 文件列表查看 : 只提供普通文件 (非隐藏文件)
+
+  * 客户端请求类型 :  L  文件列表
+	                    G filename  下载文件
+											P filename  上传文件
+											Q  退出
+
+
+作业  1. 完成ftp文件服务器 上传功能
+      2. 对ftp文件文件服务器代码梳理
+			3. 重点代码 自己会写
+			4. 复习http协议和1.0 

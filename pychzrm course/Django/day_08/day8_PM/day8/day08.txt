@@ -1,0 +1,103 @@
+中间件
+  中间件的定义
+    from django.utils.deprecation import MiddlewareMixin
+    class MyMiddleware(MiddlewareMixin):
+        def process_request(self, request):
+            在路由选择之前被调用
+            ....
+        def process_view(self, request, cb,
+            cb_args, cb_kwargs):
+            此方法会在路由之后,视图函数调有和之前被调用
+        def process_response(self, request, response):
+            方法会在从视图函数返回时被调用
+        def process_exception(self, request, exception):
+             ...
+        def process_templates_response(self, request, response)
+                ...
+
+
+        urlpatterns = [
+            url(r'user/login', views.login_view)
+        ]
+
+CSRF 
+   django.middleware.csrf.CsrfViewMiddleware
+   每次检查 POST请求中 
+      表单中 csrfmiddlewaretoken 值是否合法,
+
+
+
+
+django 中的 form 表单模块
+   作用:
+      创建表单内部的表单控件
+      用来做表单检证 
+  1. 表单控件:
+    class XXX(forms.Form):
+         search = forms.CharField(....)
+    xxx = XXX()
+    xxx.as_p()
+    xxx.as_ul()
+    xxx.as_table()  
+  2.表单验证
+    class XXX(forms.Form):
+        search = forms.CharField(....)
+        password1 = ...
+        password2 = ...
+        def clean_search(self):
+            # 验证 search的内容是否合法
+            ...
+        def clean(self):
+            # 总体验证所有内容是否合法
+
+    def xxx_view(request):
+        xxx = XXX(request.POST)
+        if xxx.is_valid():
+           表单的内容字典 = xxx.cleaned_data()
+
+
+
+day08笔记
+   分页
+   文件上传
+     查看文件:
+        通过静态文件加载和浏览
+          http://127.0.0.1:8000/static/files/meinv.png
+
+nginx
+   http://127.0.0.1/
+   映射到 127.0.0.1:8000
+
+项目部署
+    1. 配置 uwsgi  替代 manage.py
+    2. 配置 nginx  将 80端口映射到 uwsgi 的8000端口
+    3. 配置 nginx 静态路由,指向本地位置
+    4. 配置和自定义404界面
+
+华为云部署
+  1. 购买 弹性云服务器 ECS
+  2. 注册
+  3. 实名制
+  4. 配置安全组,让80端口在公网能显示(出现打客服)
+  5. 安装 python
+  6. 安装 django
+  7. 配置布署
+      登陆远程服务 器:
+      $ ssh root@xxx.xxx.xx.xx
+      $ scp 命令可以把本地上传到云服务器
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

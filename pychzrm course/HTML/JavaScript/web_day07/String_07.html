@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //模式匹配
+        var str = "上知乎,搜知乎,问知乎,答知乎";
+        //match(param)
+        var res1 = str.match("知乎");
+        console.log(res1)
+        //定义正则，表示查找
+        var regexp = /\d{6,10}/ig;
+        var regexp2 = /知乎/;
+        var regexp2 = str.match(regexp2);
+        console.log(regexp2);
+        //replace()根据正则表达式或字符串查找相关内容并进行替换
+        var res3 = str.replace(regexp2,"新浪")
+        console.log(res3,str)
+
+
+
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>

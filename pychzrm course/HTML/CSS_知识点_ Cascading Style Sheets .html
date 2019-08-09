@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+
+            height:88px                                     设置高度
+            width:88px                                      设置宽度
+            min-height                                      设置最小高度
+            name="控件名称"                                  控件名称和用户名组成键值对一起传送
+            color:rgba(255,0,0,0);                          设置字体颜色
+            checked                                         设置为默认选中状态,按钮有选中和未选中两个状态,对应checked属性值为true/false
+            className                                       防止class选择器属性与关键字冲突,使用时加class区分属性的选择调用
+            colspan                                         单元格属性:跨列合并单元格
+            rowspan                                         单元格属性:跨行合并单元格
+            background-color: 颜色;                          设置背景颜色
+            background-image : url("路径");                  设置背景图片
+            background-position:x y;                        设置背景图片的显示位置
+            background-size:width height;                   设置背景图片的尺寸
+            box-shadow:offsetX offsetY blur (spread) color; 设置盒阴影
+            border:width style color;                       边框实现：填写边框的边框宽度,边框样式,边框颜色
+            border-top:8px solid blue;                      设置上边框：边框宽度,实线边框,边框颜色
+            border-right:8px solid rgba(0,0,0,0);           设置右边框：边框宽度,实线边框,边框颜色
+            border-bottom:8px solid green;                  设置下边框：边框宽度,实线边框,边框颜色
+            border-left:8px solid lime;                     设置左边框：边框宽度,实线边框,边框颜色
+            border-radius:像素值/百分比                       设置圆角边框
+            <box-sizing:b></box-sizing:b>order-box;                          调整盒模型的计算方式，取值border-box时，表示当前元素指定的width/height是包含边框在内区域的尺寸
+            display:none;                                   设置为默认隐藏
+            display:block;                                  设置为显示内容
+            display:inline-block;                           元素类型转换
+            visibility="hidden"                             隐藏元素：元素内容不可见，元素仍然保持原来的位置和大小
+            visibility="none"                               隐藏元素：元素内容,原来的位置和大小，整的元素都隐藏。
+            font-size:8px;                                  设置字体大小
+            font-style:italic;                              设置字体斜体
+            font-family:Arial,"黑体";                        设置字体名称
+            font-weight:normal;                             设置字体粗细程度/normal（默认值）等价于400 / bold(加粗) 等价于700
+            font : style weight size family;                字体属性简写:font: 斜体 粗细 大小 名称
+            transition:8s;                                  添加过渡属性：在属性两种元素状态切换时添加平滑过渡效果
+            text-decoration:none;                           取消超链接默认下划线
+            padding:像素;                                    设置内边距:调整元素内容框与边框之间的距离
+            margin：像素;                                    设置外边距：调整元素与元素之间的距离
+            vertical-align:top;                             水平方向上元素之间的垂直对齐方式：top(上)/middle(中)/bottom(下)
+            float:left/right;                               浮动布局:设置元素向左浮动或向右浮动
+            list-style:none;                                去除列表项目符号(默认样式)
+            outline:none;                                   取消表单控件在焦点状态下的轮廓线,取none可以取消文本输入框默认轮廓线
+            outline:width style color;                      设置轮廓线：填写边框的边框宽度,边框样式,边框颜色
+            onclick                                         实现点击按钮时在控制台执行并输出
+            overflow:auto;                                  处理内容溢出：内容超出元素的尺寸范围:auto自动在溢出方向添加可用滚动条
+            overflow:hidden;                                父元素设置overflow:hidden;解决子元素全部设置浮动,导致父元素高度为0,影响父元素背景色和背景图片展示,影响页面布局
+            clear:/left/right/both;                         清除浮动:使文档中正常元素不受前面浮动元素的影响：/左浮影响/右浮动影响/整体浮动影响
+            cursor:default;                                 设置鼠标显示形状 default箭头/pointer手指/text形状I
+            position:relative/absolute/fixed;               定位布局:可取relative（相对定位）/absolute（绝对定位）/fixed（固定定位）,设置偏移属性
+            placeholder="输入框内添加提示文本内容提示"          input标签：输入框内添加提示文本内容提示
+            maxlength="9"                                   文本输入框最大输入限制
+            z-index:数字随意;                                调整堆叠次序：元素发生堆叠时可以使用 z-index 属性调整已定位元素的显示位置，值越大元素越靠上,只有定位元素才能够使用z-index属性调整次序
+            父元素>子元素:first-child;                        父元素下第一个出现的子元素
+            text-decoration:none;                           文本装饰线:取值: none:取消装饰线/underline:下划线/overline:上划线/line-through:删除线/
+            text-align:center;                              文本内容的水平对齐方式:left(默认值):左对齐/center:居中对齐/right:右对齐/justify:两端对齐
+            line-height:像素;                                设置行高位置：文本垂直居中
+            readonly                                        限制用户在输入框能不能输入内容
+            元素:link 	                                    超链接访问前的状态
+            元素:visited                                     链接访问后的状态
+            元素:hover	                                    鼠标滑过时的状态
+            元素:active                                      标点按不抬起时的状态(激活)
+            元素:focus	                                    焦点状态(文本框被编辑时就称为获取焦点)
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    &lt;                                在页面中呈现 "<"
+    &gt;                                在页面中呈现 ">"
+    &nbsp;                              在页面中呈现一个空格
+    &copy;                              在页面中呈现版权符号"©"
+    &yen;                               在页面中呈现人民币符号"
+    <a href="锚点跳转"></a>               超链接：通过点击跳转到指定的目标文件 href=""javascript:void(0)
+    <br>                                格式标签:换行标签
+    <b></b>                             加粗标签
+    <button></button>                   表示按钮，标签内容即为按钮显示文本,书写在form中，相当于submit提交按钮
+    <p></p>                             段落标签
+    <u></u>                             删除线标签
+    <h1></h1>                           标题标签:自带加粗效果,从h1到h6字体大小逐级递减
+    <div></div>                         容器标签:常用于页面结构划分，结合CSS实现网页布局
+    <div id="top">页面顶部区域</div>      页面顶部区域
+    <div id="main">页面主体区域</div>     页面主体区域
+    <div id="bottom">页面底部区域</div>   页面底部区域
+    <form action="数据提交地址"></form>   表单标签:表单用于采集用户的信息并提交给服务器，由表单元素和表单控件组
+    <hr>                                水平线标签:在页面中插入一条水平分割线
+    <img src="" alt="">                 图片标签:用于在网页中插入一张图片
+    <i></i>                             斜体标签
+    <input type="submit" value="注册">   submit提交按钮，点击时提交数据到后台,可以设置value属性，表示按钮的显示文本
+    <input type="password">             type="password"密码输入文本框
+    <input type="text">                 checkbox复选按钮 radio单选按钮 text文本输入
+    <input type="radio">                checkbox复选按钮 radio单选按钮 text文本输入
+    <input type="checkbox">             checkbox复选按钮 radio单选按钮 text文本输入
+    <input type="text" placeholder="输入框内添加提示文本内容提示">
+    <link rel="stylesheet" href="URL">  引入外部样式表
+    <span></span>                       行分区标签:用于对特殊文本特殊处理
+    <strong></strong>                   强调标签:效果同b标签
+    <label for="地址"></label>           普通文本标签：常与表单控件结合实现文本与控件的绑定
+    <table></table>                     表格标签:行分组标签:可以将表格中的若干行划分为一组，表示表头，表尾及表格主体
+    <tr></tr>                           表格行标签
+    <th></th>                           表示单元格:自带文本加粗和居中效果
+    <td></td>                           普通单元格
+    <ol></ol>                           有序列表:默认使用阿拉伯数字标识每条数据,可添加type属性设置项目符号
+    <ul></ul>                           无序列表:默认使用实心圆点标识列表项,可添加type属性设置项目符号
+    <style></style>                     借助于style标签，在HTML文档中嵌入CSS样式代码,为当前的元素添加样式声明
+    <form action="URL"></form>          form负责提交数据给服务器,action数据的提交地址（交给后端某个程序处理）
+    <form action="URL" method="get"></form> method指定的数据的提交方式，默认为get(明文提交方式，不保密)
+    <select name="" id="">option标签</select>设置下拉菜单
+    <option value="" selected></option> 设置下拉菜单中各行菜单selected,手动设置selected表示选中这行文本为默认选中,默认选中第一个option
+    <textarea name="" id="" cols="30" rows="10"></textarea>  文书编辑框,自动收集属性
+    <label for="id_title">书名</label> <input type="text" id="id_title"> for="id_title"：点击书名时焦点切换到输入框
+    <script></script>                         通过script标签书写JS语句(脚本文件)
+    <script src="/static/common.js"></script> 引用外部JS文件
+    <button onclick="函数()"></button>   onclick  实现点击按钮时在控制台执行并输出
+</body>
+</html>

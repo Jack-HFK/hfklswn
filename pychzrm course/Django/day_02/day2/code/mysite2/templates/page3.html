@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'page3' %}">跳转到第3页</a>
+<!--<a href="/pagennn/100">跳转到第100页</a>-->
+<a href="{% url 'pagen' '100' %}">跳转到第100页</a>
+<a href="{% url 'pagen' '999' %}">跳转到第999页</a>
+
+</body>
+</html>

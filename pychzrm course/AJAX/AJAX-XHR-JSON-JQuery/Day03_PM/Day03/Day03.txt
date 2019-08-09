@@ -1,0 +1,87 @@
+1.JSON
+	1.服务器端的JSON处理
+		1.在Python中的处理
+			1.允许将 元组，列表，字典 转换成JSON串
+			2.元组，字典，列表中的内容必须是
+				字符串，数字
+				元组，列表，字典
+
+			python中提供了json模块，json模块中提供dumps方法实现json串的转换
+		2.在Django中的处理
+			使用Django中提供的序列化模块来完成QuerySet到JSON串的转换
+
+			from django.core import serializers
+			jsonStr = serializers.serialize('json',QuerySet)
+	2.前端中将JS对象转换成JSON串
+		方法:JSON.stringify(jsObj)
+		作用:将jsObj转换成JSON串
+	3.服务器端中将JSON串转换为字典/列表
+		方法:json.loads(jsonStr)
+2.JQ对AJAX的支持
+	1.$obj.load()
+		语法:
+			$obj.load(url,data,callback)
+				url:请求地址
+				data:请求参数
+				callback:响应成功后的回调
+		作用:加载远程地址的内容到$obj中
+		用法:
+			1.data
+			 请求参数[可选],如果没有参数则使用get方式
+			 1.通过字符串传参
+				"key1=value1&key2=value2"
+				注:此种传参会使用get方式发送请求
+			 2.通过JS对象传参
+				{
+					key1:"value1",
+					key2:"value2"
+				}
+				注:此种传参会使用post方式发送请求
+			2.callback
+				响应成功后的回调函数[可选]
+				function(resText){
+					resText:表示响应回来的数据
+				}
+	2.$.get()
+		作用:通过get方式异步的向远程地址发送请求
+		语法:$.get(url,data,callback,type)
+			1.url:请求地址
+			2.data:请求参数[可选]
+				1.使用字符串
+				2.使用JS对象
+			3.callback:响应成功后的回调函数[可选]
+				function(resText){
+					
+				}
+			4.type:响应回来的数据的格式[可选]
+				取值如下:
+					1.html:响应回来的文本当成html文本处理
+					2.text:响应回来的文本当成普通文本处理
+					3.script:响应回来的文本当JS脚本执行
+					4.json:响应回来的文本是JSON格式,会直接转换成JS对象/数组
+	3.$.post()
+		语法:$.post(url,data,callback,type)
+	4.$.ajax()
+		作用:自定义所有的ajax参数
+		语法: $.ajax({AJAX的参数对象})
+		AJAX的参数对象:
+			1. url : 请求的地址
+			2. data : 请求到服务器端的参数
+				1.字符串 : "key1=value1&key2=value2"
+				2.JS对象: {key1:"value1",key2:"value2"}
+			3.type : 请求方式 'get' 或 'post'
+			4.dataType : 响应回来的数据的格式
+				json,html,text,script
+			5.async : 是否采用异步的方式发送请求
+				true:异步(默认值)
+				false:同步
+			6.success:响应成功后的回调函数
+				function(resText){
+					resText表示的是响应回来的数据
+				}
+			7.error:请求或响应失败时的回调函数
+				function(){
+					
+				}
+
+
